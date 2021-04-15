@@ -1,0 +1,2 @@
+# G-12_SupplyChainSystemForShoes
+From the impact of technology on tracking, to how Bata is transforming its supply chain, This  website for all things involving a supply chain and logistics in general. It gives real time  data updation in all section .If anything gets stuck whole process will stop for that .all processes are interrelated to each other.  It is a Website which is used for Monitaring ,Updating ,Making the statergis from grass root level .
