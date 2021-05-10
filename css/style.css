@@ -434,7 +434,7 @@ a {
 	float: left;
 	background-color: #076787;
 	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-bottom: 1px;
 
 }
 
@@ -575,7 +575,20 @@ button.main_bt {
 .about_page .creative_taital {
     width: 100%;
     float: left;
-    background-color: #ffffff;
+    background-color: ;
+    height: auto;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    color: black;
+    margin-top: -100px;
+    margin-bottom: 50px;
+    box-shadow: none;
+}
+
+.custom  {
+    width: 100%;
+    float: left;
+    background-color: #ae9d9d;
     height: auto;
     padding-bottom: 30px;
     padding-top: 30px;
