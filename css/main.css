@@ -44,7 +44,7 @@ body, html {
 /*---------------------------------------------*/
 a {
 	font-family: Montserrat-Regular;
-	font-size: 14px;
+	font-size: 19px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
@@ -60,7 +60,7 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
-	color: #57b846;
+	color: #19e6b5;
 }
 
 /*---------------------------------------------*/
