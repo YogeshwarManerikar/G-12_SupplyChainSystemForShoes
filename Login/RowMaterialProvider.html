@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/login.css">
+  <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
   <main>
@@ -19,8 +19,10 @@
             <img src="../images/brand.png" alt="logo" class="logo">
           </div>
           <div class="login-wrapper my-auto">
-            <h1 class="login-title">Log in  <br> As Row material Provider</h1>
-            <form action="#!">
+            <h1 class="login-title">Log in</h1>  <br> <h1 class="login-title1">Row material Provider</h1>
+            
+			<!--Form-->
+			<form  method="POST" action="../Dashboard/index.html" >
               <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" class="form-control" placeholder="email@example.com">
@@ -29,14 +31,15 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" class="form-control" placeholder="enter your passsword">
               </div>
-              <input name="login" id="login" class="btn btn-block login-btn" type="button" value="Login">
+              <input name="login" id="login" class="btn btn-block login-btn" type="button" value="Login" onclick="window.open('../Dashboard/index.html','_self')" >
             </form>
-            <a href="#!" class="forgot-password-link">Forgot password?</a>
-            
+            <a href="../Dashboard/index.html" class="forgot-password-link">Forgot password?</a>
+            <!--End the form-->
+			
           </div>
         </div>
         <div class="col-sm-6 px-0 d-none d-sm-block">
-          <img src="assets/images/login.jpg" alt="login image" class="login-img">
+          <img src="../images/login.jpg" alt="login image" class="login-img">
         </div>
       </div>
     </div>
