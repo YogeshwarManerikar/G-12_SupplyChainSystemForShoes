@@ -60,10 +60,10 @@
 <li class="nav-item">
 <ul class="nav flex-column">
 <li class="nav-item">
-<a class="nav-link" href="add-category.php">Add</a>
+<a class="nav-link" href="add-rawmaterial-category.php">Add</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="manage-category.php">Manage</a>
+<a class="nav-link" href="manage-Rowmaterial-categories .php">Manage</a>
 </li>
 </ul>
 </li>
