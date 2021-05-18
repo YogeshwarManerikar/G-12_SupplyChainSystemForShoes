@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 //error_reporting(0);
 include('includes/config.php');
 if (strlen($_SESSION['aid']==0)) {
@@ -11,7 +11,7 @@ $cmpid=substr(base64_decode($_GET['del']),0,-5);
 $query=mysqli_query($con,"delete from tblcategory where id='$cmpid'");
 echo "<script>alert('Category record deleted.');</script>";   
 echo "<script>window.location.href='manage-categories.php'</script>";
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +20,11 @@ echo "<script>window.location.href='manage-categories.php'</script>";
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Manage Invoices</title>
     <!-- Data Table CSS -->
-    <link href="vendors/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="vendors/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
-    <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
-    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../vendors/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="../vendors/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="../vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="../vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+    <link href="../dist/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     
@@ -56,8 +56,8 @@ include_once('includes/sidebar.php');
 <div class="hk-pg-header">
  <h4 class="hk-pg-title"><span class="pg-title-icon">
 <?php
-$fdate=$_POST['fromdate'];
-$tdate=$_POST['todate'];
+//$fdate=$_POST['fromdate'];
+//$tdate=$_POST['todate'];
 ?>
 
     <span class="feather-icon"><i data-feather="database"></i></span></span>Sales report from <?php echo $fdate?> to <?php echo $tdate?></h4>
@@ -82,21 +82,21 @@ $tdate=$_POST['todate'];
                                             </thead>
                                             <tbody>
 <?php 
-$rno=mt_rand(10000,99999); 
+/*$rno=mt_rand(10000,99999); 
 $query=mysqli_query($con,"select month(tblorders.InvoiceGenDate) as mnth,year(tblorders.InvoiceGenDate) as yearr,sum(tblorders.Quantity*tblproducts.ProductPrice) as tt  from tblorders join tblproducts on tblproducts.id=tblorders.ProductId  where date(tblorders.InvoiceGenDate) between '$fdate' and '$tdate' group by mnth,yearr");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
-{    
+{*/    
 ?>                                                
 <tr>
-<td><?php echo $cnt;?></td>
-<td><?php echo $row['mnth']."/".$row['yearr'];?></td>
-<td><?php echo $row['tt'];?></td>
+<td><?php //echo $cnt;?></td>
+<td><?php //echo $row['mnth']."/".$row['yearr'];?></td>
+<td><?php //echo $row['tt'];?></td>
 
 </tr>
 <?php 
-$cnt++;
-} ?>
+//$cnt++;
+//} ?>
                                                 
                                             </tbody>
                                         </table>

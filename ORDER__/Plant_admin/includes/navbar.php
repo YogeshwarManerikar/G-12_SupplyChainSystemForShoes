@@ -1,6 +1,6 @@
      <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
             <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i class="ion ion-ios-menu"></i></a>
-            <a class="navbar-brand" href="dashboard.php">BATA
+            <a class="navbar-brand" href="dashboard.php">BATA (Plant_admin)
             </a>
             <ul class="navbar-nav hk-navbar-content">
 

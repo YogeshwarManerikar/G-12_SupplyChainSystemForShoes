@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 //error_reporting(0);
 include('includes/config.php');
 if (strlen($_SESSION['aid']==0)) {
@@ -18,7 +18,7 @@ echo "<script>window.location.href='add-company.php'</script>";
 echo "<script>alert('Something went wrong. Please try again.');</script>";   
 echo "<script>window.location.href='add-company.php'</script>";    
 }
-}
+}*/
 
     ?>
 <!DOCTYPE html>
@@ -28,9 +28,9 @@ echo "<script>window.location.href='add-company.php'</script>";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Sales Report</title>
-    <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
-    <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
-    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="../vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+    <link href="../dist/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -114,18 +114,17 @@ include_once('includes/sidebar.php');
 
     </div>
 
-    <script src="vendors/jquery/dist/jquery.min.js"></script>
-    <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="vendors/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
-    <script src="dist/js/jquery.slimscroll.js"></script>
-    <script src="dist/js/dropdown-bootstrap-extended.js"></script>
-    <script src="dist/js/feather.min.js"></script>
-    <script src="vendors/jquery-toggles/toggles.min.js"></script>
-    <script src="dist/js/toggle-data.js"></script>
-    <script src="dist/js/init.js"></script>
-    <script src="dist/js/validation-data.js"></script>
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../vendors/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+    <script src="../dist/js/jquery.slimscroll.js"></script>
+    <script src="../dist/js/dropdown-bootstrap-extended.js"></script>
+    <script src="../dist/js/feather.min.js"></script>
+    <script src="../vendors/jquery-toggles/toggles.min.js"></script>
+    <script src="../dist/js/toggle-data.js"></script>
+    <script src="../dist/js/init.js"></script>
+    <script src="../dist/js/validation-data.js"></script>
 
 </body>
 </html>
-<?php } ?>
