@@ -1,18 +1,5 @@
-<?php
-/*session_start();
-error_reporting(0);
-include('includes/config.php');
-if (strlen($_SESSION['aid']==0)) {
-  header('location:logout.php');
-  } else{
-// Code for deletion   
-if(isset($_GET['del'])){    
-$cmpid=substr(base64_decode($_GET['del']),0,-5);
-$query=mysqli_query($con,"delete from tblcategory where id='$cmpid'");
-echo "<script>alert('Category record deleted.');</script>";   
-echo "<script>window.location.href='manage-categories.php'</script>";
-}*/
-?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,9 +19,7 @@ echo "<script>window.location.href='manage-categories.php'</script>";
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper hk-vertical-nav">
 <!-- Top Navbar -->
-<?php include_once('includes/navbar.php');
-include_once('includes/sidebar.php');
-?>
+
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
         <!-- /Vertical Nav -->
 
@@ -137,7 +122,7 @@ while($row=mysqli_fetch_array($query))
 </div>
 </th>
 
-<th style="text-align:left; font-size:20px;"><?php //echo number_format($grandtotal,2);?></th>   
+<th style="text-align:left; font-size:20px;"></th>   
 
 </tr>                                              
                                             </tbody>
@@ -155,7 +140,7 @@ while($row=mysqli_fetch_array($query))
             <!-- /Container -->
 
             <!-- Footer -->
-<?php include_once('includes/footer.php');?>
+
             <!-- /Footer -->
         </div>
         <!-- /Main Content -->
