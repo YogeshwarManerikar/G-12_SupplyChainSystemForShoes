@@ -1,6 +1,4 @@
-<?php
 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,9 +18,7 @@
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper hk-vertical-nav">
 <!-- Top Navbar -->
-<?php include_once('includes/navbar.php');
-include_once('includes/sidebar.php');
-?>
+
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
         <!-- /Vertical Nav -->
 
@@ -74,8 +70,8 @@ include_once('includes/sidebar.php');
 <td><?php //echo $row['CategoryCode'];?></td>
 <td><?php //echo $row['PostingDate'];?></td>
 <td>
-<a href="edit-category.php?catid=<?php //echo base64_encode($row['id'].$rno);?>" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="icon-pencil"></i></a>
-<a href="manage-categories.php?del=<?php //echo base64_encode($row['id'].$rno);?>" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Do you really want to delete?');"> <i class="icon-trash txt-danger"></i> </a>
+<a href="edit-category.html"  data-toggle="tooltip" data-original-title="Edit"> <i class="icon-pencil"></i></a>
+<a href="manage-categories.html" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Do you really want to delete?');"> <i class="icon-trash txt-danger"></i> </a>
 </td>
 </tr>
 
