@@ -1,10 +1,4 @@
-<?php
-//session_start();
-//error_reporting(0);
-//include('includes/config.php');
-//if (strlen($_SESSION['aid']==0)) {
- // header('location:logout.php');
- // } else{ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,11 +6,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Dashboard</title>
-    <link href="vendors/vectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" type="text/css" />
-    <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
-    <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
-    <link href="vendors/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
-    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../vendors/vectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" type="text/css" />
+    <link href="../vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="../vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+    <link href="../vendors/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+    <link href="../dist/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -25,9 +19,7 @@
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper hk-vertical-nav">
 
-<?php include_once('includes/navbar.php');
-include_once('includes/sidebar.php');
-?>
+
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
         <!-- /Vertical Nav -->
         <!-- Main Content -->
@@ -80,10 +72,7 @@ include_once('includes/sidebar.php');
 </div>
 </div>
 							
-<?php
-//$sql=mysqli_query($con,"select id from tblproducts");
-//$listedproduct=mysqli_num_rows($sql);
-?>
+
 <div class="col-lg-3 col-md-6">
 <div class="card card-sm">
 <div class="card-body">
@@ -95,16 +84,15 @@ include_once('includes/sidebar.php');
 </div>
 </div>
 <div class="text-center">
-<span class="d-block display-4 text-dark mb-5"><?php //echo $listedproduct;?></span>
+<span class="d-block display-4 text-dark mb-5"></span>
 <small class="d-block">Listed Products</small>
 </div>
 </div>
 </div>
 </div>
-<?php
-//$query=mysqli_query($con,"select sum(tblorders.Quantity*tblproducts.ProductPrice) as tt  from tblorders join tblproducts on tblproducts.id=tblorders.ProductId ");
-//$row=mysqli_fetch_array($query);
-?>
+
+
+
 <div class="col-lg-3 col-md-6">
 <div class="card card-sm">
 <div class="card-body">
@@ -116,17 +104,14 @@ include_once('includes/sidebar.php');
 </div>
 </div>
 <div class="text-center">
-<span class="d-block display-4 text-dark mb-5"><?php //echo number_format($row['tt'],2);?></span>
+<span class="d-block display-4 text-dark mb-5"></span>
 <small class="d-block">Total sales till date</small>
 </div>
 </div>
 </div>
 </div>	
 
-<?php
-//$qury=mysqli_query($con,"select sum(tblorders.Quantity*tblproducts.ProductPrice) as tt  from tblorders join tblproducts on tblproducts.id=tblorders.ProductId where date(tblorders.InvoiceGenDate)>=(DATE(NOW()) - INTERVAL 7 DAY)");
-//$row=mysqli_fetch_array($qury);
-?>
+
 <div class="col-lg-3 col-md-6">
 <div class="card card-sm">
 <div class="card-body">
@@ -138,17 +123,14 @@ include_once('includes/sidebar.php');
 </div>
 </div>
 <div class="text-center">
-<span class="d-block display-4 text-dark mb-5"><?php //echo number_format($row['tt'],2);?></span>
+<span class="d-block display-4 text-dark mb-5"></span>
 <small class="d-block">Last 7 Days Total Sales</small>
 </div>
 </div>
 </div>
 </div>
 
-<?php
-//$qurys=mysqli_query($con,"select sum(tblorders.Quantity*tblproducts.ProductPrice) as tt  from tblorders join tblproducts on tblproducts.id=tblorders.ProductId where date(tblorders.InvoiceGenDate)=CURDATE()-1");
-//$rw=mysqli_fetch_array($qurys);
-?>
+
 <div class="col-lg-3 col-md-6">
 <div class="card card-sm">
 <div class="card-body">
@@ -160,7 +142,7 @@ include_once('includes/sidebar.php');
 </div>
 </div>
 <div class="text-center">
-<span class="d-block display-4 text-dark mb-5"><?php //echo number_format($rw['tt'],2);?></span>
+<span class="d-block display-4 text-dark mb-5"></span>
 <small class="d-block">Yesterday Total Sales</small>
 </div>
 </div>
@@ -168,10 +150,7 @@ include_once('includes/sidebar.php');
 </div>
 
 
-<?php
-//$quryss=mysqli_query($con,"select sum(tblorders.Quantity*tblproducts.ProductPrice) as tt  from tblorders join tblproducts on tblproducts.id=tblorders.ProductId where date(tblorders.InvoiceGenDate)=CURDATE()");
-//$rws=mysqli_fetch_array($quryss);
-?>
+
 
 
 
@@ -187,7 +166,7 @@ include_once('includes/sidebar.php');
 </div>
 </div>
 <div class="text-center">
-<span class="d-block display-4 text-dark mb-5"><?php //echo number_format($rws['tt'],2);?></span>
+<span class="d-block display-4 text-dark mb-5"></span>
 <small class="d-block">Today's Total Orders</small>
 </div>
 </div>
@@ -196,10 +175,7 @@ include_once('includes/sidebar.php');
 
 
 
-<?php
-//$quryss1=mysqli_query($con,"select sum(Quantity) as tt  from tblorders join tblproducts on tblproducts.id=tblorders.ProductId where date(tblorders.InvoiceGenDate)=CURDATE()");
-//$rws=mysqli_fetch_array($quryss1);
-?>
+
 <div class="col-lg-3 col-md-6">
 <div class="card card-sm">
 <div class="card-body">
@@ -211,7 +187,7 @@ include_once('includes/sidebar.php');
 </div>
 </div>
 <div class="text-center">
-<span class="d-block display-4 text-dark mb-5"><?php //echo number_format($rws['tt'],2);?></span>
+<span class="d-block display-4 text-dark mb-5"></span>
 <small class="d-block">Today's </small>
 </div>
 </div>
@@ -226,7 +202,7 @@ include_once('includes/sidebar.php');
             <!-- /Container -->
 			
             <!-- Footer -->
-<?php include_once('includes/footer.php');?>
+
             <!-- /Footer -->
         </div>
         <!-- /Main Content -->
@@ -235,25 +211,25 @@ include_once('includes/sidebar.php');
     <!-- /HK Wrapper -->
 
     <!-- jQuery -->
-    <script src="vendors/jquery/dist/jquery.min.js"></script>
-    <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="dist/js/jquery.slimscroll.js"></script>
-    <script src="dist/js/dropdown-bootstrap-extended.js"></script>
-    <script src="dist/js/feather.min.js"></script>
-    <script src="vendors/jquery-toggles/toggles.min.js"></script>
-    <script src="dist/js/toggle-data.js"></script>
-	<script src="vendors/waypoints/lib/jquery.waypoints.min.js"></script>
-	<script src="vendors/jquery.counterup/jquery.counterup.min.js"></script>
-    <script src="vendors/jquery.sparkline/dist/jquery.sparkline.min.js"></script>
-    <script src="vendors/vectormap/jquery-jvectormap-2.0.3.min.js"></script>
-    <script src="vendors/vectormap/jquery-jvectormap-world-mill-en.js"></script>
-	<script src="dist/js/vectormap-data.js"></script>
-    <script src="vendors/owl.carousel/dist/owl.carousel.min.js"></script>
-    <script src="vendors/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
-    <script src="vendors/apexcharts/dist/apexcharts.min.js"></script>
-	<script src="dist/js/irregular-data-series.js"></script>
-    <script src="dist/js/init.js"></script>
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../dist/js/jquery.slimscroll.js"></script>
+    <script src="../dist/js/dropdown-bootstrap-extended.js"></script>
+    <script src="../dist/js/feather.min.js"></script>
+    <script src="../vendors/jquery-toggles/toggles.min.js"></script>
+    <script src="../dist/js/toggle-data.js"></script>
+	<script src="../vendors/waypoints/lib/jquery.waypoints.min.js"></script>
+	<script src="../vendors/jquery.counterup/jquery.counterup.min.js"></script>
+    <script src="../vendors/jquery.sparkline/dist/jquery.sparkline.min.js"></script>
+    <script src="../vendors/vectormap/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="../vendors/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+	<script src="../dist/js/vectormap-data.js"></script>
+    <script src="../vendors/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="../vendors/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+    <script src="../vendors/apexcharts/dist/apexcharts.min.js"></script>
+	<script src="../dist/js/irregular-data-series.js"></script>
+    <script src="../dist/js/init.js"></script>
 	
 </body>
 

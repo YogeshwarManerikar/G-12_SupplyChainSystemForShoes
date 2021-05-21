@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Manage 1st stage product </title>
+    <title>Manage Invoices</title>
     <!-- Data Table CSS -->
     <link href="../vendors/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="../vendors/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
@@ -27,8 +27,8 @@
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Payment for RowMaterial</a></li>
-<li class="breadcrumb-item active" aria-current="page"></li>
+<li class="breadcrumb-item"><a href="#">Invoice</a></li>
+<li class="breadcrumb-item active" aria-current="page">View</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
@@ -38,52 +38,84 @@
 
                 <!-- Title -->
 <div class="hk-pg-header">
- <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span> Payment for RowMaterial</h4>
+ <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="file"></i></span></span>View Invoice</h4>
                 </div>
                 <!-- /Title -->
 
                 <!-- Row -->
                 <div class="row">
                     <div class="col-xl-12">
-                        <section class="hk-sec-wrapper">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="table-wrap">
-                                        <table id="datable_1" class="table table-hover w-100 display pb-30">
-                                            <thead>
-                                                <tr>
-                                                   
-													<th>#Lot No.</th>
-													<th>Date of collection</th>
-													
-													<th>Provider Name</th>
-													<th>Provider ID</th>
-													<th>RowMaterial Category</th>
-													<th>Quantity</th>
-													<th>Price</th>
-													<th>status</th>
-                                                    
-                                                    
-                                                </tr>
+
+
+  <section class="hk-sec-wrapper hk-invoice-wrap pa-35">
+                            <div class="invoice-from-wrap">
+                                <div class="row">
+                                    <div class="col-md-7 mb-20">
+<h3 class="mb-35 font-weight-600">     BATA </h3>
+<h6 class="mb-5">Supply Chain Management System</h6>
+
+</div>
+
+<?php 
+//Consumer Details
+ 
+?>
+<div class="col-md-5 mb-20">
+<h4 class="mb-35 font-weight-600">Invoice / Receipt</h4>
+<span class="d-block">Date:<span class="pl-10 text-dark"></span></span>
+<span class="d-block">Invoice / Receipt #<span class="pl-10 text-dark"></span></span>
+<span class="d-block">Customer #<span class="pl-10 text-dark"></span></span>
+<span class="d-block">Customer Mobile No #<span class="pl-10 text-dark"></span></span>
+<span class="d-block">Payment Mode #<span class="pl-10 text-dark"></span></span>
+</div>
+</div>
+</div>
+
+<hr class="mt-0">
+                        
+                          
+                       
+<div class="row">
+<div class="col-sm">
+<div class="table-wrap">
+<table class="table mb-0" border="1">
+<thead>
+<tr>
+<th>#</th>
+<th >Product Name</th>
+<th>Category</th>
+<th>Company</th>
+<th width="5%">Quantity</th>
+<th width="10%">Unit Price</th>
+<th width="10%">Price</th>
+
+</tr>
                                             </thead>
                                             <tbody>
-                                               
+<?php 
+//Product Details
+//$query=mysqli_query($con,"select tblproducts.CategoryName,tblproducts.ProductName,tblproducts.CompanyName,tblproducts.ProductPrice,tblorders.Quantity  from tblorders join tblproducts on tblproducts.id=tblorders.ProductId where tblorders.InvoiceNumber='$inid'");
+//$cnt=1;
+//while($row=mysqli_fetch_array($query))
+//{    
+?>                                                
 <tr>
-
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>
-<a href="RowMaterial-payment-status-update.html" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="icon-pencil"></i></a>
-</td>
+<td><?php //echo $cnt;?></td>
+<td><?php //echo $row['ProductName'];?></td>
+<td><?php //echo $row['CategoryName'];?></td>
+<td><?php //echo $row['CompanyName'];?></td>
+<td><?php //echo $qty=$row['Quantity'];?></td>
+<td><?php //echo $ppu=$row['ProductPrice'];?></td>
+<td><?php //echo $subtotal=number_format($ppu*$qty,2);?></td>
 </tr>
 
-                                                
+<?php
+ ?>
+  <tr>
+<th colspan="6" style="text-align:center; font-size:20px;">Total</th> 
+<th style="text-align:left; font-size:20px;"></th>   
+
+</tr>                                              
                                             </tbody>
                                         </table>
                                     </div>
