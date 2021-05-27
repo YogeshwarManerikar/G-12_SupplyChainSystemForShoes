@@ -1,0 +1,122 @@
+{%  extends 'bata/Dashboard/assets/plantadmin/base.html' %}
+{% block content %}
+  {% load static %}
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper">
+            <!-- Breadcrumb -->
+            <nav class="hk-breadcrumb" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light bg-transparent">
+<li class="breadcrumb-item"><a href="#">Payment for RowMaterial</a></li>
+<li class="breadcrumb-item active" aria-current="page"></li>
+                </ol>
+            </nav>
+            <!-- /Breadcrumb -->
+
+            <!-- Container -->
+            <div class="container">
+
+                <!-- Title -->
+<div class="hk-pg-header">
+ <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span> Payment for RowMaterial</h4>
+                </div>
+                <!-- /Title -->
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <section class="hk-sec-wrapper">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="table-wrap">
+                                        <table id="datable_1" class="table table-hover w-100 display pb-30">
+                                            <thead>
+                                                <tr>
+													<th>#Lot No.</th>
+													<th>Date of Demand</th>
+													<th>last date of Released demand</th>
+
+													<th>Plant_Admin Location</th>
+													<th>RowMaterial Category</th>
+													<th>Quantity</th>
+													<th>status</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+           {% for detail in detail %}
+
+<tr>
+
+<td>{{detail.Lot_number}}</td>
+<td>{{detail.Demand_date}}</td>
+<td>{{detail.Requirement_date}}</td>
+<td>{{detail.user_location}}</td>
+<td>{{detail.Raw_type}}</td>
+<td>{{detail.Quantity}}</td>
+<td>{{detail.status}}</td>
+
+</tr>
+        {% endfor %}
+                                             {% for detail in details %}
+
+<tr>
+
+<td>{{detail.Lot_number}}</td>
+<td>{{detail.Demand_date}}</td>
+<td>{{detail.Requirement_date}}</td>
+<td>{{detail.user_location}}</td>
+<td>{{detail.Raw_type}}</td>
+<td>{{detail.Quantity}}</td>
+<td>{{detail.status}}</td>
+
+</tr>
+        {% endfor %}
+
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+                <!-- /Row -->
+
+            </div>
+            <!-- /Container -->
+
+            <!-- Footer -->
+
+            <!-- /Footer -->
+        </div>
+        <!-- /Main Content -->
+    </div>
+    <!-- /HK Wrapper -->
+
+	<script src="{% static 'vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+	<script src="{% static 'vendors/jszip/dist/jszip.min.js' %}"></script>
+	<script src="{% static 'vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+	<script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'vendors/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/jasny-bootstrap/dist/js/jasny-bootstrap.min.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'dist/js/dropdown-bootstrap-extended.js' %}"></script>
+    <script src="{% static 'dist/js/feather.min.js' %}"></script>
+    <script src="{% static 'vendors/jquery-toggles/toggles.min.js' %}"></script>
+    <script src="{% static 'dist/js/toggle-data.js' %}"></script>
+    <script src="{% static 'dist/js/init.js' %}"></script>
+    <script src="{% static 'dist/js/validation-data.js' %}"></script>
+    <script src="{% static 'vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+    <script src="{% static 'vendors/pdfmake/build/vfs_fonts.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.slimscroll.js' %}"></script>
+	
+	{% endblock %}

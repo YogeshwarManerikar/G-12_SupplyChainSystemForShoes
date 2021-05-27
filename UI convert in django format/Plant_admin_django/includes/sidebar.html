@@ -1,0 +1,196 @@
+<head>	
+   <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="../../vendors/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../vendors/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="../../vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+
+     <link href="../../dist/css/animate.css" rel="stylesheet" type="text/css">
+	 <link href="../../dist/css/dripicons.css"      rel="stylesheet" type="text/css">
+	 <link href="../../dist/css/font-awesome.min.css"      rel="stylesheet" type="text/css">
+	 <link href="../../dist/css/glyphicons.css"      rel="stylesheet" type="text/css">
+	 <link href="../../dist/css/ionicons.min.css"        rel="stylesheet" type="text/css">
+	 <link href="../../dist/css/simple-line-icons.css"        rel="stylesheet" type="text/css">
+	 <link href="../../dist/css/themify-icons.css"        rel="stylesheet" type="text/css">
+	 
+    <link href="../../dist/css/style.css" rel="stylesheet" type="text/css">
+   <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+</head>
+<div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+<div class="hk-wrapper hk-vertical-nav">
+        <nav class="hk-nav hk-nav-light">
+            <a href="javascript:void(0);" id="hk_nav_close" class="hk-nav-close"><span class="feather-icon"><i data-feather="x"></i></span></a>
+            <div class="nicescroll-bar">
+                <div class="navbar-nav-wrap">
+                    <ul class="navbar-nav flex-column">
+
+<li class="nav-item">
+<a class="nav-link" href="../dashboard.html">
+<i class="ion ion-ios-keypad"></i>
+<span class="nav-link-text">Dashboard</span>
+</a>
+</li>
+
+                          
+<li class="nav-item">
+<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#cats_drp">
+<i class="ion ion-ios-copy"></i>
+<!-- mens womens kids-->
+<span class="nav-link-text">New Product Categorys</span></a>
+<ul id="cats_drp" class="nav flex-column collapse collapse-level-1">
+<li class="nav-item">
+<ul class="nav flex-column">
+<li class="nav-item">
+<a class="nav-link" href="../add-category.html">Add</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../manage-categories.html">Manage</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#product_drp">
+<i class="ion ion-ios-copy"></i>
+<!-- name  color size eg :- sportshoos_BK_6-->
+<span class="nav-link-text">New Product Types</span></a>
+<ul id="product_drp" class="nav flex-column collapse collapse-level-1">
+<li class="nav-item">
+<ul class="nav flex-column">
+<li class="nav-item">
+<a class="nav-link" href="../add-product.html">Add</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../manage-products.html">Manage</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+
+<li class="nav-item">
+<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#RowMaterial_drp">
+<i class="ion ion-ios-copy"></i>
+<!-- name  color size eg :- sportshoos_BK_6-->
+<span class="nav-link-text">New RowMaterial Types</span></a>
+<ul id="RowMaterial_drp" class="nav flex-column collapse collapse-level-1">
+<li class="nav-item">
+<ul class="nav flex-column">
+<li class="nav-item">
+<a class="nav-link" href="../add-rawmaterial-category.html">Add</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../manage-Rowmaterial-categories .html">Manage</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+
+
+<!--Row Material Provider connection-->
+<li class="nav-item">
+<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#Demand_drp">
+<i class="ion ion-ios-list-box"></i>
+<!-- name  color size eg :- sportshoos_BK_6-->
+<span class="nav-link-text">RowMaterial </span></a>
+<ul id="Demand_drp" class="nav flex-column collapse collapse-level-1">
+<li class="nav-item">
+<ul class="nav flex-column">
+<li class="nav-item">
+<a class="nav-link" href="../Demand-for-Rowmaterial.html">Demand for row material </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../Rowmaterial-Payment.html">payment for supply</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+
+
+<li class="nav-item">
+<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#production_drp">
+<i class="ion ion-ios-list-box"></i>
+<!-- name  color size eg :- sportshoos_BK_6-->
+<span class="nav-link-text">Product on Production line </span></a>
+<ul id="production_drp" class="nav flex-column collapse collapse-level-1">
+<li class="nav-item">
+<ul class="nav flex-column">
+<li class="nav-item">
+<a class="nav-link" href="../1st-stage-RowMaterial-lot.html">RowMaterial lot</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../1st-stage-productlot.html">1st stage productlots</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../productlot-status.html">1st stage productlots</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+
+
+
+
+
+<li class="nav-item">
+<a class="nav-link" href="../invoices.html">
+<i class="ion ion-ios-list-box"></i>
+<span class="nav-link-text">Invoices</span>
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#reports_drp">
+<i class="ion ion-ios-today"></i>
+<span class="nav-link-text"> Sellers  </span></a>
+<ul id="reports_drp" class="nav flex-column collapse collapse-level-1">
+<li class="nav-item">
+<ul class="nav flex-column">
+<li class="nav-item">
+<a class="nav-link" href="../bwdate-report-details.html">Demand for product </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../sales-report-ds.html">Sales</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../returnproduct.html">Returen Product </a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+</ul>
+                 
+                      
+                      
+                      
+                  
+                
+                    <hr class="nav-separator">
+            
+                </div>
+            </div>
+        </nav>
+		
+    <script src="../../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../../vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../vendors/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+    <script src="../../dist/js/jquery.slimscroll.js"></script>
+    <script src="../../dist/js/dropdown-bootstrap-extended.js"></script>
+    <script src="../../dist/js/feather.min.js"></script>
+    <script src="../../vendors/jquery-toggles/toggles.min.js"></script>
+    <script src="../../dist/js/toggle-data.js"></script>
+    <script src="../../dist/js/init.js"></script>
+    <script src="../../dist/js/validation-data.js"></script>
