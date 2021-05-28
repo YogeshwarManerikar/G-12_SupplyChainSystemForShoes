@@ -6,12 +6,27 @@ From the impact of technology on tracking, to how Bata is transforming its suppl
 - Track Foot print of product 
 - Monthly records of supply
 - Check Order History for Seller
--4.Strategy Building forum for Higher authority(HOD's)
--5.All bills in pdf format With Company overhead.
--6.Workers Feedback Forum.
--7.Tracking of outsource product_batch.
+- Strategy Building forum for Higher authority(HOD's)
+- All bills in pdf format With Company overhead.
+- Workers Feedback Forum.
+- Tracking of outsource product_batch.
 
 # Technologys & Tools:-
+Django Channels
+===============
+
+.. image:: https://github.com/django/channels/workflows/Tests/badge.svg?branch=master
+    :target: https://github.com/django/channels/actions
+
+.. image:: https://readthedocs.org/projects/channels/badge/?version=latest
+    :target: https://channels.readthedocs.io/en/latest/?badge=latest
+
+.. image:: https://img.shields.io/pypi/v/channels.svg
+    :target: https://pypi.python.org/pypi/channels
+
+.. image:: https://img.shields.io/pypi/l/channels.svg
+    :target: https://pypi.python.org/pypi/channels
+    
 *Pycharm
 *Bootstrap
 *Notpad++
