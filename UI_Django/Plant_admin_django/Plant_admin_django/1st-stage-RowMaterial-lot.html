@@ -1,0 +1,214 @@
+{%  extends 'bata/Dashboard/assets/plantadmin/base.html' %}
+{% block content %}
+  {% load static %}
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper">
+            <!-- Breadcrumb -->
+            <nav class="hk-breadcrumb" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light bg-transparent">
+<li class="breadcrumb-item"><a href="#">Search</a></li>
+<li class="breadcrumb-item active" aria-current="page">Type</li>
+                </ol>
+            </nav>
+            <!-- /Breadcrumb -->
+
+            <!-- Container -->
+            <div class="container">
+                <!-- Title -->
+                <div class="hk-pg-header">
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Search Type</h4>
+                </div>
+                <!-- /Title -->
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+
+<section class="hk-sec-wrapper">
+
+<div class="row">
+<div class="col-sm">
+<form class="needs-validation" method="post" novalidate>
+                                       
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">RowMaterial type Name</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Product Name" name="productname" required>
+<div class="invalid-feedback">Please provide a valid RowMaterial Type.</div>
+</div>
+</div>
+
+                                 
+<button class="btn btn-primary" type="submit" name="search">search</button>
+</form>
+</div>
+</div>
+</section>
+<!--code for search result -->
+
+ <section class="hk-sec-wrapper">
+     
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="table-wrap">
+                                        <table id="datable_1" class="table table-hover w-100 display pb-30">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Category</th>
+                                                    <th>Pricing</th>
+                                                    <th>Quantity</th>
+                                                    <th>Action</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+						<form method="post" action="search-product.php?action=add&pid=">                                                  
+						<tr>
+						<td></td>
+						<td></td>
+						<td><input type="text" class="product-quantity" name="quantity" value="1" size="2" /></td>
+						<td><input type="text" class="product-quantity" name="pricing" value="1" size="2" /></td>
+
+						<td>
+						<input type="submit" value="Add to Cart" class="btnAddAction" />
+						</td>
+						</tr>
+						</form>
+
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+</section>
+                        
+
+
+<form class="needs-validation" method="post" novalidate>
+
+<!--- Shopping Cart ---->
+<section class="hk-sec-wrapper">
+     
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="table-wrap">
+<h4> Cart</h4>
+<hr />
+
+<a id="btnEmpty" href="search-product.html?action=empty" >Empty Cart</a>
+ 
+  <table id="datable_1" class="table table-hover w-100 display pb-30" border="1">
+<tbody>
+<tr>
+<th>#Lot No.</th>
+<th>Date of collection</th>
+<th>Plant Name</th>
+<th>Plant Location</th>
+
+<th> RowMaterial Category</th>
+
+<th width="5%">Quantity</th>
+
+<th width="10%">Price</th>
+<th width="5%">Remove</th>
+</tr>   
+
+           <input type="hidden" value="" name="quantity[]">
+                <tr>
+                <td><input type="text" class="product-quantity" name="LotNo" value="1" size="2" /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+				<td></td>
+                <td><a href="search-product.html" class="btnRemoveAction"><img src="dist/img/icon-delete.png" alt="Remove Item" /></a></td>
+                </tr>
+               
+
+<tr>
+<td colspan="3" align="right">Total:</td>
+<td colspan="2"></td>
+<td colspan=><strong></strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>  
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">RowMaterial Provider Name</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Customer Name" name="customername" required>
+<div class="invalid-feedback">Please provide a valid Provider name.</div>
+</div>
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">ID</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Mobile Number" name="mobileno" required>
+<div class="invalid-feedback">Please provide a ID number.</div>
+</div>
+</div>
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+   
+<div class="col-md-6 mb-10">
+<button class="btn btn-primary" type="submit" name="checkout">Checkout</button>
+</div>
+</div>
+</form>
+
+
+<div style="color:red" align="center">Your Cart is Empty</div>
+
+</div>
+</div></div></section>
+
+
+
+    
+
+
+
+
+</div>
+</div>
+</div>
+
+
+          
+
+        </div>
+      
+
+    </div>
+
+    <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'vendors/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/jasny-bootstrap/dist/js/jasny-bootstrap.min.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'dist/js/dropdown-bootstrap-extended.js' %}"></script>
+    <script src="{% static 'dist/js/feather.min.js' %}"></script>
+    <script src="{% static 'vendors/jquery-toggles/toggles.min.js' %}"></script>
+    <script src="{% static 'dist/js/toggle-data.js' %}"></script>
+    <script src="{% static 'dist/js/init.js' %}"></script>
+    <script src="{% static 'dist/js/validation-data.js' %}"></script>
+    <style type="{% static 'text/css' %}">
+        #btnEmpty {
+    background-color: #ffffff;
+    border: #d00000 1px solid;
+    padding: 5px 10px;
+    color: #d00000;
+    float: right;
+    text-decoration: none;
+    border-radius: 3px;
+    margin: 10px 0px;
+    }
+
+    </style>
+{% endblock %}
+

@@ -1,0 +1,140 @@
+{%  extends 'bata/Dashboard/assets/seller/base.html' %}
+{% block content %}
+  {% load static %}
+    
+   
+	<!-- HK Wrapper -->
+	<div class="hk-wrapper hk-vertical-nav">
+<!-- Top Navbar -->
+
+        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+        <!-- /Vertical Nav -->
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper">
+            <!-- Breadcrumb -->
+            <nav class="hk-breadcrumb" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light bg-transparent">
+<li class="breadcrumb-item"><a href="#">Invoice</a></li>
+<li class="breadcrumb-item active" aria-current="page">View</li>
+                </ol>
+            </nav>
+            <!-- /Breadcrumb -->
+
+            <!-- Container -->
+            <div class="container">
+
+                <!-- Title -->
+<div class="hk-pg-header">
+ <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="file"></i></span></span>View Invoice</h4>
+                </div>
+                <!-- /Title -->
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+
+
+  <section class="hk-sec-wrapper hk-invoice-wrap pa-35">
+                            <div class="invoice-from-wrap">
+                                <div class="row">
+                                    <div class="col-md-7 mb-20">
+<h3 class="mb-35 font-weight-600">     BATA </h3>
+<h6 class="mb-5">Supply Chain Management System</h6>
+
+</div>
+
+<?php 
+//Consumer Details
+ 
+?>
+<div class="col-md-5 mb-20">
+<h4 class="mb-35 font-weight-600">Invoice </h4>
+<span class="d-block">Date:<span class="pl-10 text-dark"></span></span>
+<span class="d-block">Invoice  #<span class="pl-10 text-dark"></span></span>
+<span class="d-block">Seller #<span class="pl-10 text-dark"></span></span>
+<span
+</div>
+</div>
+</div>
+
+<hr class="mt-0">
+                        
+                          
+                       
+<div class="row">
+<div class="col-sm">
+<div class="table-wrap">
+<table class="table mb-0" border="1">
+<thead>
+<tr>
+<th>#</th>
+<th >Product Name</th>
+<th width="5%">Quantity</th>
+<th width="10%">Price</th>
+
+</tr>
+                                            </thead>
+                                            <tbody>
+                                                
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+
+  <tr>
+<th colspan="6" style="text-align:center; font-size:20px;">Total</th> 
+<th style="text-align:left; font-size:20px;"></th>   
+
+</tr>                                              
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+                <!-- /Row -->
+
+            </div>
+            <!-- /Container -->
+
+            <!-- Footer -->
+
+            <!-- /Footer -->
+        </div>
+        <!-- /Main Content -->
+    </div>
+    <!-- /HK Wrapper -->
+
+   	<script src="{% static 'vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+	<script src="{% static 'vendors/jszip/dist/jszip.min.js' %}"></script>
+	<script src="{% static 'vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+	<script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'vendors/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/jasny-bootstrap/dist/js/jasny-bootstrap.min.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'dist/js/dropdown-bootstrap-extended.js' %}"></script>
+    <script src="{% static 'dist/js/feather.min.js' %}"></script>
+    <script src="{% static 'vendors/jquery-toggles/toggles.min.js' %}"></script>
+    <script src="{% static 'dist/js/toggle-data.js' %}"></script>
+    <script src="{% static 'dist/js/init.js' %}"></script>
+    <script src="{% static 'dist/js/validation-data.js' %}"></script>
+    <script src="{% static 'vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+    <script src="{% static 'vendors/pdfmake/build/vfs_fonts.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.slimscroll.js' %}"></script>
+{% endblock %}
