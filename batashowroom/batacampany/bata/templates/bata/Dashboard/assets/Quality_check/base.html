@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Plant_admin</title>
+    <title>Quality Check</title>
     {% load static %}
 
-    <link href="{% static 'vendors/jquery-toggles/css/toggles.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'vendors/jquery-toggles/css/toggles.css' %}" rel="stylesheet" type=   "text/css">
     <link href="{% static 'vendors/jquery-toggles/css/themes/toggles-light.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'dist/css/style.css' %}" rel="stylesheet" type="text/css">
 
@@ -15,7 +15,7 @@
 <div class="hk-wrapper hk-vertical-nav">
      <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
             <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i class="ion ion-ios-menu"></i></a>
-            <a class="navbar-brand" href="../dashboard.html">BATA [Plant_admin] &emsp;&emsp;&emsp;&emsp;&emsp;User : {{request.session.plantuname}} && branch location : {{request.session.plantlocation}}
+            <a class="navbar-brand" href="qc_dash">BATA [Quality Check] &emsp;&emsp;&emsp;&emsp;&emsp;User : {{request.session.qcuname}} && branch location : {{request.session.qclocation}}
             </a>
             <ul class="navbar-nav hk-navbar-content">
 
@@ -67,9 +67,48 @@
 
 </head>
 <body>
-
- <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+<div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
 <div class="hk-wrapper hk-vertical-nav">
+     <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+            <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i class="ion ion-ios-menu"></i></a>
+            <a class="navbar-brand" href="RM_dashboard.html">BATA (Qulity Check)
+            </a>
+            <ul class="navbar-nav hk-navbar-content">
+
+                <li class="nav-item dropdown dropdown-authentication">
+                    <a class="nav-link dropdown-toggle no-caret" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="media">
+                            <div class="media-img-wrap">
+                                <div class="avatar">
+                                    <img src="dist/img/user.png" alt="user" class="avatar-img rounded-circle">
+                                </div>
+                                <span class="badge badge-success badge-indicator"></span>
+                            </div>
+
+
+
+                            <div class="media-body">
+                                <span>   <!--name-->  <i class="zmdi zmdi-chevron-down"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
+                        <a class="dropdown-item" href="profile.html"><i class="dropdown-icon zmdi zmdi-account"></i><span>Profile</span></a>
+                        <a class="dropdown-item" href="change-password.html"><i class="dropdown-icon zmdi zmdi-settings"></i><span>Settings</span></a>
+                        <div class="dropdown-divider"></div>
+                        <div class="sub-dropdown-menu show-on-hover">
+                            <a href="#" class="dropdown-toggle dropdown-item no-caret"><i class="zmdi zmdi-check text-success"></i>Online</a>
+
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="logout.html"><i class="dropdown-icon zmdi zmdi-power"></i><span>Log out</span></a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+
+		<div class="hk-wrapper hk-vertical-nav">
         <nav class="hk-nav hk-nav-light">
             <a href="javascript:void(0);" id="hk_nav_close" class="hk-nav-close"><span class="feather-icon"><i data-feather="x"></i></span></a>
             <div class="nicescroll-bar">
@@ -77,131 +116,36 @@
                     <ul class="navbar-nav flex-column">
 
 <li class="nav-item">
-<a class="nav-link" href="/plant_dash">
+<a class="nav-link" href="qc_dash">
 <i class="ion ion-ios-keypad"></i>
 <span class="nav-link-text">Dashboard</span>
 </a>
 </li>
 
-
 <li class="nav-item">
-<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#cats_drp">
-<i class="ion ion-ios-copy"></i>
-<!-- mens womens kids-->
-<span class="nav-link-text">New Product Categorys</span></a>
-<ul id="cats_drp" class="nav flex-column collapse collapse-level-1">
-<li class="nav-item">
-<ul class="nav flex-column">
-<li class="nav-item">
-<a class="nav-link" href="addcategory">Add</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="edit_category">Manage</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#product_drp">
-<i class="ion ion-ios-copy"></i>
-<!-- name  color size eg :- sportshoos_BK_6-->
-<span class="nav-link-text">New Product Types</span></a>
-<ul id="product_drp" class="nav flex-column collapse collapse-level-1">
-<li class="nav-item">
-<ul class="nav flex-column">
-<li class="nav-item">
-<a class="nav-link" href="addp_roduct">Add</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="manage_product">Manage</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-
-
-<li class="nav-item">
-<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#RowMaterial_drp">
-<i class="ion ion-ios-copy"></i>
-<!-- name  color size eg :- sportshoos_BK_6-->
-<span class="nav-link-text">New RowMaterial Types</span></a>
-<ul id="RowMaterial_drp" class="nav flex-column collapse collapse-level-1">
-<li class="nav-item">
-<ul class="nav flex-column">
-<li class="nav-item">
-<a class="nav-link" href="add_rawmaterial_category">Add</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="manage_Rowmaterial_categories">Manage</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-
-
-
-<!--Row Material Provider connection-->
-<li class="nav-item">
-<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#Demand_drp">
+<a class="nav-link" href="check">
 <i class="ion ion-ios-list-box"></i>
-<!-- name  color size eg :- sportshoos_BK_6-->
-<span class="nav-link-text">RowMaterial </span></a>
-<ul id="Demand_drp" class="nav flex-column collapse collapse-level-1">
-<li class="nav-item">
-<ul class="nav flex-column">
-<li class="nav-item">
-<a class="nav-link" href="Demand_for_Rowmaterial">Demand for row material </a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="Rowmaterial_Payment">Status of Raw_Material</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-
-
-
-<li class="nav-item">
-<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#production_drp">
-<i class="ion ion-ios-list-box"></i>
-<!-- name  color size eg :- sportshoos_BK_6-->
-<span class="nav-link-text">Product on Production line </span></a>
-<ul id="production_drp" class="nav flex-column collapse collapse-level-1">
-<li class="nav-item">
-<ul class="nav flex-column">
-<li class="nav-item">
-<a class="nav-link" href="stage_one_RowMaterial_lot">RowMaterial lot Received</a>
-</li>
-
-</ul>
-</li>
-</ul>
-</li>
-
-
-
-
-
-
-<li class="nav-item">
-<a class="nav-link" href="Manage_invoice">
-<i class="ion ion-ios-list-box"></i>
-<span class="nav-link-text">Invoices</span>
+<span class="nav-link-text"> Check</span>
 </a>
 </li>
 
 
-     <li class="nav-item">
-<a class="nav-link" href="p_logout">Logout </a>
+<li class="nav-item">
+<a class="nav-link" href="productlot_status">
+<i class="ion ion-ios-list-box"></i>
+<span class="nav-link-text">Product lots</span>
+</a>
+</li>
+
+
+
+ <li class="nav-item">
+<a class="nav-link" href="qc_logout">Logout </a>
 </li>
 </li>
 
-</ul>
+
+
 
 
 
@@ -213,6 +157,7 @@
                 </div>
             </div>
         </nav>
+
 {% block content %}
 
     {% endblock %}

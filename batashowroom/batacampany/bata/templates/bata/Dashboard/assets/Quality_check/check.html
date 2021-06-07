@@ -1,4 +1,7 @@
 
+	{%  extends 'bata/Dashboard/assets/Quality_check/base.html' %}
+{% block content %}
+  {% load static %}
 
     
     
@@ -59,7 +62,7 @@
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">DEFECED UNITS</label>
+<label for="validationCustom03">DEFECTED UNITS</label>
 <input type="text" class="form-control" id="validationCustom03" value="" name="productprice" required>
 <div class="invalid-feedback"></div>
 </div>
@@ -81,7 +84,7 @@ function ShowHideDiv() {
 </SCRIPT>	
 <label for="chkYes">
     <input type="radio" id="chkYes" name="chk" onclick="ShowHideDiv()" />
-    DEECT
+    DEFECTED
 </label>
 <label for="chkNo">
     <input type="radio" id="chkNo" name="chk" onclick="ShowHideDiv()" />
@@ -154,7 +157,7 @@ function ShowHideDiv() {
     <script src="{% static 'dist/js/toggle-data.js' %}"></script>
     <script src="{% static 'dist/js/init.js' %}"></script>
     <script src="{% static 'dist/js/validation-data.js' %}"></script>
-	<style type="{%static 'text/css %}">
+	<style type="{%static 'text/css' %}">
         #btnEmpty {
     background-color: #ffffff;
     border: #d00000 1px solid;

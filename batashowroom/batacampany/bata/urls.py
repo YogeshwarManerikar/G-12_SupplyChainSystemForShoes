@@ -10,7 +10,7 @@ from .views import plant_dash, Plant_login, addcategory, stage_one_product_lot, 
     manage_product, Manage_invoice, seller_dash, Seller_login, plant_logout, Seller_logout, Distributor_dash, \
     distributor_logout, Distributor_login, RM_provider_login, RM_provider_logout, RM_dash, Seller_demand_product, \
     Return_the_product, seller_demand_report, Requirment_for_RowMaterial, Consignments, edit_rawdemand_status, \
-    invoice_from_plant, Productlot_pickup, Quality_check_logout, Quality_check_login, qc_dash
+    invoice_from_plant, Productlot_pickup, Quality_check_logout, Quality_check_login, qc_dash, check
 
 urlpatterns = [
     path('plant_dash', plant_dash, name='plant_dash'),
@@ -71,5 +71,8 @@ urlpatterns = [
     path('view_invoice', view_invoice, name='view_invoice'),
     path('invoice_from_plant', invoice_from_plant, name='invoice_from_plant'),
     path('Productlot_pickup', Productlot_pickup, name='Productlot_pickup'),
+    path('check',check, name='check'),
+
+    path('productlot_status', productlot_status, name='productlot_status'),
 
 ]

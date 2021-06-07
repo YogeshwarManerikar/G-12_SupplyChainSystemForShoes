@@ -53,9 +53,9 @@ def qc_dash(request):
         user = request.session.get('qcuid')
         print("location haii..................")
         return render(request, 'bata/Dashboard/assets/Quality_check/QC_dashboard.html',
-                      {'user': request.session["qcuname"], 'id': user})
+                      { 'id': user})
     else:
-        return redirect('RM_provider_login')
+        return redirect('Quality_check_login')
 
 
 def addcategory(request):
@@ -517,3 +517,10 @@ def Productlot_pickup(request):
 def invoice_from_plant(request):
     return render(request, "bata/Dashboard/assets/Distributor/invoice_from_plant.html")
 
+
+def check(request):
+    return render(request, "bata/Dashboard/assets/Quality_check/check.html")
+
+
+def productlot_status(request):
+    return render(request, "bata/Dashboard/assets/Quality_check/productlot_status.html")
