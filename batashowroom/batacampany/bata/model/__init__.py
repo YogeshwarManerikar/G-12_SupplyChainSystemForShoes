@@ -6,4 +6,6 @@ from bata.model.seller import Seller
 from bata.model.Distributor import Distributor
 from bata.model.RM_provider import RM_provider
 from bata.model.seller_demand import Seller_demand
-from .Quality_check import Quality_checking
+from bata.model.Quality_check import Quality_checking
+from bata.model.Quality_checking import Cheking
+

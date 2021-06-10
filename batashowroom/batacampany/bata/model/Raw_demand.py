@@ -31,5 +31,8 @@ class Raw_Demand(models.Model):
     status = models.CharField(choices=value,max_length=20, default='PENDING')
 
 
+    def __str__(self):
+        return self.Lot_number
+
     class Meta:
         db_table = "RawMaterial_Demand"

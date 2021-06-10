@@ -52,8 +52,7 @@ def qc_dash(request):
     if request.session.has_key('qcuid') & request.session.has_key('qcuname'):
         user = request.session.get('qcuid')
         print("location haii..................")
-        return render(request, 'bata/Dashboard/assets/Quality_check/QC_dashboard.html',
-                      { 'id': user})
+        return render(request, 'bata/Dashboard/assets/Quality_check/QC_dashboard.html',{ 'id': user})
     else:
         return redirect('Quality_check_login')
 
@@ -204,9 +203,9 @@ def edit_product(request, pk):
 
 
 def manage_product(request):
-    if request.session.has_key('uid') & request.session.has_key('uname'):
-        user = request.session.get('uid')
-        uname = request.session.get('uname')
+    if request.session.has_key('plantuid') & request.session.has_key('plantuname'):
+        user = request.session.get('plantuid')
+        uname = request.session.get('plantuname')
         print(user, uname)
     sql = "SELECT * FROM plant_product where plant_product.user_id_id ='%s' " % user
     posts = Product.objects.raw(sql)[:50]
@@ -262,7 +261,8 @@ def Manage_invoice(request):
         user = request.session.get('uid')
         uname = request.session.get('uname')
         print(user, uname)
-    sql = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status ='RECEIVED' and " \
+
+    sql = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status ='DISPATCHED' and " \
           "rawmaterial_demand.user_id_id ='%s' " % user
     posts = Raw_Demand.objects.raw(sql)[:50]
 
@@ -286,13 +286,11 @@ def returnproduct(request):
 
 
 def Rowmaterial_Payment(request):
-    sql = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status ='DISPATCHED'"
     sql1 = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status ='PENDING'"
-    posts = Raw_Demand.objects.raw(sql)[:50]
     posts1 = Raw_Demand.objects.raw(sql1)[:50]
 
     return render(request, "bata/Dashboard/assets/plantadmin/Rowmaterial-Payment.html",
-                  {'detail': posts, 'details': posts1})
+                  {'details': posts1})
 
 
 def RowMaterial_payment_status_update(request):
@@ -317,7 +315,6 @@ def Plant_login(request):
             request.session["plantuname"] = user.first_name
             request.session["plantuid"] = user.id
             request.session["plantlocation"] = user.location
-            print(request.session["uid"])
             return redirect('plant_dash')
         else:
             error_message = 'Email or Password invalid !!'
@@ -418,7 +415,6 @@ def Quality_check_login(request):
             request.session["qcuname"] = user.first_name
             request.session["qcuid"] = user.id
             request.session["qclocation"] = user.location
-            request.session["qcmaterial"] = user.location
 
             return redirect('qc_dash')
         else:
@@ -499,7 +495,14 @@ def edit_rawdemand_status(request, pk):
         return render(request, 'bata/Dashboard/assets/RM_provider/manage_rm_status.html', context)
 
 def Requirment_for_RowMaterial(request):
-    return render(request, "bata/Dashboard/assets/RM_provider/Requirment_for_RowMaterial.html")
+    if request.session.has_key('rmuid') & request.session.has_key('rmuname'):
+        user = request.session.get('rmuid')
+
+    sql = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status ='DISPATCHED' and " \
+          "rawmaterial_demand.user_id_id ='%s' " % user
+    posts = Raw_Demand.objects.raw(sql)[:50]
+
+    return render(request, "bata/Dashboard/assets/RM_provider/RM_Manage_order.html",{'details':posts})
 
 
 def payment_history(request):
