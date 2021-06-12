@@ -1,8 +1,10 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 
-from .forms import Add_product, RawDemand, Add_rawmaterial, editproduct, editrawproduct, Sellerdemand, RawdemandStatus
+from .forms import Add_product, RawDemand, Add_rawmaterial, editproduct, editrawproduct, Sellerdemand, RawdemandStatus, \
+    Fullfill_demandseller
 from .model import Raw_Demand, Product, Raw_Product, Distributor, Seller_demand
+from .model.seller_fullfill_demand import Seller_fullfill_demand
 from .model.Quality_check import Quality_checking
 from .model.RM_provider import RM_provider
 from .model.bata_plant import BATA_PLANT
@@ -295,6 +297,29 @@ def Rowmaterial_Payment(request):
 
     return render(request, "bata/Dashboard/assets/plantadmin/Rowmaterial-Payment.html",
                   {'details': posts1})
+
+
+
+def Fullfill_seller_demand(request, pk):
+    if request.session.has_key('Distributoruid') & request.session.has_key('Distributoruname'):
+        location = request.session.get('Distributorlocation')
+    sql1 = "SELECT pp.id,SUM(sd.Quantity)as total_quantity From seller_demand AS sd INNER JOIN plant_product AS pp ON " \
+           "sd.id=pp.id GROUP BY pp.id "
+    posts1 = Seller_demand.objects.raw(sql1)[:50]
+    product = Seller_fullfill_demand.objects.get(id=pk)
+    form = Fullfill_demandseller(instance=product)
+    # check if form data is valid
+    if request.method == 'POST':
+        form = Fullfill_demandseller(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('Fullfill_seller_demand')
+
+    context = { 'form':form,
+               'details': posts1,
+               }
+    return render(request, 'bata/Dashboard/assets/Distributor/Fullfill_seller_demand.html', context)
+
 
 
 def RowMaterial_payment_status_update(request):

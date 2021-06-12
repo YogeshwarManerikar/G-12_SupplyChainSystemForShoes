@@ -8,4 +8,5 @@ from bata.model.RM_provider import RM_provider
 from bata.model.seller_demand import Seller_demand
 from bata.model.Quality_check import Quality_checking
 from bata.model.Quality_checking import Cheking
+from .seller_fullfill_demand import Seller_fullfill_demand
 

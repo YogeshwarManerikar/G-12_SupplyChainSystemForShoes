@@ -10,7 +10,8 @@ from .views import plant_dash, Plant_login, addcategory, stage_one_product_lot, 
     manage_product, Manage_invoice, seller_dash, Seller_login, plant_logout, Seller_logout, Distributor_dash, \
     distributor_logout, Distributor_login, RM_provider_login, RM_provider_logout, RM_dash, Seller_demand_product, \
     Return_the_product, seller_demand_report, Requirment_for_RowMaterial, Consignments, edit_rawdemand_status, \
-    invoice_from_plant, Productlot_pickup, Quality_check_logout, Quality_check_login, qc_dash, check, Order_history
+    invoice_from_plant, Productlot_pickup, Quality_check_logout, Quality_check_login, qc_dash, check, Order_history, \
+    Fullfill_seller_demand
 
 urlpatterns = [
     path('plant_dash', plant_dash, name='plant_dash'),
@@ -27,6 +28,7 @@ urlpatterns = [
     path('Seller_demand_product', Seller_demand_product, name='Seller_demand_product'),
     path('edit_category', edit_category, name='edit_category'),
     path('edit_product/<str:pk>/', edit_product, name='edit_product'),
+    path('Fullfill_seller_demand/<str:pk>/', Fullfill_seller_demand, name='Fullfill_seller_demand'),
     path('edit_rawdemand_status/<str:pk>/', edit_rawdemand_status, name='edit_rawdemand_status'),
     path('Order_history', Order_history, name='Order_history'),
     path('edit_Rowmaterial_categories/<str:pk>/', edit_Rowmaterial_categories, name='edit_Rowmaterial_categories'),
