@@ -1,6 +1,7 @@
 from django.db import models
 from .Raw_product import Raw_Product
 
+
 class RM_provider(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)

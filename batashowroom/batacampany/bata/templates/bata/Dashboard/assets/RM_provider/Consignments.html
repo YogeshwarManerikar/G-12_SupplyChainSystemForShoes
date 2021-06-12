@@ -63,17 +63,14 @@
 
 
 
-<td>{{detail.id}}</td>
+<td>{{detail.Lot_number}}</td>
 <td>{{detail.name}}</td>
 <td>{{detail.Quantity}}</td>
 <td>{{detail.price}}</td>
 <td>{{detail.Requirement_date}}</td>
 <td>{{detail.location}}</td>
 <td>{{detail.status}}</td>
-<td>
 
-<a href=" {% url 'edit_rawdemand_status' detail.id %}" id="myBtn" class="mr-25" data-toggle="tooltip" data-original-title="Change / update status"> <i class="icon-pencil"></i></a>
-</td>
 </tr>
                                                         {% endfor %}
 

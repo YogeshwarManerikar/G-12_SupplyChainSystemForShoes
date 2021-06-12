@@ -2,7 +2,9 @@ from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 
 from .forms import Add_product, RawDemand, Add_rawmaterial, editproduct, editrawproduct, Sellerdemand, RawdemandStatus
-from .model import Raw_Demand, Product, Raw_Product, Distributor, RM_provider, Seller_demand, Quality_checking
+from .model import Raw_Demand, Product, Raw_Product, Distributor, Seller_demand
+from .model.Quality_check import Quality_checking
+from .model.RM_provider import RM_provider
 from .model.bata_plant import BATA_PLANT
 from .model.seller import Seller
 
@@ -10,7 +12,6 @@ from .model.seller import Seller
 def plant_dash(request):
     if request.session.has_key('plantuid') & request.session.has_key('plantuname'):
         user = request.session.get('plantuid')
-        print("location haii..................")
         return render(request, 'bata/Dashboard/assets/plantadmin/dashboard.html',
                       {'user': request.session["plantuname"], 'id': user})
     else:
@@ -52,7 +53,7 @@ def qc_dash(request):
     if request.session.has_key('qcuid') & request.session.has_key('qcuname'):
         user = request.session.get('qcuid')
         print("location haii..................")
-        return render(request, 'bata/Dashboard/assets/Quality_check/QC_dashboard.html',{ 'id': user})
+        return render(request, 'bata/Dashboard/assets/Quality_check/QC_dashboard.html', {'id': user})
     else:
         return redirect('Quality_check_login')
 
@@ -66,7 +67,7 @@ def stage_one_product_lot(request):
 
 
 def stage_one_RowMaterial_lot(request):
-    sql = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status = 'RECEIVED'"
+    sql = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status = 'DISPATCHED'"
     posts = Raw_Demand.objects.raw(sql)[:10]
 
     return render(request, "bata/Dashboard/assets/plantadmin/1st-stage-RowMaterial-lot.html", {'detail': posts})
@@ -86,7 +87,7 @@ def addp_roduct(request):
         # save the form data to model
         form.save()
         username = form.cleaned_data.get('name')
-        messages.success(request, 'Product Name :  '+username+' Succesfully added')
+        messages.success(request, 'Product Name :  ' + username + ' Succesfully added')
 
         return redirect('addp_roduct')
 
@@ -123,7 +124,7 @@ def seller_demand_report(request):
               "sl.id=sd.user_id_id INNER JOIN plant_product AS p ON sd.product_id=p.id and sd.user_location ='%s' " % location
         posts = Seller_demand.objects.raw(sql)[:50]
 
-    return render(request, "bata/Dashboard/assets/Distributor/seller_demand.html",{'details':posts})
+    return render(request, "bata/Dashboard/assets/Distributor/seller_demand.html", {'details': posts})
 
 
 def bwdate_report_ds(request):
@@ -135,9 +136,9 @@ def change_password(request):
 
 
 def Demand_for_Rowmaterial(request):
-    if request.session.has_key('uid') & request.session.has_key('uname'):
-        user = request.session.get('uid')
-        uname = request.session.get('uname')
+    if request.session.has_key('plantuid') & request.session.has_key('plantuname'):
+        user = request.session.get('plantuid')
+        uname = request.session.get('plantuname')
         print(user, uname)
     # create object of form
     form = RawDemand(request.POST)
@@ -151,8 +152,8 @@ def Demand_for_Rowmaterial(request):
         return redirect('Demand_for_Rowmaterial')
     print(form)
     return render(request, "bata/Dashboard/assets/plantadmin/Demand-for-Rowmaterial.html",
-                  {'id': request.session.get('uid'), 'location': request.session.get('location'), 'form': form})
-
+                  {'id': request.session.get('plantuid'), 'location': request.session.get('plantlocation'),
+                   'form': form})
 
 
 def Seller_demand_product(request):
@@ -175,7 +176,8 @@ def Seller_demand_product(request):
         return redirect('Seller_demand_product')
 
     return render(request, "bata/Dashboard/assets/seller/Demand_for_Product.html",
-                  {'id': request.session.get('selleruid'), 'location': request.session.get('sellerlocation'), 'form': form, 'details': posts})
+                  {'id': request.session.get('selleruid'), 'location': request.session.get('sellerlocation'),
+                   'form': form, 'details': posts})
 
 
 def edit_category(request):
@@ -183,9 +185,9 @@ def edit_category(request):
 
 
 def edit_product(request, pk):
-    if request.session.has_key('uid') & request.session.has_key('uname'):
-        user = request.session.get('uid')
-        uname = request.session.get('uname')
+    if request.session.has_key('plantuid') & request.session.has_key('plantuname'):
+        user = request.session.get('plantuid')
+        uname = request.session.get('plantuname')
         print(user, uname)
         # create object of form
     product = Product.objects.get(id=pk)
@@ -214,9 +216,9 @@ def manage_product(request):
 
 
 def edit_Rowmaterial_categories(request, pk):
-    if request.session.has_key('uid') & request.session.has_key('uname'):
-        user = request.session.get('uid')
-        uname = request.session.get('uname')
+    if request.session.has_key('plantuid') & request.session.has_key('plantuname'):
+        user = request.session.get('plantuid')
+        uname = request.session.get('plantuname')
         print(user, uname)
         # create object of form
     product = Raw_Product.objects.get(id=pk)
@@ -246,9 +248,9 @@ def view_invoice(request, pk):
 
 
 def manage_Rowmaterial_categories(request):
-    if request.session.has_key('uid') & request.session.has_key('uname'):
-        user = request.session.get('uid')
-        uname = request.session.get('uname')
+    if request.session.has_key('plantuid') & request.session.has_key('plantuname'):
+        user = request.session.get('plantuid')
+        uname = request.session.get('plantuname')
         print(user, uname)
     sql = "SELECT * FROM rawmaterial_product where rawmaterial_product.user_id_id ='%s' " % user
     posts = Raw_Product.objects.raw(sql)[:50]
@@ -286,7 +288,9 @@ def returnproduct(request):
 
 
 def Rowmaterial_Payment(request):
-    sql1 = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status ='PENDING'"
+    if request.session.has_key('plantuid') & request.session.has_key('plantuname'):
+        location = request.session.get('plantlocation')
+    sql1 = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status ='PENDING' and rawmaterial_demand.user_location = '%s'"% location
     posts1 = Raw_Demand.objects.raw(sql1)[:50]
 
     return render(request, "bata/Dashboard/assets/plantadmin/Rowmaterial-Payment.html",
@@ -390,6 +394,7 @@ def RM_provider_login(request):
             request.session["rmuname"] = user.first_name
             request.session["rmuid"] = user.id
             request.session["rmlocation"] = user.location
+            request.session["rmRaw_type"] = user.Raw_type_id
 
             return redirect('RM_dash')
         else:
@@ -430,8 +435,6 @@ def Quality_check_logout(request):
     return redirect('Quality_check_login')
 
 
-
-
 def bwdate_report_details(request):
     return render(request, "bata/Dashboard/assets/seller/bwdate_report_details.html")
 
@@ -456,53 +459,54 @@ def Demand_for_Product(request):
     return render(request, "bata/Dashboard/assets/seller/Demand_for_Product.html")
 
 
-
-
 def Consignments(request):
     if request.session.has_key('rmuid') & request.session.has_key('rmuname'):
         user = request.session.get('rmuid')
         uname = request.session.get('rmuname')
         location = request.session.get('rmlocation')
         print(location)
-        sql = "SELECT * FROM rawmaterial_demand AS rm INNER JOIN rawmaterial_product AS rp ON rp.id=rm.Raw_type_id INNER JOIN bata_plant_login AS bp ON bp.location=rm.user_location  and rm.user_location ='%s' " % location
+        sql = "SELECT * FROM rawmaterial_demand AS rm INNER JOIN rawmaterial_product AS rp ON rp.id=rm.Raw_type_id INNER JOIN bata_plant_login AS bp ON bp.location=rm.user_location  where rm.user_location ='%s' and rm.status='pending' " % location
         posts = Seller_demand.objects.raw(sql)[:50]
-        return render(request, "bata/Dashboard/assets/RM_provider/Consignments.html",{'details':posts})
+        return render(request, "bata/Dashboard/assets/RM_provider/Consignments.html", {'details': posts})
 
+
+
+def Order_history(request):
+    if request.session.has_key('rmuid') & request.session.has_key('rmuname'):
+        user = request.session.get('rmuid')
+        uname = request.session.get('rmuname')
+        location = request.session.get('rmlocation')
+        print(location)
+        sql = "SELECT * FROM rawmaterial_demand AS rm INNER JOIN rawmaterial_product AS rp ON rp.id=rm.Raw_type_id INNER JOIN bata_plant_login AS bp ON bp.location=rm.user_location  where rm.user_location ='%s' and rm.status='DISPATCHED' " % location
+        posts = Seller_demand.objects.raw(sql)[:50]
+        return render(request, "bata/Dashboard/assets/RM_provider/Order_HIstory.html", {'details': posts})
 
 
 def edit_rawdemand_status(request, pk):
-    if request.session.has_key('uid') & request.session.has_key('uname'):
-        user = request.session.get('uid')
-        uname = request.session.get('uname')
-        location = request.session.get('location')
+    product = Raw_Demand.objects.get(id=pk)
+    form = RawdemandStatus(instance=product)
+    # check if form data is valid
+    if request.method == 'POST':
+        form = RawdemandStatus(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('Consignments')
 
-        print(user, uname)
-        # create object of form
-        sql = "SELECT * FROM rawmaterial_demand AS rm INNER JOIN rawmaterial_product AS rp ON rp.id=rm.Raw_type_id INNER JOIN bata_plant_login AS bp ON bp.location=rm.user_location  and rm.user_location ='%s' " % location
-        posts = Seller_demand.objects.raw(sql)[:50]
-        product = Raw_Demand.objects.get(id=pk)
-        form = RawdemandStatus(instance=product)
-        # check if form data is valid
-        if request.method == 'POST':
-            form = RawdemandStatus(request.POST, instance=product)
-            if form.is_valid():
-                form.save()
-                return redirect('Consignments')
+    context = {'form': form,
+               }
+    return render(request, 'bata/Dashboard/assets/RM_provider/ship_consignment.html', context)
 
-        context = {'form': form,
-                   'details': posts,
-                   }
-        return render(request, 'bata/Dashboard/assets/RM_provider/manage_rm_status.html', context)
 
 def Requirment_for_RowMaterial(request):
     if request.session.has_key('rmuid') & request.session.has_key('rmuname'):
-        user = request.session.get('rmuid')
+        rawmaterial = request.session.get('rmRaw_type')
+        location = request.session.get('rmlocation')
 
-    sql = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status ='DISPATCHED' and " \
-          "rawmaterial_demand.user_id_id ='%s' " % user
+    sql = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status ='PENDING' and " \
+          "rawmaterial_demand.user_location ='%s' " % location
     posts = Raw_Demand.objects.raw(sql)[:50]
 
-    return render(request, "bata/Dashboard/assets/RM_provider/RM_Manage_order.html",{'details':posts})
+    return render(request, "bata/Dashboard/assets/RM_provider/RM_Manage_order.html", {'details': posts})
 
 
 def payment_history(request):

@@ -11,7 +11,6 @@ value = (
 
     ('PENDING', 'PENDING'),
     ('DISPATCHED', 'DISPATCHED'),
-    ('RECEIVED', 'RECEIVED'),
 
 
 )
@@ -26,7 +25,7 @@ class Raw_Demand(models.Model):
     Quantity = models.IntegerField(default=0)
     Demand_date = models.DateField(default=date.today)
     Requirement_date = models.DateField(default=return_date_time)
-    user_id = models.ForeignKey(BATA_PLANT, on_delete=models.CASCADE, default=1)
+    user_id = models.ForeignKey(BATA_PLANT, on_delete=models.CASCADE)
     user_location = models.CharField(max_length=40)
     status = models.CharField(choices=value,max_length=20, default='PENDING')
 
