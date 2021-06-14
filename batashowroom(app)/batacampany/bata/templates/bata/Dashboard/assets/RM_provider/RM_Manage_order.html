@@ -1,0 +1,144 @@
+{%  extends 'bata/Dashboard/assets/RM_provider/base.html' %}
+{% block content %}
+  {% load static %}
+    
+	<!-- HK Wrapper -->
+	<div class="hk-wrapper hk-vertical-nav">
+
+<!-- Top Navbar -->
+
+       
+
+
+        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+        <!-- /Vertical Nav -->
+
+
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper">
+            <!-- Breadcrumb -->
+            <nav class="hk-breadcrumb" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light bg-transparent">
+<li class="breadcrumb-item"><a href="#">RowMaterial</a></li>
+<li class="breadcrumb-item active" aria-current="page">Manage consignment</li>
+                </ol>
+            </nav>
+            <!-- /Breadcrumb -->
+
+            <!-- Container -->
+            <div class="container">
+                <!-- Title -->
+                <div class="hk-pg-header">
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Manage consignment</h4>
+                </div>
+                <!-- /Title -->
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+
+
+<!--code for search result -->
+
+ <section class="hk-sec-wrapper">
+     
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="table-wrap">
+                                        <table id="datable_1" class="table table-hover w-100 display pb-30">
+                                            <thead>
+                                                <tr>
+                                                   
+													<th># lot No</th>
+                                                    <th> RowMaterial</th>
+                                                    <th>Quantity</th>
+													<th>Date of Requirment</th>
+                                                    <th>plant location</th>
+													<th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+<tr>
+
+ {% for detail in details %}
+
+<td>{{detail.Lot_number}}</td>
+<td>{{detail.Raw_type}}</td>
+<td>{{detail.Quantity}}</td>
+<td>{{detail.Requirement_date}}</td>
+<td>{{detail.user_location}}</td>
+
+<td><a href="{% url 'edit_rawdemand_status' detail.id %}">Click To SHIP-ORDER</a> </td>
+ <div class="content">
+    
+
+
+</td>
+</tr>
+                                                        {% endfor %}
+
+
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+</section>
+                        
+
+
+
+
+
+
+    
+
+
+
+
+</div>
+</div>
+</div>
+
+
+            <!-- Footer -->
+
+            <!-- /Footer -->
+
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+
+  
+	<script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'vendors/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/jasny-bootstrap/dist/js/jasny-bootstrap.min.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'dist/js/dropdown-bootstrap-extended.js' %}"></script>
+    <script src="{% static 'dist/js/feather.min.js' %}"></script>
+    <script src="{% static 'vendors/jquery-toggles/toggles.min.js' %}"></script>
+    <script src="{% static 'dist/js/toggle-data.js' %}"></script>
+    <script src="{% static 'dist/js/init.js' %}"></script>
+    <script src="{% static 'dist/js/validation-data.js' %}"></script>
+
+
+	
+	
+    <style type="{% static 'text/css'%}">
+        #btnEmpty {
+    background-color: #ffffff;
+    border: #d00000 1px solid;
+    padding: 5px 10px;
+    color: #d00000;
+    float: right;
+    text-decoration: none;
+    border-radius: 3px;
+    margin: 10px 0px;
+}
+
+{% endblock %}
