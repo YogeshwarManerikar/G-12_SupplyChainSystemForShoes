@@ -22,7 +22,7 @@
                         <div class="media">
                             <div class="media-img-wrap">
                                 <div class="avatar">
-                                    <img src="../../dist/img/user.png" alt="user" class="avatar-img rounded-circle">
+                                    <img src="{% static 'dist/img/user.png' %}" alt="user" class="avatar-img rounded-circle">
                                 </div>
                                 <span class="badge badge-success badge-indicator"></span>
                             </div>
@@ -48,18 +48,6 @@
                 </li>
             </ul>
         </nav>
-
-		<script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
-    <script src="{% static 'vendors/popper.js/dist/umd/popper.min.js' %}"></script>
-    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'vendors/jasny-bootstrap/dist/js/jasny-bootstrap.min.js' %}"></script>
-    <script src="{% static 'dist/js/jquery.slimscroll.js' %}"></script>
-    <script src="{% static 'dist/js/dropdown-bootstrap-extended.js' %}"></script>
-    <script src="{% static 'vendors/jquery-toggles/css/toggles.css' %}"></script>
-    <script src="{% static 'vendors/jquery-toggles/toggles.min.js' %}"></script>
-    <script src="{% static 'dist/js/toggle-data.js' %}"></script>
-    <script src="{% static 'dist/js/init.js' %}"></script>
-    <script src="{% static 'dist/js/validation-data.js' %}"></script>
 
 
 </head>
@@ -117,9 +105,7 @@
 </ul>
 
 </li>
-</ul></li><div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="d_logout"><i class="dropdown-icon zmdi zmdi-power"></i><span>Log out</span></a>
-                    </div></ul>
+</ul></li>
 
 
 
