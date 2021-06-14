@@ -174,6 +174,27 @@
 </div>
 
 
+<div class="col-lg-3 col-md-6">
+    <div class="card card-sm">
+    <div class="card-body">
+    <div class="d-flex justify-content-between mb-5">
+    <div>
+    <span class="d-block font-15 text-dark font-weight-500">Today's Orders</span>
+    </div>
+    <div>
+    </div>
+    </div>
+    <div class="text-center">
+    <span class="d-block display-4 text-dark mb-5"></span>
+    <small class="d-block">Today's Total Orders</small>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
 
 <div class="col-lg-3 col-md-6">
 <div class="card card-sm">
@@ -186,12 +207,67 @@
 </div>
 </div>
 <div class="text-center">
-<span class="d-block display-4 text-dark mb-5"></span>
-<small class="d-block">Today's </small>
+<div id="piechart" ></div>
 </div>
 </div>
 </div>
 </div>
+
+<div class="col-lg-3 col-md-6">
+    <div class="card card-sm">
+    <div class="card-body">
+    <div class="d-flex justify-content-between mb-5">
+    <div>
+    <span class="d-block font-15 text-dark font-weight-500">Plant Performance</span>
+    </div>
+    <div>
+    </div>
+    </div>
+    <div class="text-center">
+    <div id="barchart_material" ></div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card card-sm">
+        <div class="card-body">
+        <div class="d-flex justify-content-between mb-5">
+        <div>
+        <span class="d-block font-15 text-dark font-weight-500">Plant Performance</span>
+        </div>
+        <div>
+        </div>
+        </div>
+        <div class="text-center">
+        <div id="example5.1" ></div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-sm">
+            <div class="card-body">
+            <div class="d-flex justify-content-between mb-5">
+            <div>
+            <span class="d-block font-15 text-dark font-weight-500">Plant Performance</span>
+            </div>
+            <div>
+            </div>
+            </div>
+            <div class="text-center">
+            <div id="example5.1" ></div>
+            </div>
+            </div>
+            </div>
+            </div>
+
+
+        <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
+
 
 
 
@@ -210,6 +286,119 @@
     <!-- /HK Wrapper -->
 
     <!-- jQuery -->
+    <!--Pi chart-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Types', 'Units'],
+          ['SANDAL',     110],
+          ['Formal Shoes',      200],
+          ['Lace-up Shoes',  30],
+          ['Budapester Shoes',  200],
+          ['HUSH PUPPIES', 30],
+          ['others',    40]
+        ]);
+
+        var options = {
+          title: 'Demanded Product'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+    <!--barchart-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses', 'Profit'],
+          ['2021', 7000, 4000, 800],
+         
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Plant Performance',
+            subtitle: 'Sales, Expenses, and Profit: 2021',
+          },
+          bars: 'horizontal' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
    
+   <!--Timeline-->
+   
+
+   <script type="text/javascript">
+     google.charts.load("current", {packages:["timeline"]});
+     google.charts.setOnLoadCallback(drawChart);
+     function drawChart() {
+   
+       var container = document.getElementById('example5.1');
+       var chart = new google.visualization.Timeline(container);
+       var dataTable = new google.visualization.DataTable();
+       dataTable.addColumn({ type: 'string', id: 'Room' });
+       dataTable.addColumn({ type: 'string', id: 'Name' });
+       dataTable.addColumn({ type: 'date', id: 'Start' });
+       dataTable.addColumn({ type: 'date', id: 'End' });
+       dataTable.addRows([
+         [ 'Row material Lot', 'delevery',       new Date(0,0,0,9,30,0),  new Date(0,0,0,13,30,0) ],
+         [ 'Lot', '1st stage production',       new Date(0,0,0,10,00,0),  new Date(0,0,0,16,30,0) ],
+         [ 'Qulity Check', '2nd stage Production',       new Date(0,0,0,10,00,0),  new Date(0,0,0,16,30,0) ]]);
+       var options = {
+         timeline: { colorByRowLabel: true }
+       };
+   
+       chart.draw(dataTable, options);
+     }
+   
+   </script>
 	
+        <!--Expence-->
+
+        <script type="text/javascript">
+            google.charts.load("current", {packages:["calendar"]});
+            google.charts.setOnLoadCallback(drawChart);
+      
+         function drawChart() {
+             var dataTable = new google.visualization.DataTable();
+             dataTable.addColumn({ type: 'date', id: 'Date' });
+             dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+             dataTable.addRows([
+              
+                // Many rows omitted for brevity.
+                [ new Date(2021, 5, 15), 30077 ],
+                [ new Date(2021, 5, 17), 35005 ],
+                [ new Date(2021, 5, 20), 30010 ],
+                [ new Date(2021, 6, 13), 50029 ],
+                
+              ]);
+      
+             var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+      
+             var options = {
+               title: "Expence",
+               height: 350,
+             };
+      
+             chart.draw(dataTable, options);
+         }
+          </script>
+
+
 	{% endblock %}
