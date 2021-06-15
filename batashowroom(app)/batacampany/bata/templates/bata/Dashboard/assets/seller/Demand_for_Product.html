@@ -95,7 +95,7 @@
     <div class="form-row">
 <div class="col-md-6 mb-10">
 
- <input  type="hidden" class="form-control" name="Demand_date" required="" id="currentDate" >
+ <input  type="text" class="form-control" name="Demand_date" required="" id="currentDate" >
     <div class="invalid-feedback">Please provide a valid product price.</div>
 </div>
 </div>
@@ -120,15 +120,13 @@
     <div class="invalid-feedback">Please provide a valid from date.</div>
 </div>
 </div>
-
-
+{{form1}}
 
 <button class="btn btn-primary" type="submit" name="update">DEMAND</button>
 </form>
 </div>
 </div>
 </section>
-
 
 
 
@@ -259,5 +257,10 @@
   var today = new Date();
   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
   document.getElementById("currentDate").value = date;
+</script>
+        <script>
+  var today = new Date();
+  var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+  document.getElementById("currentDate1").value = date;
 </script>
 	{% endblock %}
