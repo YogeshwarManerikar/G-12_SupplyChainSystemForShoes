@@ -95,8 +95,19 @@
 </div>
 </div>
 
-
-<div id="piechart" style="width: 300px; height: 300px;"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+<div id="piechart1" style="width: 300px; height: 300px;"></div>
+    </div>
+    <div class="col-sm">
+<div id="piechart2" style="width: 300px; height: 300px;"></div>
+    </div>
+    <div class="col-sm">
+<div id="piechart3" style="width: 300px; height: 300px;"></div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -131,7 +142,49 @@
           title: 'Return Product Ratio'
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Product', 'Units'],
+          ['sales ',     400],
+          ['return ',     8]
+        ]);
+
+        var options = {
+          title: 'Return Product Ratio'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Product', 'Units'],
+          ['sales ',     400],
+          ['return ',     8]
+        ]);
+
+        var options = {
+          title: 'Return Product Ratio'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
 
         chart.draw(data, options);
       }
