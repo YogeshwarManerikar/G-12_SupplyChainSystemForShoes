@@ -1,0 +1,76 @@
+{%  extends 'bata/about.html' %}
+
+{% block content %}
+
+    <main role="main" class="container">
+
+      <h3>Track Shipment</h3>
+      <form method="GET" action="">
+        <div class="form-row">
+            <div class="form-group col-4">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="text" name="AWB_no" placeholder="Enter AWB NUmber" />
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent">
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </span>
+                </div>
+            </div>        
+        </div>
+
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+
+      <hr />
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<div class="container">
+    <article class="card">
+        <header class="card-header"> My Orders / Tracking </header>
+        <div class="card-body">
+            <article class="card">
+                <div class="card-body row">
+                    <div class="col"> <strong>Booking Date -Time:</strong> <br>{{ship1.created}} </div>
+                    <div class="col"> <strong>Booked BY:</strong> <br>{{ship1.user}} | <i class="fa fa-phone"></i> +1598675986 </div>
+
+                    <div class="col"> <strong>Tracking #:</strong> <br> {{ship1.AWB}} </div>
+                </div>
+            </article>
+
+            <hr>
+            <div class="card-body">
+		<hr>
+
+            <div class="card card-body">
+                <table class="table table-sm">
+
+
+                    <tr>
+
+                        <th>Updated by</th>
+                        <th>Date</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                        <tr>
+                         
+                            <td>{{ship.user}}</td>
+                            <td>{{ship.date_created}}</td>
+                            <td>{{ship.status}}</td>
+
+
+                        </tr>
+
+                </table>
+            </div>
+
+            <hr>
+        </div>
+    </article>
+</div>
+
+{% endblock %}
