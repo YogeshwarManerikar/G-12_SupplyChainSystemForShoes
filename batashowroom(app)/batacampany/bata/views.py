@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 
 from .forms import Add_product, RawDemand, Add_rawmaterial, editproduct, editrawproduct, Sellerdemand, RawdemandStatus, \
-    Fullfill_demandseller
+    Fullfill_demandseller, tracking
 from .model import Raw_Demand, Product, Raw_Product, Distributor, Seller_demand
 from .model.Demand_forward import Seller_fullfill_demand
 from .model.Quality_check import Quality_checking
@@ -27,7 +27,7 @@ def seller_dash(request):
         return render(request, 'bata/Dashboard/assets/seller/dashboard.html',
                       {'user': request.session["selleruname"], 'id': user})
     else:
-        return redirect('seller_login')
+        return redirect('Seller_login')
 
 
 def Distributor_dash(request):
@@ -35,10 +35,14 @@ def Distributor_dash(request):
         user = request.session.get('Distributorlocation')
         print(user)
         print("location haii..................")
+
+
+        sql = "SELECT plant_product.id ,name,Quantity FROM seller_demand, plant_product where plant_product.id = seller_demand.product_id and seller_demand.user_id_id ='%s' GROUP BY plant_product.id " % user
+        posts = Seller_demand.objects.raw(sql)[:50]
         return render(request, 'bata/Dashboard/assets/Distributor/dashboard.html',
-                      {'user': request.session["Distributoruname"], 'id': user})
+                      {'user': request.session["Distributoruname"], 'id': user,'details':posts})
     else:
-        return redirect('distributor_login')
+        return redirect('Distributor_login')
 
 
 def RM_dash(request):
@@ -164,25 +168,25 @@ def Demand_for_Rowmaterial(request):
 def Seller_demand_product(request):
     if request.session.has_key('selleruid') & request.session.has_key('selleruname'):
         user = request.session.get('selleruid')
-        uname = request.session.get('selleruname')
         sql = "SELECT * FROM seller_demand where seller_demand.user_id_id ='%s' " % user
         posts = Seller_demand.objects.raw(sql)[:50]
 
         print(request.session.get('sellerlocation'))
     # create object of form
-    form = Sellerdemand(request.POST)
+        form = Sellerdemand(request.POST)
+        form1 = tracking(request.POST)
+        # check if form data is valid
+        if form.is_valid() and form1.is_valid():
+            # save the form data to model
+            form.save()
+            form1.save()
+            messages.success(request, 'your demand was recorded successfully ')
 
-    # check if form data is valid
-    if form.is_valid():
-        # save the form data to model
-        form.save()
-        messages.success(request, 'your demand was recorded successfully ')
+            return redirect('Seller_demand_product')
 
-        return redirect('Seller_demand_product')
-
-    return render(request, "bata/Dashboard/assets/seller/Demand_for_Product.html",
-                  {'id': request.session.get('selleruid'), 'location': request.session.get('sellerlocation'),
-                   'form': form, 'details': posts})
+        return render(request, "bata/Dashboard/assets/seller/Demand_for_Product.html",
+                      {'id': request.session.get('selleruid'), 'location': request.session.get('sellerlocation'),
+                       'form': form,'form1': form1, 'details': posts})
 
 
 def edit_category(request):
@@ -579,3 +583,10 @@ def check(request):
 
 def productlot_status(request):
     return render(request, "bata/Dashboard/assets/Quality_check/productlot_status.html")
+
+
+
+def tracking(request):
+
+    return render(request, "bata/tracking.html")
+
