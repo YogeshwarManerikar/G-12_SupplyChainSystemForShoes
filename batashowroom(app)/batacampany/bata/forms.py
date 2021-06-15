@@ -6,7 +6,7 @@ from .model.bata_plant import BATA_PLANT
 from .model.Raw_demand import Raw_Demand
 from .model.Raw_product import Raw_Product
 from .model.seller_demand import Seller_demand
-from .model.seller_fullfill_demand import Seller_fullfill_demand
+from .model.Demand_forward import Seller_fullfill_demand
 
 
 class Plant_login(forms.ModelForm):
