@@ -11,7 +11,7 @@ from .views import plant_dash, Plant_login, addcategory, stage_one_product_lot, 
     distributor_logout, Distributor_login, RM_provider_login, RM_provider_logout, RM_dash, Seller_demand_product, \
     Return_the_product, seller_demand_report, Requirment_for_RowMaterial, Consignments, edit_rawdemand_status, \
     invoice_from_plant, Productlot_pickup, Quality_check_logout, Quality_check_login, qc_dash, check, Order_history, \
-    Fullfill_seller_demand
+    Fullfill_seller_demand, Forward_demand_plant
 
 urlpatterns = [
     #plant admin 
@@ -45,6 +45,8 @@ urlpatterns = [
     path('Distributor_login', Distributor_login, name='Distributor_login'),
     path('Distributor_dash', Distributor_dash, name='Distributor_dash'),
     path('Distributor_dash', Distributor_dash, name='Distributor_dash'),
+    path('Forward_demand_plant', Forward_demand_plant, name='Forward_demand_plant'),
+
     path('d_logout', distributor_logout, name='d_logout'),
     #---------------------------------------------------------------------------------------------
     #Profile for all
