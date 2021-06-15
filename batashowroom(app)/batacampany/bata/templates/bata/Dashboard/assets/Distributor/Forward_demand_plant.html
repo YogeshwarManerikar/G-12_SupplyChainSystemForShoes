@@ -1,0 +1,167 @@
+{%  extends 'bata/Dashboard/assets/Distributor/base.html' %}
+{% block content %}
+  {% load static %}
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper">
+            <!-- Breadcrumb -->
+            <nav class="hk-breadcrumb" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light bg-transparent">
+<li class="breadcrumb-item"><a href="#">Reports</a></li>
+<li class="breadcrumb-item active" aria-current="page">Seller Demand Repotrs</li>
+                </ol>
+            </nav>
+            <!-- /Breadcrumb -->
+
+            <!-- Container -->
+            <div class="container">
+
+                <!-- Title -->
+<div class="hk-pg-header">
+ <h4 class="hk-pg-title"><span class="pg-title-icon">
+    <span class="feather-icon"><i data-feather="database"></i></span></span>Total Demands of Product</h4>
+                </div>
+                <!-- /Title -->
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <section class="hk-sec-wrapper">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="table-wrap">
+                                        <table id="datable_1" class="table table-hover w-100 display pb-30">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Product Name</th>
+                                                    <th>Total Quantity</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for detail in details %}
+
+<tr>
+<td>{{detail.n}}</td>
+<td>{{detail.Quantity}}</td>
+
+
+
+
+
+</tr>
+                                                    {% endfor %}
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </section>
+
+
+                    </div>
+                </div>
+                 <h4 class="hk-pg-title"><span class="pg-title-icon">
+                    <span class="feather-icon"><i data-feather="database"></i></span></span>Forward Demand to Plant Admin</h4>
+
+                <!-- /Row -->
+<div class="row">
+                    <div class="col-xl-12">
+                        <section class="hk-sec-wrapper">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="table-wrap">
+
+                                        <form action=" " class="needs-validation" method="post" novalidate>
+
+    {% csrf_token %}
+
+
+									{% if error%}
+									<div class="alert alert-danger" role="alert">
+										{{form.errors}}
+									</div>
+									{% endif %}
+
+
+
+ <div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Product Name</label>
+{{form.Product_id}}<div class="invalid-feedback">Please provide a valid Seller Name.</div>
+</div>
+</div>
+
+ <div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Total Quantity</label>
+<input type="number" class="form-control" name="Total_Demand_Quantity" required="" id="id_Total_Demand_Quantity">
+<div class="invalid-feedback">Please provide a valid Seller Name.</div>
+</div>
+</div>
+
+
+ <div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Distributor Location</label>
+<input type="text" class="form-control" name="Distributor_location" maxlength="150" required="" id="id_Distributor_location" value="{{request.session.Distributorlocation}}">
+<div class="invalid-feedback">Please provide a valid Seller Name.</div>
+</div>
+</div>
+   <button class="btn btn-primary" type="submit" name="submit">FullFill Seller Requirement</button>
+</form>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </section>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- /Container -->
+
+            <!-- Footer -->
+
+
+
+            <!-- /Footer -->
+        </div>
+        <!-- /Main Content -->
+    </div>
+
+<!-- /HK Wrapper -->
+
+
+
+
+	<script src="{% static 'vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+	<script src="{% static 'vendors/jszip/dist/jszip.min.js' %}"></script>
+	<script src="{% static 'vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+	<script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'vendors/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/jasny-bootstrap/dist/js/jasny-bootstrap.min.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'dist/js/dropdown-bootstrap-extended.js' %}"></script>
+    <script src="{% static 'dist/js/feather.min.js' %}"></script>
+    <script src="{% static 'vendors/jquery-toggles/toggles.min.js' %}"></script>
+    <script src="{% static 'dist/js/toggle-data.js' %}"></script>
+    <script src="{% static 'dist/js/init.js' %}"></script>
+    <script src="{% static 'dist/js/validation-data.js' %}"></script>
+	{% endblock %}
