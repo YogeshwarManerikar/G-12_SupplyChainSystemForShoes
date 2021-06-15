@@ -1,0 +1,160 @@
+{%  extends 'bata/Dashboard/assets/Distributor/base.html' %}
+{% block content %}
+  {% load static %}
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper">
+            <!-- Breadcrumb -->
+            <nav class="hk-breadcrumb" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light bg-transparent">
+<li class="breadcrumb-item"><a href="#">Product</a></li>
+<li class="breadcrumb-item active" aria-current="page">Add</li>
+                </ol>
+            </nav>
+            <!-- /Breadcrumb -->
+
+            <!-- Container -->
+            <div class="container">
+                <!-- Title -->
+                <div class="hk-pg-header">
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Fullfill Seller Demand</h4>
+                </div>
+                <!-- /Title -->
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+<section class="hk-sec-wrapper">
+
+<div class="row">
+<div class="col-sm">
+<form action=" " class="needs-validation" method="post" novalidate>
+
+    {% csrf_token %}
+
+
+									{% if error%}
+									<div class="alert alert-danger" role="alert">
+										{{form.errors}}
+									</div>
+									{% endif %}
+
+
+
+ <div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Seller Name</label>
+<input type="text" class="form-control"  name="seller_name" maxlength="30" required="" id="id_seller_name>
+<div class="invalid-feedback">Please provide a valid Seller Name.</div>
+</div>
+</div>
+
+ <div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Seller location</label>
+<input type="text" class="form-control" name="seller_location" maxlength="50" required="" id="id_seller_location">
+<div class="invalid-feedback">Please provide a valid Seller Name.</div>
+</div>
+</div>
+
+ <div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Product Name</label>
+<input type="text" class="form-control" name="Product_name" maxlength="100" required="" id="id_Product_name" value="}">
+<div class="invalid-feedback">Please provide a valid Product Name.</div>
+</div>
+</div>
+
+ <div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Total_Demand_Quantity</label>
+<input type="number" class="form-control" name="Total_Demand_Quantity" required="" id="id_Total_Demand_Quantity">
+<div class="invalid-feedback">Please provide a valid Seller Name.</div>
+</div>
+</div>
+
+ <div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Per_unit_price</label>
+<input type="number" class="form-control" name="Per_unit_price" required="" id="id_Per_unit_price">
+<div class="invalid-feedback">Please provide a valid Seller Name.</div>
+</div>
+</div>
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Total_price</label>
+        <input type="number" class="form-control" name="Total_price" required="" id="id_Total_price" >
+
+<div class="invalid-feedback">Please provide a valid product price.</div>
+</div>
+</div>
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Dis_user_id</label>
+        <input type="number" class="form-control" name="Dis_user_id" required="" id="id_Dis_user_id" >
+
+<div class="invalid-feedback">Please provide a valid product price.</div>
+</div>
+</div>
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Dis_user_location</label>
+        <input type="text" class="form-control" name="Dis_user_location" maxlength="50" required="" id="id_Dis_user_location">
+
+<div class="invalid-feedback">Please provide a valid product price.</div>
+</div>
+</div>
+
+
+
+<button class="btn btn-primary" type="submit" name="submit">FullFill Seller Requirement</button>
+
+                  {% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
+</form>
+             <form action="/your-name/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+             </form>
+</div>
+</div>
+
+
+</section>
+
+</div>
+</div>
+</div>
+
+
+            <!-- Footer -->
+
+            <!-- /Footer -->
+
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+
+    <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'vendors/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/jasny-bootstrap/dist/js/jasny-bootstrap.min.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'dist/js/dropdown-bootstrap-extended.js' %}"></script>
+    <script src="{% static 'dist/js/feather.min.js' %}"></script>
+    <script src="{% static 'vendors/jquery-toggles/toggles.min.js' %}"></script>
+    <script src="{% static 'dist/js/toggle-data.js' %}"></script>
+    <script src="{% static 'dist/js/init.js' %}"></script>
+    <script src="{% static 'dist/js/validation-data.js' %}"></script>
+{% endblock %}
