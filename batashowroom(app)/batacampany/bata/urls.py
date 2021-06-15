@@ -12,7 +12,7 @@ from .views import plant_dash, Plant_login, addcategory, stage_one_product_lot, 
     Return_the_product, seller_demand_report, Requirment_for_RowMaterial, Consignments, edit_rawdemand_status, \
     invoice_from_plant, Productlot_pickup, Quality_check_logout, Quality_check_login, qc_dash, check, Order_history, \
     Fullfill_seller_demand, Forward_demand_plant
-
+from .views import tracking
 urlpatterns = [
     #plant admin 
     path('', Plant_login, name='plant_login'),
@@ -98,5 +98,6 @@ urlpatterns = [
     path('Productlot_pickup', Productlot_pickup, name='Productlot_pickup'),
     path('check',check, name='check'),
     path('productlot_status', productlot_status, name='productlot_status'),
+    path('tracking', tracking, name='tracking'),
 
 ]
