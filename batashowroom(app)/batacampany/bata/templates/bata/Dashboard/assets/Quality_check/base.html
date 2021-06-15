@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Quality check</title>
     {% load static %}
+    <link rel="icon" href="{% static 'dist/img/favicon.png' %}" type="image/icon type">
 
     <link href="{% static 'vendors/jquery-toggles/css/toggles.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'vendors/jquery-toggles/css/themes/toggles-light.css' %}" rel="stylesheet" type="text/css">
@@ -22,7 +23,7 @@
                         <div class="media">
                             <div class="media-img-wrap">
                                 <div class="avatar">
-                                    <img src="../../dist/img/user.png" alt="user" class="avatar-img rounded-circle">
+                                    <img src="{% static 'dist/img/user.png' %}" alt="user" class="avatar-img rounded-circle">
                                 </div>
                                 <span class="badge badge-success badge-indicator"></span>
                             </div>
@@ -35,8 +36,8 @@
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
-                        <a class="dropdown-item" href="../profile.html"><i class="dropdown-icon zmdi zmdi-account"></i><span>Profile</span></a>
-                        <a class="dropdown-item" href="../change-password.html"><i class="dropdown-icon zmdi zmdi-settings"></i><span>Settings</span></a>
+                        <a class="dropdown-item" href="profile"><i class="dropdown-icon zmdi zmdi-account"></i><span>Profile</span></a>
+                        <a class="dropdown-item" href="change-password"><i class="dropdown-icon zmdi zmdi-settings"></i><span>Settings</span></a>
                         <div class="dropdown-divider"></div>
                         <div class="sub-dropdown-menu show-on-hover">
                             <a href="#" class="dropdown-toggle dropdown-item no-caret"><i class="zmdi zmdi-check text-success"></i>Online</a>
