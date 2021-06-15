@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from .forms import Add_product, RawDemand, Add_rawmaterial, editproduct, editrawproduct, Sellerdemand, RawdemandStatus, \
     Fullfill_demandseller
 from .model import Raw_Demand, Product, Raw_Product, Distributor, Seller_demand
-from .model.seller_fullfill_demand import Seller_fullfill_demand
+from .model.Demand_forward import Seller_fullfill_demand
 from .model.Quality_check import Quality_checking
 from .model.RM_provider import RM_provider
 from .model.bata_plant import BATA_PLANT
@@ -97,7 +97,7 @@ def addp_roduct(request):
         return redirect('addp_roduct')
 
     return render(request, "bata/Dashboard/assets/plantadmin/add-product.html",
-                  {'id': request.session.get('uid'), 'form': form})
+                  {'id': request.session.get('plantuid'), 'form': form})
 
 
 def add_rawmaterial_category(request):
@@ -302,6 +302,26 @@ def Rowmaterial_Payment(request):
                   {'details': posts1})
 
 
+def Forward_demand_plant(request):
+    if request.session.has_key('Distributoruid') & request.session.has_key('Distributoruname'):
+        location = request.session.get('Distributorlocation')
+    sql1 = "SELECT plant_product.id,name as n,SUM(Quantity) as Quantity FROM `seller_demand`,plant_product WHERE plant_product.id=seller_demand.product_id GROUP BY plant_product.id "
+    posts1 = Seller_demand.objects.raw(sql1)[:50]
+
+    form = Fullfill_demandseller(request.POST)
+
+    # check if form data is valid
+    if form.is_valid():
+        # save the form data to model
+        form.save()
+
+        return redirect('Forward_demand_plant')
+
+    context = {'form': form,
+               'details': posts1,
+               }
+
+    return render(request, "bata/Dashboard/assets/Distributor/Forward_demand_plant.html",context)
 
 def Fullfill_seller_demand(request, pk):
     if request.session.has_key('Distributoruid') & request.session.has_key('Distributoruname'):
