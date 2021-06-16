@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 
 from .forms import Add_product, RawDemand, Add_rawmaterial, editproduct, editrawproduct, Sellerdemand, RawdemandStatus, \
-    Fullfill_demandseller, tracking
+    Fullfill_demandseller, tracking, sellerdemandStatus
 from .model import Raw_Demand, Product, Raw_Product, Distributor, Seller_demand
 from .model.Demand_forward import Seller_fullfill_demand
 from .model.Quality_check import Quality_checking
@@ -276,16 +276,16 @@ def manage_Rowmaterial_categories(request):
 
 
 def Manage_invoice(request):
-    if request.session.has_key('uid') & request.session.has_key('uname'):
-        user = request.session.get('uid')
-        uname = request.session.get('uname')
+    if request.session.has_key('selleruid') & request.session.has_key('selleruname'):
+        user = request.session.get('selleruid')
+        uname = request.session.get('selleruname')
         print(user, uname)
 
     sql = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status ='DISPATCHED' and " \
           "rawmaterial_demand.user_id_id ='%s' " % user
     posts = Raw_Demand.objects.raw(sql)[:50]
 
-    return render(request, "bata/Dashboard/assets/plantadmin/Manage_invoice.html", {'detail': posts})
+    return render(request, "bata/Dashboard/assets/seller/Manage_invoice.html", {'detail': posts})
 
 
 def productlot_status(request):
@@ -339,10 +339,10 @@ def Forward_demand_plant(request):
 def Fullfill_seller_demand(request, pk):
     if request.session.has_key('Distributoruid') & request.session.has_key('Distributoruname'):
         location = request.session.get('Distributorlocation')
-    sql1 = "SELECT pp.id,SUM(sd.Quantity)as total_quantity From seller_demand AS sd INNER JOIN plant_product AS pp ON " \
+    sql1 = "SELECT sd.id,pp.id,SUM(sd.Quantity)as total_quantity From seller_demand AS sd INNER JOIN plant_product AS pp ON " \
            "sd.id=pp.id GROUP BY pp.id "
     posts1 = Seller_demand.objects.raw(sql1)[:50]
-    product = Seller_fullfill_demand.objects.get(id=pk)
+    product = Seller_demand.objects.get(id=pk)
     form = Fullfill_demandseller(instance=product)
     # check if form data is valid
     if request.method == 'POST':
@@ -556,6 +556,21 @@ def edit_rawdemand_status(request, pk):
     return render(request, 'bata/Dashboard/assets/RM_provider/ship_consignment.html', context)
 
 
+
+def edit_sellerdemand_status(request, pk):
+    product = Seller_demand.objects.get(id=pk)
+    # check if form data is valid
+    if request.method == 'POST':
+        form = sellerdemandStatus(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('seller_demand_report')
+
+    context = {'form': form,
+               }
+    return render(request, 'bata/Dashboard/assets/RM_provider/ship_consignment.html', context)
+
+
 def Requirment_for_RowMaterial(request):
     if request.session.has_key('rmuid') & request.session.has_key('rmuname'):
         rawmaterial = request.session.get('rmRaw_type')
@@ -607,3 +622,5 @@ def trackings(request):
     return render(request, 'bata/tracking.html', {'track': track})
 
 
+def contact(request):
+    return render(request, "bata/contact.html")
