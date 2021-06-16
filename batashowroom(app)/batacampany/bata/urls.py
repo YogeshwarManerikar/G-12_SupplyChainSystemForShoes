@@ -11,7 +11,7 @@ from .views import plant_dash, Plant_login, addcategory, stage_one_product_lot, 
     distributor_logout, Distributor_login, RM_provider_login, RM_provider_logout, RM_dash, Seller_demand_product, \
     Return_the_product, seller_demand_report, Requirment_for_RowMaterial, Consignments, edit_rawdemand_status, \
     invoice_from_plant, Productlot_pickup, Quality_check_logout, Quality_check_login, qc_dash, check, Order_history, \
-    Forward_demand_plant, trackings, edit_sellerdemand_status, contact
+    Forward_demand_plant, trackings, edit_sellerdemand_status, contact,service,index,customer_support
 
 urlpatterns = [
     # plant admin
@@ -100,5 +100,11 @@ urlpatterns = [
     path('productlot_status', productlot_status, name='productlot_status'),
     path('tracking/', trackings, name='tracking'),
     path('contact', contact, name='contact'),
+    path('index', index , name='index'),
+    path('service',service , name='service'),
+    path('customer_support',customer_support , name='customer_support')
+    
+   
+    
 
 ]
