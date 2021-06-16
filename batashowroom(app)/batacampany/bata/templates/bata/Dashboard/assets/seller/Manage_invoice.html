@@ -1,0 +1,150 @@
+{%  extends 'bata/Dashboard/assets/plantadmin/base.html' %}
+{% block content %}
+  {% load static %}
+
+
+	<!-- HK Wrapper -->
+	<div class="hk-wrapper hk-vertical-nav">
+
+<!-- Top Navbar -->
+
+
+
+
+        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+        <!-- /Vertical Nav -->
+
+<!-------------------------------------------------------------------------------------------->
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper">
+            <!-- Breadcrumb -->
+            <nav class="hk-breadcrumb" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light bg-transparent">
+<li class="breadcrumb-item"><a href="#">Search</a></li>
+<li class="breadcrumb-item active" aria-current="page">RowMaterial</li>
+                </ol>
+            </nav>
+            <!-- /Breadcrumb -->
+
+            <!-- Container -->
+            <div class="container">
+                <!-- Title -->
+                <div class="hk-pg-header">
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>RowMaterial category</h4>
+                </div>
+                <!-- /Title -->
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+
+<section class="hk-sec-wrapper">
+
+<div class="row">
+<div class="col-sm">
+<form class="needs-validation" method="post" novalidate>
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<input type="text" class="form-control" id="validationCustom03" placeholder="search for lot number" name="RowMaterial_type" required>
+<div class="invalid-feedback">Please provide a valid RowMaterial Type.</div>
+</div>
+</div>
+
+
+<button class="btn btn-primary" type="submit" name="search">search</button>
+</form>
+</div>
+</div>
+</section>
+<!--code for search result -->
+
+
+
+
+
+<form class="needs-validation" method="post" novalidate>
+
+<!--- Shopping Cart ---->
+<section class="hk-sec-wrapper">
+
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="table-wrap">
+<h4>Manage Invoice</h4>
+<hr />
+
+
+
+  <table id="datable_1" class="table table-hover w-100 display pb-30" border="1">
+<tbody>
+<tr>
+<th>#Lot No.</th>
+    <th> RowMaterial Category</th>
+
+<th >Quantity</th>
+<th >View Invoice</th>
+
+
+</tr>
+
+           <input type="hidden" value="" name="quantity[]">
+           {% for detail in detail %}
+
+                <tr>
+                <td>{{detail.Lot_number}}</td>
+                <td>{{detail.Raw_type}}</td>
+
+                <td>{{detail.Quantity}}</td>
+                    <td><a href="view_invoice">Invoice</a></td>
+
+                </tr>
+        {% endfor %}
+
+
+<tr>
+
+
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+</form>
+
+
+
+
+</div>
+</div></div></section>
+
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+
+
+
+    <style type="{% static 'text/css' %}">
+        #btnEmpty {
+    background-color: #ffffff;
+    border: #d00000 1px solid;
+    padding: 5px 10px;
+    color: #d00000;
+    float: right;
+    text-decoration: none;
+    border-radius: 3px;
+    margin: 10px 0px;
+    }
+
+    </style>
+{% endblock %}
+
