@@ -11,7 +11,7 @@ from .views import plant_dash, Plant_login, addcategory, stage_one_product_lot, 
     distributor_logout, Distributor_login, RM_provider_login, RM_provider_logout, RM_dash, Seller_demand_product, \
     Return_the_product, seller_demand_report, Requirment_for_RowMaterial, Consignments, edit_rawdemand_status, \
     invoice_from_plant, Productlot_pickup, Quality_check_logout, Quality_check_login, qc_dash, check, Order_history, \
-    Fullfill_seller_demand, Forward_demand_plant , trackings
+    Forward_demand_plant, trackings, edit_sellerdemand_status, contact
 
 urlpatterns = [
     # plant admin
@@ -30,7 +30,6 @@ urlpatterns = [
     path('manage_Rowmaterial_categories', manage_Rowmaterial_categories, name='manage_Rowmaterial_categories'),
     # plant admin -seller
     path('seller_demand_report', seller_demand_report, name='seller_demand_report'),
-    path('Seller_demand_product', Seller_demand_product, name='Seller_demand_product'),
     # plant admin -rowmaterial
     path('Demand_for_Rowmaterial', Demand_for_Rowmaterial, name='Demand_for_Rowmaterial'),
     path('stage_one_product_lot', stage_one_product_lot, name='stage_one_product_lot'),
@@ -87,7 +86,7 @@ urlpatterns = [
     path('view_invoice', view_invoice, name='view_invoice'),
     # ---------------------------------------------------------------------------------------------
 
-    path('Fullfill_seller_demand/<str:pk>/', Fullfill_seller_demand, name='Fullfill_seller_demand'),
+    path('edit_sellerdemand_status/<str:pk>/', edit_sellerdemand_status, name='edit_sellerdemand_status'),
     path('productlot_status', productlot_status, name='productlot_status'),
     path('productlot_status_update', productlot_status_update, name='productlot_status_update'),
     path('sales_report_details', sales_report_details, name='sales_report_details'),
@@ -100,5 +99,6 @@ urlpatterns = [
     path('check', check, name='check'),
     path('productlot_status', productlot_status, name='productlot_status'),
     path('tracking/', trackings, name='tracking'),
+    path('contact', contact, name='contact'),
 
 ]
