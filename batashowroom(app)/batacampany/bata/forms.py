@@ -7,6 +7,7 @@ from .model.Raw_demand import Raw_Demand
 from .model.Raw_product import Raw_Product
 from .model.seller_demand import Seller_demand
 from .model.Demand_forward import Seller_fullfill_demand
+from .model.tracking_system import Tracking_reports
 
 
 class Plant_login(forms.ModelForm):
@@ -60,7 +61,13 @@ class RawDemand(forms.ModelForm):
 class Sellerdemand(forms.ModelForm):
     class Meta:
         model = Seller_demand
-        fields = ['product', 'Quantity', 'Demand_date', 'Requirement_date', 'user_id', 'user_location']
+        fields = ['product', 'Quantity', 'Demand_date', 'Requirement_date', 'user_id', 'user_location','Track_id']
+
+
+class tracking(forms.ModelForm):
+    class Meta:
+        model = Tracking_reports
+        fields = ['date', 'track_status', 'tracking_id']
 
 
 class Add_rawmaterial(forms.ModelForm):

@@ -6,6 +6,7 @@ from django.utils import timezone
 
 from bata.model.seller import Seller
 from bata.model.product import Product
+from .tracking_system import Tracking_reports
 
 value = (
 
@@ -28,6 +29,8 @@ class Seller_demand(models.Model):
     user_id = models.ForeignKey(Seller, on_delete=models.CASCADE, default=1)
     user_location = models.CharField(max_length=40)
     status = models.CharField(choices=value,max_length=20, default='PENDING')
+    Track_id = models.IntegerField(max_length=30,default=-1)
+
 
 
 
