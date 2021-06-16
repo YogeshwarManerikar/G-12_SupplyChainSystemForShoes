@@ -624,12 +624,12 @@ def trackings(request):
 def contact(request):
     return render(request, "bata/contact.html")
 
-    def service(request):
+def service(request):
     return render(request, "bata/service.html")
     
-    def index(request):
+def index(request):
     return render(request, "bata/index.html")
     
-    def customer_support(request):
+def customer_support(request):
     return render(request, "bata/customer_support.html")
     
