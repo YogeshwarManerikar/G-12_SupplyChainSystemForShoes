@@ -129,7 +129,7 @@ def seller_demand_report(request):
         uname = request.session.get('Distributoruname')
         location = request.session.get('Distributorlocation')
         print(location)
-        sql = "SELECT * FROM seller_login AS sl INNER JOIN seller_demand AS sd ON  " \
+        sql = "SELECT * FROM seller_demand AS sd INNER JOIN seller_login AS sl ON  " \
               "sl.id=sd.user_id_id INNER JOIN plant_product AS p ON sd.product_id=p.id and sd.user_location ='%s' " % location
         posts = Seller_demand.objects.raw(sql)[:50]
 
@@ -141,7 +141,7 @@ def seller_demand_report(request):
             form.save()
             messages.success(request, 'Message has been send to seller')
 
-    return render(request, "bata/Dashboard/assets/Distributor/seller_demand.html", {'details': posts,'form':form})
+        return render(request, "bata/Dashboard/assets/Distributor/seller_demand.html", {'details': posts,'form':form})
 
 
 def bwdate_report_ds(request):
@@ -281,8 +281,7 @@ def Manage_invoice(request):
         uname = request.session.get('selleruname')
         print(user, uname)
 
-    sql = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status ='DISPATCHED' and " \
-          "rawmaterial_demand.user_id_id ='%s' " % user
+    sql = "SELECT * FROM seller_demand AS sd INNER JOIN seller_login AS sl ON sl.id=sd.user_id_id  where sd.status ='DISPATCHED' "
     posts = Raw_Demand.objects.raw(sql)[:50]
 
     return render(request, "bata/Dashboard/assets/seller/Manage_invoice.html", {'detail': posts})
@@ -559,16 +558,16 @@ def edit_rawdemand_status(request, pk):
 
 def edit_sellerdemand_status(request, pk):
     product = Seller_demand.objects.get(id=pk)
-    # check if form data is valid
+    # if request is not post, initialize an empty form
+    form = sellerdemandStatus(request.POST or None)
     if request.method == 'POST':
+    # check if form data is valid
         form = sellerdemandStatus(request.POST, instance=product)
         if form.is_valid():
             form.save()
             return redirect('seller_demand_report')
 
-    context = {'form': form,
-               }
-    return render(request, 'bata/Dashboard/assets/RM_provider/ship_consignment.html', context)
+    return render(request, 'bata/Dashboard/assets/RM_provider/ship_consignment.html', {'form': form})
 
 
 def Requirment_for_RowMaterial(request):
