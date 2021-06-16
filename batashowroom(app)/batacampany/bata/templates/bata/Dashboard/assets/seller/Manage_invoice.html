@@ -1,4 +1,4 @@
-{%  extends 'bata/Dashboard/assets/plantadmin/base.html' %}
+{%  extends 'bata/Dashboard/assets/seller/base.html' %}
 {% block content %}
   {% load static %}
 
@@ -80,10 +80,11 @@
   <table id="datable_1" class="table table-hover w-100 display pb-30" border="1">
 <tbody>
 <tr>
-<th>#Lot No.</th>
-    <th> RowMaterial Category</th>
+<th>#</th>
+<th>Seller name</th>
+<th>Seller Location</th>
+<th>Tracking Id</th>
 
-<th >Quantity</th>
 <th >View Invoice</th>
 
 
@@ -93,11 +94,12 @@
            {% for detail in detail %}
 
                 <tr>
-                <td>{{detail.Lot_number}}</td>
-                <td>{{detail.Raw_type}}</td>
+                <td>{{detail.id}}</td>
+                <td>{{detail.first_name}}</td>
+                <td>{{detail.location}}</td>
 
-                <td>{{detail.Quantity}}</td>
-                    <td><a href="view_invoice">Invoice</a></td>
+                <td>{{detail.Track_id}}</td>
+                    <td><a href="">Invoice</a></td>
 
                 </tr>
         {% endfor %}
