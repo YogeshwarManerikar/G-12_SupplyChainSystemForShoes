@@ -52,6 +52,12 @@ class RawdemandStatus(forms.ModelForm):
         fields = ['status']
 
 
+class sellerdemandStatus(forms.ModelForm):
+    class Meta:
+        model = Seller_demand
+        fields = ['status']
+
+
 class RawDemand(forms.ModelForm):
     class Meta:
         model = Raw_Demand
