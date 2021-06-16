@@ -9,6 +9,7 @@ from .model.Quality_check import Quality_checking
 from .model.RM_provider import RM_provider
 from .model.bata_plant import BATA_PLANT
 from .model.seller import Seller
+from .model.tracking_system import Tracking_reports
 
 
 def plant_dash(request):
@@ -36,11 +37,10 @@ def Distributor_dash(request):
         print(user)
         print("location haii..................")
 
-
         sql = "SELECT plant_product.id ,name,Quantity FROM seller_demand, plant_product where plant_product.id = seller_demand.product_id and seller_demand.user_id_id ='%s' GROUP BY plant_product.id " % user
         posts = Seller_demand.objects.raw(sql)[:50]
         return render(request, 'bata/Dashboard/assets/Distributor/dashboard.html',
-                      {'user': request.session["Distributoruname"], 'id': user,'details':posts})
+                      {'user': request.session["Distributoruname"], 'id': user, 'details': posts})
     else:
         return redirect('Distributor_login')
 
@@ -133,7 +133,15 @@ def seller_demand_report(request):
               "sl.id=sd.user_id_id INNER JOIN plant_product AS p ON sd.product_id=p.id and sd.user_location ='%s' " % location
         posts = Seller_demand.objects.raw(sql)[:50]
 
-    return render(request, "bata/Dashboard/assets/Distributor/seller_demand.html", {'details': posts})
+        form = tracking(request.POST)
+
+        # check if form data is valid
+        if form.is_valid():
+            # save the form data to model
+            form.save()
+            messages.success(request, 'Message has been send to seller')
+
+    return render(request, "bata/Dashboard/assets/Distributor/seller_demand.html", {'details': posts,'form':form})
 
 
 def bwdate_report_ds(request):
@@ -172,7 +180,7 @@ def Seller_demand_product(request):
         posts = Seller_demand.objects.raw(sql)[:50]
 
         print(request.session.get('sellerlocation'))
-    # create object of form
+        # create object of form
         form = Sellerdemand(request.POST)
         form1 = tracking(request.POST)
         # check if form data is valid
@@ -186,7 +194,7 @@ def Seller_demand_product(request):
 
         return render(request, "bata/Dashboard/assets/seller/Demand_for_Product.html",
                       {'id': request.session.get('selleruid'), 'location': request.session.get('sellerlocation'),
-                       'form': form,'form1': form1, 'details': posts})
+                       'form': form, 'form1': form1, 'details': posts})
 
 
 def edit_category(request):
@@ -299,7 +307,7 @@ def returnproduct(request):
 def Rowmaterial_Payment(request):
     if request.session.has_key('plantuid') & request.session.has_key('plantuname'):
         location = request.session.get('plantlocation')
-    sql1 = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status ='PENDING' and rawmaterial_demand.user_location = '%s'"% location
+    sql1 = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status ='PENDING' and rawmaterial_demand.user_location = '%s'" % location
     posts1 = Raw_Demand.objects.raw(sql1)[:50]
 
     return render(request, "bata/Dashboard/assets/plantadmin/Rowmaterial-Payment.html",
@@ -325,7 +333,8 @@ def Forward_demand_plant(request):
                'details': posts1,
                }
 
-    return render(request, "bata/Dashboard/assets/Distributor/Forward_demand_plant.html",context)
+    return render(request, "bata/Dashboard/assets/Distributor/Forward_demand_plant.html", context)
+
 
 def Fullfill_seller_demand(request, pk):
     if request.session.has_key('Distributoruid') & request.session.has_key('Distributoruname'):
@@ -342,11 +351,10 @@ def Fullfill_seller_demand(request, pk):
             form.save()
             return redirect('Fullfill_seller_demand')
 
-    context = { 'form':form,
+    context = {'form': form,
                'details': posts1,
                }
     return render(request, 'bata/Dashboard/assets/Distributor/Fullfill_seller_demand.html', context)
-
 
 
 def RowMaterial_payment_status_update(request):
@@ -522,7 +530,6 @@ def Consignments(request):
         return render(request, "bata/Dashboard/assets/RM_provider/Consignments.html", {'details': posts})
 
 
-
 def Order_history(request):
     if request.session.has_key('rmuid') & request.session.has_key('rmuname'):
         user = request.session.get('rmuid')
@@ -585,8 +592,18 @@ def productlot_status(request):
     return render(request, "bata/Dashboard/assets/Quality_check/productlot_status.html")
 
 
+def trackings(request):
 
-def tracking(request):
+    srh = request.GET.get('query')
+    if srh is None:
+        srh=0
 
-    return render(request, "bata/tracking.html")
+    print(srh)
+    track = Tracking_reports.objects.filter(tracking_id__icontains=srh)
+
+    if track.count() == 0 and srh !=0:
+        messages.warning(request, "No search results found. Please refine your query.")
+
+    return render(request, 'bata/tracking.html', {'track': track})
+
 

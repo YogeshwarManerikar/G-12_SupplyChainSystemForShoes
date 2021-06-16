@@ -1,76 +1,309 @@
-{%  extends 'bata/about.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Seller</title>
 
-    <main role="main" class="container">
+    {% load static %}
+    <link rel="icon" href="{% static 'dist/img/favicon.png' %}" type="image/icon type">
 
-      <h3>Track Shipment</h3>
-      <form method="GET" action="">
-        <div class="form-row">
-            <div class="form-group col-4">
-                <div class="input-group">
-                    <input class="form-control py-2 border-right-0 border" type="text" name="AWB_no" placeholder="Enter AWB NUmber" />
-                    <span class="input-group-append">
-                        <div class="input-group-text bg-transparent">
-                            <i class="fa fa-search"></i>
+    <link href="{% static 'vendors/jquery-toggles/css/toggles.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'vendors/jquery-toggles/css/themes/toggles-light.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'dist/css/style.css' %}" rel="stylesheet" type="text/css">
+<div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+<div class="hk-wrapper hk-vertical-nav">
+     <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+            <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i class="ion ion-ios-menu"></i></a>
+            <a class="navbar-brand" href="../dashboard.html">BATA (Seller)  &emsp;&emsp;&emsp;&emsp;&emsp;        </a>
+            <ul class="navbar-nav hk-navbar-content">
+
+                <li class="nav-item dropdown dropdown-authentication">
+                    <a class="nav-link dropdown-toggle no-caret" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="media">
+                            <div class="media-img-wrap">
+                                <div class="avatar">
+                                    <img src="{% static 'dist/img/user.png' %}" alt="user" class="avatar-img rounded-circle">
+                                </div>
+                                <span class="badge badge-success badge-indicator"></span>
+                            </div>
+
+
+
+                            <div class="media-body">
+                                <span>   <!--name-->  <i class="zmdi zmdi-chevron-down"></i></span>
+                            </div>
                         </div>
-                    </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
+                        <a class="dropdown-item" href="profile"><i class="dropdown-icon zmdi zmdi-account"></i><span>Profile</span></a>
+                        <a class="dropdown-item" href="change_password"><i class="dropdown-icon zmdi zmdi-settings"></i><span>Settings</span></a>
+                        <div class="dropdown-divider"></div>
+                        <div class="sub-dropdown-menu show-on-hover">
+                            <a href="#" class="dropdown-toggle dropdown-item no-caret"><i class="zmdi zmdi-check text-success"></i>Online</a>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="s_logout"><i class="dropdown-icon zmdi zmdi-power"></i><span>Log out</span></a>
+
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+
+
+</head>
+<body>
+
+ <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+<div class="hk-wrapper hk-vertical-nav">
+        <nav class="hk-nav hk-nav-light">
+            <a href="javascript:void(0);" id="hk_nav_close" class="hk-nav-close"><span class="feather-icon"><i data-feather="x"></i></span></a>
+            <div class="nicescroll-bar">
+                <div class="navbar-nav-wrap">
+                    <ul class="navbar-nav flex-column">
+
+<li class="nav-item">
+<a class="nav-link" href="seller_dash">
+<i class="ion ion-ios-keypad"></i>
+<span class="nav-link-text">Dashboard</span>
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="Seller_demand_product">
+<i class="ion ion-ios-list-box"></i>
+<span class="nav-link-text">Demand Product</span>
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="Return_the_product">
+<i class="ion ion-ios-list-box"></i>
+<span class="nav-link-text">Return Product</span>
+</a>
+</li>
+
+
+<li class="nav-item">
+<a class="nav-link" href="bwdate_report_details">
+<i class="ion ion-ios-list-box"></i>
+<span class="nav-link-text"> Invoice </span>
+</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <hr class="nav-separator">
+
                 </div>
-            </div>        
-        </div>
-
-        <button type="submit" class="btn btn-primary">Search</button>
-      </form>
-
-      <hr />
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<div class="container">
-    <article class="card">
-        <header class="card-header"> My Orders / Tracking </header>
-        <div class="card-body">
-            <article class="card">
-                <div class="card-body row">
-                    <div class="col"> <strong>Booking Date -Time:</strong> <br>{{ship1.created}} </div>
-                    <div class="col"> <strong>Booked BY:</strong> <br>{{ship1.user}} | <i class="fa fa-phone"></i> +1598675986 </div>
-
-                    <div class="col"> <strong>Tracking #:</strong> <br> {{ship1.AWB}} </div>
-                </div>
-            </article>
-
-            <hr>
-            <div class="card-body">
-		<hr>
-
-            <div class="card card-body">
-                <table class="table table-sm">
-
-
-                    <tr>
-
-                        <th>Updated by</th>
-                        <th>Date</th>
-                        <th>Status</th>
-
-                    </tr>
-
-                        <tr>
-                         
-                            <td>{{ship.user}}</td>
-                            <td>{{ship.date_created}}</td>
-                            <td>{{ship.status}}</td>
-
-
-                        </tr>
-
-                </table>
             </div>
+        </nav>
 
-            <hr>
-        </div>
-    </article>
+
+	<div class="hk-wrapper hk-vertical-nav">
+
+
+
+
+
+
+        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+
+
+<!-------------------------------------------------------------------------------------------->
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper">
+            <!-- Breadcrumb -->
+            <nav class="hk-breadcrumb" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light bg-transparent">
+<li class="breadcrumb-item"><a href="#">Demand</a></li>
+<li class="breadcrumb-item active" aria-current="page">Demand for Products</li>
+                </ol>
+            </nav>
+            <!-- /Breadcrumb -->
+
+            <!-- Container -->
+            <div class="container">
+                <!-- Title -->
+                <div class="hk-pg-header">
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Demand for Products</h4>
+                </div>
+                <!-- /Title -->
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+
+<section class="hk-sec-wrapper">
+
+<div class="row">
+<div class="col-sm">
+<form form class="form-horizontal" role="search" method="get" action="{% url 'tracking' %}">
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Product Name</label>
+<input type="text" class="form-control" id="search_bar" name="query"  placeholder= "track shipment " required>
+<div class="invalid-feedback">Please provide a valid Product Type.</div>
+</div>
 </div>
 
-{% endblock %}
+
+<button class="btn btn-primary" type="submit" name="search">search</button>
+</form>
+</div>
+</div>
+</section>
+<!--code for search result -->
+
+
+
+<section class="hk-sec-wrapper">
+
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="table-wrap">
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+
+
+            <!-- Footer -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Search result for <span class="text-info">"{{ request.GET.query }}"</span></h2>
+            {% if track|length < 1 %}
+   <p>No search results</p>
+    Your search query : <b>{{search}}</b> did not match any documents. <br>
+    Suggestions:
+    <ul>
+    <li>Make sure that all words are spelled correctly.</li>
+    <li>Try more general keywords.</li>
+   <li> Try fewer keywords.</li>
+   <li> Try different keywords.</li>
+    </li>
+    </ul>
+
+
+    {% endif %}
+       <br>
+   <table id="datable_1" class="table table-hover w-100 display pb-30" border="1">
+<tbody>
+<tr>
+<th>#</th>
+<th> Date of Displacement</th>
+<th> Status</th>
+
+
+
+</tr>
+
+           <input type="hidden" value="" name="quantity[]">
+           {% for track in track %}
+
+                <tr>
+                <td>{{ track.id }}</td>
+                <td>{{ track.date }}</td>
+                <td>{{ track.track_status }}</td>
+
+
+
+
+                </tr>
+        {% endfor %}
+
+
+
+<tr>
+
+
+<td></td>
+</tr>
+</tbody>
+</table>
+     <br>
+        </div>
+    </div>
+
+            <!-- /Footer -->
+
+        </div>
+
+
+</div>
+</div>
+</div>
+
+
+            <!-- Footer -->
+
+            <!-- /Footer -->
+
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+
+
+
+
+    <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'vendors/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/jasny-bootstrap/dist/js/jasny-bootstrap.min.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'dist/js/dropdown-bootstrap-extended.js' %}"></script>
+    <script src="{% static 'dist/js/feather.min.js' %}"></script>
+    <script src="{% static 'vendors/jquery-toggles/toggles.min.js' %}"></script>
+    <script src="{% static 'dist/js/toggle-data.js' %}"></script>
+    <script src="{% static 'dist/js/init.js' %}"></script>
+    <script src="{% static 'dist/js/validation-data.js' %}"></script>
+
+
+
+<div class="hk-footer-wrap container">
+                <footer class="footer">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+<p>Developed By<a href="" class="text-dark">Goa University</a> ©2021</p>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+
+			</body>
+			</html>
+
+
+
+
+

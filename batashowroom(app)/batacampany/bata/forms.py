@@ -61,13 +61,13 @@ class RawDemand(forms.ModelForm):
 class Sellerdemand(forms.ModelForm):
     class Meta:
         model = Seller_demand
-        fields = ['product', 'Quantity', 'Demand_date', 'Requirement_date', 'user_id', 'user_location']
+        fields = ['product', 'Quantity', 'Demand_date', 'Requirement_date', 'user_id', 'user_location','Track_id']
 
 
 class tracking(forms.ModelForm):
     class Meta:
         model = Tracking_reports
-        fields = ['date', 'track_status']
+        fields = ['date', 'track_status', 'tracking_id']
 
 
 class Add_rawmaterial(forms.ModelForm):

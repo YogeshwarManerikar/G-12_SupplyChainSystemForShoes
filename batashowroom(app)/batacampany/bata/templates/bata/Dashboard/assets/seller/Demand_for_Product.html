@@ -21,6 +21,7 @@
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
+
 <li class="breadcrumb-item"><a href="#">Demand</a></li>
 <li class="breadcrumb-item active" aria-current="page">Demand for Products</li>
                 </ol>
@@ -95,7 +96,7 @@
     <div class="form-row">
 <div class="col-md-6 mb-10">
 
- <input  type="text" class="form-control" name="Demand_date" required="" id="currentDate" >
+ <input  type="hidden" class="form-control" name="Demand_date" required="" id="currentDate" >
     <div class="invalid-feedback">Please provide a valid product price.</div>
 </div>
 </div>
@@ -114,16 +115,24 @@
 </div>
 </div>
 
+
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <input type="hidden" name="user_location" maxlength="40" required="" id="id_user_location" value="{{location}}">
     <div class="invalid-feedback">Please provide a valid from date.</div>
 </div>
 </div>
-{{form1}}
+
+    <input type="hidden" name="date" required="" id="currentDate1">
+    <input type="hidden" name="Track_id" required=""  id="txt_usrid1">
+    <input type="hidden" name="track_status" maxlength="999" required="" id="id_track_status" value="Product in demand from the {{location}} seller ">
+    <input type="hidden" tooltip="User Id" id="txt_usrid" name="tracking_id" required=""/>
+
+
 
 <button class="btn btn-primary" type="submit" name="update">DEMAND</button>
 </form>
+
 </div>
 </div>
 </section>
@@ -258,9 +267,19 @@
   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
   document.getElementById("currentDate").value = date;
 </script>
+          <script type="text/javascript">
+        now = new Date();
+        randomNum = '';
+        randomNum += Math.round(Math.random() * 10000);
+        window.onload = function () {
+            document.getElementById("txt_usrid").value = randomNum;
+            document.getElementById("txt_usrid1").value = randomNum;
+        }
+    </script>
         <script>
   var today = new Date();
-  var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
   document.getElementById("currentDate1").value = date;
 </script>
+
 	{% endblock %}
