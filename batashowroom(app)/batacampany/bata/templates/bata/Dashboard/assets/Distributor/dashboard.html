@@ -160,7 +160,7 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Product', 'Units'],
-          [' ',     40],
+          ['Supplyed',     400],
           ['return ',     8]
         ]);
 
@@ -182,12 +182,12 @@
         var data = google.visualization.arrayToDataTable([
           ['Demand', 'Units'],
           
-          ['Dispached ',     30],
-          ['Pending ',     20]
+          ['Dispached ',     300],
+          ['Pending ',     100]
         ]);
 
         var options = {
-          title: 'Return Product Ratio'
+          title: 'Product status'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
