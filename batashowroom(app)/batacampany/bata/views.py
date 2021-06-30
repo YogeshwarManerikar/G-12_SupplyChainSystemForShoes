@@ -15,8 +15,14 @@ from .model.tracking_system import Tracking_reports
 def plant_dash(request):
     if request.session.has_key('plantuid') & request.session.has_key('plantuname'):
         user = request.session.get('plantuid')
-        return render(request, 'bata/Dashboard/assets/plantadmin/dashboard.html',
-                      {'user': request.session["plantuname"], 'id': user})
+
+        sql = "SELECT seller_demand.id,seller_demand.Requirement_date ,name,Quantity," \
+              "seller_demand.Quantity*plant_product.price as " \
+              "sales FROM seller_demand, plant_product where plant_product.id = seller_demand.product_id GROUP BY " \
+              "seller_demand.Requirement_date "
+        posts = Seller_demand.objects.raw(sql)[:50]
+        return render(request, 'bata/Dashboard/assets/plantadmin/index.html',
+                      {'user': request.session["plantuname"], 'id': user, 'detail': posts})
     else:
         return redirect('plant_login')
 
@@ -141,7 +147,7 @@ def seller_demand_report(request):
             form.save()
             messages.success(request, 'Message has been send to seller')
 
-        return render(request, "bata/Dashboard/assets/Distributor/seller_demand.html", {'details': posts,'form':form})
+        return render(request, "bata/Dashboard/assets/Distributor/seller_demand.html", {'details': posts, 'form': form})
 
 
 def bwdate_report_ds(request):
@@ -555,13 +561,12 @@ def edit_rawdemand_status(request, pk):
     return render(request, 'bata/Dashboard/assets/RM_provider/ship_consignment.html', context)
 
 
-
 def edit_sellerdemand_status(request, pk):
     product = Seller_demand.objects.get(id=pk)
     # if request is not post, initialize an empty form
     form = sellerdemandStatus(request.POST or None)
     if request.method == 'POST':
-    # check if form data is valid
+        # check if form data is valid
         form = sellerdemandStatus(request.POST, instance=product)
         if form.is_valid():
             form.save()
@@ -607,15 +612,14 @@ def productlot_status(request):
 
 
 def trackings(request):
-
     srh = request.GET.get('query')
     if srh is None:
-        srh=0
+        srh = 0
 
     print(srh)
     track = Tracking_reports.objects.filter(tracking_id__icontains=srh)
 
-    if track.count() == 0 and srh !=0:
+    if track.count() == 0 and srh != 0:
         messages.warning(request, "No search results found. Please refine your query.")
 
     return render(request, 'bata/tracking.html', {'track': track})
@@ -624,12 +628,14 @@ def trackings(request):
 def contact(request):
     return render(request, "bata/contact.html")
 
+
 def service(request):
     return render(request, "bata/service.html")
-    
+
+
 def index(request):
     return render(request, "bata/index.html")
-    
+
+
 def customer_support(request):
     return render(request, "bata/customer_support.html")
-    
