@@ -62,6 +62,7 @@ urlpatterns = [
     path('Order_history', Order_history, name='Order_history'),
     path('returnproduct', returnproduct, name='returnproduct'),
     path('Seller_login', Seller_login, name='Seller_login'),
+    path('Seller_demand_product', Seller_demand_product, name='Seller_demand_product'),
     # ---------------------------------------------------------------------------------------------
     # RM_provide
     path('RM_provider_login', RM_provider_login, name='RM_provider_login'),
