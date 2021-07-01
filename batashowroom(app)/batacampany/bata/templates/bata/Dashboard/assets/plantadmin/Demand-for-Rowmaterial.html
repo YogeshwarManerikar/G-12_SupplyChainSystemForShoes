@@ -43,7 +43,7 @@
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">#Lot No.</label>
-<input type="text" class="form-control" name="Lot_number" maxlength="30" required="" id="id_Lot_number">
+<input type="number" class="form-control" name="Lot_number"  required="" id="id_Lot_number" maxlength="6">
 <div class="invalid-feedback">Please provide a valid Lot No..</div>
 </div>
 </div>
@@ -58,7 +58,7 @@
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Quantity</label>
-<input type="number" class="form-control" name="Quantity" required="" id="id_Quantity">
+<input type="number" class="form-control" maxlength="6" name="Quantity"  id="id_Quantity" pattern="[0-9]{6}" required >
 <div class="invalid-feedback">Please provide a valid Quantity.</div>
 </div>
 </div>
