@@ -44,18 +44,22 @@
             <div class="row sparkboxes mt-4 mb-4">
               <div class="col-md-4">
                 <div class="box box1">
-                  <div id="spark1"></div>
+
+                  <div>                  <div id="sales" style="width:100%;max-width:700px"></div>
+
+</div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="box box2">
-                  <div id="spark2"></div>
+ <div>                  <div id="expenses" style="width:100%;max-width:700px"></div>
+</div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="box box3">
-                  <div id="spark3"></div>
-                </div>
+ <div>                  <div id="profit" style="width:100%;max-width:700px"></div>
+</div>                </div>
               </div>
             </div>
 
@@ -94,7 +98,122 @@
     <!-- installing few libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"></script>
-    <script >
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg==" crossorigin="anonymous"></script>
+
+<script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
+
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<div id="myPlot" style="width:100%;max-width:700px"></div>
+
+<script>
+
+// Generate values for sales
+var xArray = [{% for detail in detail %} '{{detail.Requirement_date}}', {% endfor %}];
+var yValues = [{% for detail in detail %} '{{detail.sales}}', {% endfor %}];
+
+
+// Generate values for expenses
+var xArray = [{% for detail in detail %} '{{detail.Requirement_date}}', {% endfor %}];
+var yValues = [{% for detail in detail %} '{{detail.sales}}', {% endfor %}];
+
+
+// Generate values for profit
+var xArray = [{% for detail in detail %} '{{detail.Requirement_date}}', {% endfor %}];
+var yValues = [{% for detail in detail %} '{{detail.sales}}', {% endfor %}];
+
+
+// Define Data
+var data = [{
+  x: xArray,
+  y: yValues,
+  mode:"lines"
+}];
+
+// Define Layout
+var layout = {title: "Profits " };
+
+// Display using Plotly
+Plotly.newPlot("sales", data, layout);
+Plotly.newPlot("expenses", data, layout);
+Plotly.newPlot("profit", data, layout);
+</script>
+
+
+                <script>
+
+var ctx = document.getElementById('my123').getContext('2d');
+var ctx1 = document.getElementById('my124').getContext('2d');
+var ctx2 = document.getElementById('my125').getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    datasets: [{
+      label: 'Sales',
+      data: [66, 0.5, 1, 1.5, 2]
+    }],
+    labels: ['01-02-2013', '04-02-2013', 'March', 'April']
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          max: 66,
+          min: 0,
+          stepSize: 0.5
+        }
+      }]
+    }
+  }
+});
+
+
+var myChart = new Chart(ctx1, {
+  type: 'line',
+  data: {
+    datasets: [{
+      label: 'Expenses',
+      data: [66, 0.5, 1, 1.5, 2]
+    }],
+    labels: ['01-02-2013', '04-02-2013', 'March', 'April']
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          max: 66,
+          min: 0,
+          stepSize: 0.5
+        }
+      }]
+    }
+  }
+});
+
+var myChart = new Chart(ctx2, {
+  type: 'line',
+  data: {
+    datasets: [{
+      label: 'Profits',
+      data: [{% for detail in detail %} '{{detail.sales}}', {% endfor %}]
+    }],
+    labels: [{% for detail in detail %} '{{detail.Requirement_date}}', {% endfor %}]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          max: 100,
+          min: 0,
+          stepSize: 0.5
+        }
+      }]
+    }
+  }
+});
+</script >
+                <script >
 
 
 
@@ -170,6 +289,7 @@ var spark1 = {
     name: 'Sales',
     data: sparklineData
   }],
+
   labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
   yaxis: {
     min: 0
