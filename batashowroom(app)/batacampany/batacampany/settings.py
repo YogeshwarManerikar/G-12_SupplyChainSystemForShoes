@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'batacampany.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bata',
+        'NAME': 'bata1',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
