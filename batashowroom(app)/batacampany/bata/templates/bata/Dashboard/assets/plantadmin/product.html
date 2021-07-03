@@ -108,7 +108,7 @@
     <div class="invalid-feedback">Please provide a valid from date.</div>
 </div>
 </div>
-
+<p id="demo">hi</p>
 
 
 <button class="btn btn-primary" type="submit" name="update">DEMAND</button>
@@ -146,25 +146,45 @@
   function Form() {
       var  P = document.getElementById("Product");
       var type=P.options[P.selectedIndex].value;
+      if (document.getElementById("1").selected == true)
+      {
+        document.getElementById("demo").innerHTML = "You selected:- "
+        
+        Product_array[row-1]=P;  
+        var display=document.getElementById("myTable");
+
+        var newRow=display.insertRow(row);
+
+        var cell1=newRow.insertCell(0);
+        var cell3=newRow.insertCell(1);
+        
+        cell1.innerHTML = "Polyurethane <br>Rubber<br>Dye<br>Packing<br>Material ";
+    row++;
+      }
+
+      if (document.getElementById("2").selected == true)
+      {
+        document.getElementById("demo").innerHTML = "You selected:- "
+        
+        Product_array[row-1]=P;  
+        var display=document.getElementById("myTable");
+
+        var newRow=display.insertRow(row);
+
+        var cell1=newRow.insertCell(0);
+        var cell3=newRow.insertCell(1);
+        
+        cell1.innerHTML = "Polyurethane <br>Rubber<br>Dye<br>Packing<br>Material ";
+    row++;
+      }
+
+
       
       var Q = document.getElementById("Required_RM");
-      //if() 20-40 40-60 60-80 80- 100
+      //if() 20-40 40-60 60-80 80-
 
 
-    Product_array[row-1]=P;  
-    var display=document.getElementById("myTable");
-
-    var newRow=display.insertRow(row);
-
-    var cell1=newRow.insertCell(0);
-    var cell2=newRow.insertCell(1);
     
-
-    cell1.innerHTML = P;
-    cell2.innerHTML = Q;
-   
-
-    row++;
   }
 
 

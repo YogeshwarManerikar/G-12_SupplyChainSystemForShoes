@@ -371,6 +371,10 @@ def RowMaterial_payment_status_update(request):
     return render(request, "bata/Dashboard/assets/plantadmin/RowMaterial-payment-status-update.html")
 
 
+def Rowmaterial_Payment(request):
+    return render(request, "bata/Dashboard/assets/plantadmin/Rowmaterial_Payment.html")
+
+
 def sales_report_details(request):
     return render(request, "bata/Dashboard/assets/Distributor/sales-report-details.html")
 
