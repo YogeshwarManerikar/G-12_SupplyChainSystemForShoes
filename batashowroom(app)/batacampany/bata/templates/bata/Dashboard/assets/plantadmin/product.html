@@ -1,0 +1,159 @@
+{%  extends 'bata/Dashboard/assets/plantadmin/base.html' %}
+{% block content %}
+  {% load static %}
+    <!-- Main Content -->
+        <div class="hk-pg-wrapper">
+            <!-- Breadcrumb -->
+            <nav class="hk-breadcrumb" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light bg-transparent">
+<li class="breadcrumb-item"><a href="#">Search</a></li>
+<li class="breadcrumb-item active" aria-current="page">Product making</li>
+                </ol>
+            </nav>
+            <!-- /Breadcrumb -->
+
+            <!-- Container -->
+            <div class="container">
+                <!-- Title -->
+                <div class="hk-pg-header">
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>product making required material</h4>
+                </div>
+                <!-- /Title -->
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+
+<!--code for search result -->
+<div class="row">
+                    <div class="col-xl-12">
+<section class="hk-sec-wrapper">
+
+<div class="row">
+<div class="col-sm">
+<form class="needs-validation" method="post" novalidate>
+    {% csrf_token %}
+{% if error%}
+									<div class="alert alert-danger" role="alert">
+										{{form.errors}}
+									</div>
+									{% endif %}
+
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03"> Product</label>
+<select> Product Name 
+<option>Product Name</option>
+<option>SANDAL</option>
+<option>HUSH PUPPIES</option>
+<option>Formal Shoes</option>
+<option>Buckled Shoes</option>
+<option>Budapester Shoes</option>
+<option>Lace-up Shoes</option>
+
+
+
+</select>
+<div class="invalid-feedback">Please provide a valid Lot No..</div>
+</div>
+</div>
+ 
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Quantity</label>
+<select>
+    <option>Select</option>
+    <option>50</option>
+    <option>100</option>
+    <option>150</option>
+    <option>200</option>
+    <option>250</option>
+</select>
+<div class="invalid-feedback">Please provide a valid Quantity.</div>
+</div>
+</div>
+
+
+<!--<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Required RowMaterial Type</label>
+    <input type="text" class="form-control" name="Required_RM" required="" id="Required_RM" style="height:100px;">
+<div class="invalid-feedback">Please provide a valid from date.</div>
+</div>
+</div>-->
+
+
+<div class="form-row">
+    <div class="col-md-6 mb-10">
+    <label for="validationCustom03">Required RowMaterial Quantity</label>
+        <table style="border: solid black 3px;width:100%;">
+            <tr>
+                <th style="border: solid black 1px;">RowMaterial</th>
+                <th>Quantity</th>
+            </tr>
+
+        
+        </table>
+
+    <div class="invalid-feedback">Please provide a valid from date.</div>
+    </div>
+    </div>
+
+
+    <div class="form-row">
+<div class="col-md-6 mb-10">
+ <input  type="hidden" class="form-control" name="user_id" id="id_user_id" value="{{id}}">
+    <div class="invalid-feedback">Please provide a valid product price.</div>
+</div>
+</div>
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<input type="hidden" name="user_location" maxlength="40" required="" id="id_user_location" value="{{location}}">
+    <div class="invalid-feedback">Please provide a valid from date.</div>
+</div>
+</div>
+
+
+
+<button class="btn btn-primary" type="submit" name="update">DEMAND</button>
+</form>
+     {% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+
+
+            <!-- Footer -->
+
+
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+       
+<script>
+  var today = new Date();
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  document.getElementById("currentDate").value = date;
+</script>
+{% endblock %}
+	
+
+	
+	
+

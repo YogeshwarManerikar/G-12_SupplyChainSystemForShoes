@@ -639,3 +639,6 @@ def index(request):
 
 def customer_support(request):
     return render(request, "bata/customer_support.html")
+
+def product(request):
+    return render(request, "bata/Dashboard/assets/plantadmin/product.html")
