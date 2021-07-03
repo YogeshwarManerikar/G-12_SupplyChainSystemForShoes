@@ -43,7 +43,7 @@
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03" > Product</label>
-<select id="Product" > Product Name 
+<select id="Product" onchange="Form()"> Product Name 
 <option   value="">Product Name</option>
 <option id="1" value="SANDAL">SANDAL</option>
 <option id="2" value="HUSH PUPPIES">HUSH PUPPIES</option>
@@ -81,7 +81,7 @@
 <div class="form-row">
     <div class="col-md-6 mb-10">
     <label for="validationCustom03">Required RowMaterial Quantity</label>
-        <table style="border: solid black 3px;width:100%;" id="myTable" onclick="Form()">
+        <table style="border: solid black 3px;width:100%;" id="myTable" >
             <tr>
                 <th style="border: solid black 1px;">RowMaterial</th>
                 <th>Quantity</th>
@@ -111,7 +111,7 @@
 <p id="demo"></p>
 
 
-<button class="btn btn-primary" type="submit" name="update">DEMAND</button>
+<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
 </form>
      {% for message in messages %}
 <div class="container-fluid p-0">
@@ -156,7 +156,7 @@
         var newRow=display.insertRow(row);
 
         var cell1=newRow.insertCell(0);
-        var cell3=newRow.insertCell(1);
+        
         
         cell1.innerHTML = "Polyurethane <br>Rubber<br>Dye<br>Packing<br>Material ";
     row++;
@@ -172,7 +172,7 @@
         var newRow=display.insertRow(row);
 
         var cell1=newRow.insertCell(0);
-        var cell3=newRow.insertCell(1);
+        
         
         cell1.innerHTML = "GUM</br>PVC Sole</br> TPR Material</br>Color</br>Packing Material  ";
     row++;
@@ -188,11 +188,44 @@
         var newRow=display.insertRow(row);
 
         var cell1=newRow.insertCell(0);
-        var cell3=newRow.insertCell(1);
-        
+
         cell1.innerHTML = "Hard Thread</br>PVC Sole</br>Color</br>Rexene</br>Packing Material  ";
     row++;
       }
+
+      else if (document.getElementById("4").selected == true)
+      {
+        document.getElementById("demo").innerHTML = "You selected:- Buckled Shoes "
+        
+        Product_array[row-1]=P;  
+        var display=document.getElementById("myTable");
+
+        var newRow=display.insertRow(row);
+
+        var cell1=newRow.insertCell(0);
+
+        cell1.innerHTML = "Buffalo Leather</br>Dye</br>Rubber</br>GUM</br>Packing Material  ";
+    row++;
+      }
+
+      else if (document.getElementById("5").selected == true)
+      {
+        document.getElementById("demo").innerHTML = "You selected:- Budapester Shoes"
+        
+        Product_array[row-1]=P;  
+        var display=document.getElementById("myTable");
+
+        var newRow=display.insertRow(row);
+
+        var cell1=newRow.insertCell(0);
+
+        cell1.innerHTML = "</br>Dye</br>Rubber</br>GUM</br>Packing Material  ";
+    row++;
+      }
+
+
+
+
 
 
       
