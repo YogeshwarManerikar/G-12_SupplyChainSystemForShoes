@@ -21,8 +21,13 @@ def plant_dash(request):
               "sales FROM seller_demand, plant_product where plant_product.id = seller_demand.product_id GROUP BY " \
               "seller_demand.Requirement_date "
         posts = Seller_demand.objects.raw(sql)[:50]
+        sql1 = "SELECT rd.id,rd.Requirement_date ,name,Quantity,rd.Quantity*rmp.price as Expenses FROM " \
+               "rawmaterial_demand as rd, rawmaterial_product as rmp where rmp.id= rd.Raw_type_id GROUP BY " \
+               "rd.Requirement_date "
+        posts1 = Seller_demand.objects.raw(sql1)[:50]
+
         return render(request, 'bata/Dashboard/assets/plantadmin/index.html',
-                      {'user': request.session["plantuname"], 'id': user, 'detail': posts})
+                      {'user': request.session["plantuname"], 'id': user, 'detail': posts, 'details': posts1})
     else:
         return redirect('plant_login')
 
@@ -513,6 +518,10 @@ def profile(request):
 
 
 def view_invoice(request):
+
+
+
+
     return render(request, "bata/Dashboard/assets/seller/view_invoice.html")
 
 
