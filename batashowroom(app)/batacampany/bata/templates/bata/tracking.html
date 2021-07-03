@@ -7,7 +7,9 @@
 
     {% load static %}
     <link rel="icon" href="{% static 'dist/img/favicon.png' %}" type="image/icon type">
-
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="{% static 'vendors/jquery-toggles/css/toggles.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'vendors/jquery-toggles/css/themes/toggles-light.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'dist/css/style.css' %}" rel="stylesheet" type="text/css">
@@ -56,7 +58,39 @@
 
 </head>
 <body>
+<style>
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+.track_tbl td.track_dot {
+    width: 50px;
+    position: relative;
+    padding: 0;
+    text-align: center;
+}
+.track_tbl td.track_dot:after {
+    content: "\f111";
+    font-family: FontAwesome;
+    position: absolute;
+    margin-left: -5px;
+    top: 11px;
+}
+.track_tbl td.track_dot span.track_line {
+    background: #000;
+    width: 3px;
+    min-height: 50px;
+    position: absolute;
+    height: 101%;
+}
+.track_tbl tbody tr:first-child td.track_dot span.track_line {
+    top: 30px;
+    min-height: 25px;
+}
+.track_tbl tbody tr:last-child td.track_dot span.track_line {
+    top: 0;
+    min-height: 25px;
+    height: 10%;
+}
 
+</style>
  <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
 <div class="hk-wrapper hk-vertical-nav">
         <nav class="hk-nav hk-nav-light">
@@ -250,6 +284,38 @@
 </tr>
 </tbody>
 </table>
+
+            <!------ Include the above in your HEAD tag ---------->
+
+    <div class="p-4">
+    <h3>Order Tracking</h3>
+    <table class="table table-bordered track_tbl">
+        <thead>
+            <tr>
+                <th></th>
+<th> Date of Displacement</th>
+<th> Status</th>
+            </tr>
+        </thead>
+        <tbody>           {% for track in track %}
+
+            <tr class="active">
+                <td class="track_dot">
+                    <span class="track_line"></span>
+                </td>
+
+                <td>{{ track.date }}</td>
+                <td>{{ track.track_status }}</td>
+            </tr>
+                {% endfor %}
+
+
+
+        </tbody>
+    </table>
+
+
+    </div>
      <br>
         </div>
     </div>
