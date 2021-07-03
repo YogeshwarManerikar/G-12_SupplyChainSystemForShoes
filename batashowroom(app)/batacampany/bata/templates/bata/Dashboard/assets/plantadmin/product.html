@@ -1,0 +1,246 @@
+{%  extends 'bata/Dashboard/assets/plantadmin/base.html' %}
+{% block content %}
+  {% load static %}
+    <!-- Main Content -->
+        <div class="hk-pg-wrapper">
+            <!-- Breadcrumb -->
+            <nav class="hk-breadcrumb" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light bg-transparent">
+<li class="breadcrumb-item"><a href="#">Search</a></li>
+<li class="breadcrumb-item active" aria-current="page">Product making</li>
+                </ol>
+            </nav>
+            <!-- /Breadcrumb -->
+
+            <!-- Container -->
+            <div class="container">
+                <!-- Title -->
+                <div class="hk-pg-header">
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>product making required material</h4>
+                </div>
+                <!-- /Title -->
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+
+<!--code for search result -->
+<div class="row">
+                    <div class="col-xl-12">
+<section class="hk-sec-wrapper">
+
+<div class="row">
+<div class="col-sm">
+<form class="needs-validation" method="post" novalidate>
+    {% csrf_token %}
+{% if error%}
+									<div class="alert alert-danger" role="alert">
+										{{form.errors}}
+									</div>
+									{% endif %}
+
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03" > Product</label>
+<select id="Product" onchange="Form()"> Product Name 
+<option   value="">Product Name</option>
+<option id="1" value="SANDAL">SANDAL</option>
+<option id="2" value="HUSH PUPPIES">HUSH PUPPIES</option>
+<option id="3" value="Formal Shoes">Formal Shoes</option>
+<option  id="4" value="Buckled Shoes">Buckled Shoes</option>
+<option id="5" value="Budapester Shoes">Budapester Shoes</option>
+<option id="6" value="Lace-up Shoes">Lace-up Shoes</option>
+
+
+
+</select>
+<div class="invalid-feedback">Please provide a valid Lot No..</div>
+</div>
+</div>
+ 
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Quantity</label>
+<input type="text" class="form-control" name="Required_RM" required="" id="Required_RM" >
+<div class="invalid-feedback">Please provide a valid Quantity.</div>
+</div>
+</div>
+
+
+<!--<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Required RowMaterial Type</label>
+    <input type="text" class="form-control" name="Required_RM" required="" id="Required_RM" style="height:100px;">
+<div class="invalid-feedback">Please provide a valid from date.</div>
+</div>
+</div>-->
+
+
+<div class="form-row">
+    <div class="col-md-6 mb-10">
+    <label for="validationCustom03">Required RowMaterial Quantity</label>
+        <table style="border: solid black 3px;width:100%;" id="myTable" >
+            <tr>
+                <th style="border: solid black 1px;">RowMaterial</th>
+                <th>Quantity</th>
+            </tr>
+
+        
+        </table>
+
+    <div class="invalid-feedback">Please provide a valid from date.</div>
+    </div>
+    </div>
+
+
+    <div class="form-row">
+<div class="col-md-6 mb-10">
+ <input  type="hidden" class="form-control" name="user_id" id="id_user_id" value="{{id}}">
+    <div class="invalid-feedback">Please provide a valid product price.</div>
+</div>
+</div>
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<input type="hidden" name="user_location" maxlength="40" required="" id="id_user_location" value="{{location}}">
+    <div class="invalid-feedback">Please provide a valid from date.</div>
+</div>
+</div>
+<p id="demo"></p>
+
+
+<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+</form>
+     {% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+
+
+            <!-- Footer -->
+
+
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+       
+<script>
+    var row = 1;
+    var Product_array = new Array(20);
+    var regName = /^[a-zA-Z]+$/;
+  function Form() {
+      var  P = document.getElementById("Product");
+      var type=P.options[P.selectedIndex].value;
+      if (document.getElementById("1").selected == true)
+      {
+        document.getElementById("demo").innerHTML = "You selected:-SANDAL "
+        
+        Product_array[row-1]=P;  
+        var display=document.getElementById("myTable");
+
+        var newRow=display.insertRow(row);
+
+        var cell1=newRow.insertCell(0);
+        
+        
+        cell1.innerHTML = "Polyurethane <br>Rubber<br>Dye<br>Packing<br>Material ";
+    row++;
+      }
+
+     else if (document.getElementById("2").selected == true)
+      {
+        document.getElementById("demo").innerHTML = "You selected:- Hush Puppies "
+        
+        Product_array[row-1]=P;  
+        var display=document.getElementById("myTable");
+
+        var newRow=display.insertRow(row);
+
+        var cell1=newRow.insertCell(0);
+        
+        
+        cell1.innerHTML = "GUM</br>PVC Sole</br> TPR Material</br>Color</br>Packing Material  ";
+    row++;
+      }
+
+      else if (document.getElementById("3").selected == true)
+      {
+        document.getElementById("demo").innerHTML = "You selected:- Formal Shoes "
+        
+        Product_array[row-1]=P;  
+        var display=document.getElementById("myTable");
+
+        var newRow=display.insertRow(row);
+
+        var cell1=newRow.insertCell(0);
+
+        cell1.innerHTML = "Hard Thread</br>PVC Sole</br>Color</br>Rexene</br>Packing Material  ";
+    row++;
+      }
+
+      else if (document.getElementById("4").selected == true)
+      {
+        document.getElementById("demo").innerHTML = "You selected:- Buckled Shoes "
+        
+        Product_array[row-1]=P;  
+        var display=document.getElementById("myTable");
+
+        var newRow=display.insertRow(row);
+
+        var cell1=newRow.insertCell(0);
+
+        cell1.innerHTML = "Buffalo Leather</br>Dye</br>Rubber</br>GUM</br>Packing Material  ";
+    row++;
+      }
+
+      else if (document.getElementById("5").selected == true)
+      {
+        document.getElementById("demo").innerHTML = "You selected:- Budapester Shoes"
+        
+        Product_array[row-1]=P;  
+        var display=document.getElementById("myTable");
+
+        var newRow=display.insertRow(row);
+
+        var cell1=newRow.insertCell(0);
+
+        cell1.innerHTML = "</br>Dye</br>Rubber</br>GUM</br>Packing Material  ";
+    row++;
+      }
+
+
+
+
+
+
+      
+      var Q = document.getElementById("Required_RM");
+      //if() 20-40 40-60 60-80 80-
+
+
+    
+  }
+
+
+</script>
+{% endblock %}
+	
+
+	
+	
+

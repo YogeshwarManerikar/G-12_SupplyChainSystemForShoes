@@ -26,8 +26,29 @@ def plant_dash(request):
                "rd.Requirement_date "
         posts1 = Seller_demand.objects.raw(sql1)[:50]
 
+        SANDAL="SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
+               "seller_demand.product_id=13 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
+        cat1 = Seller_demand.objects.raw(SANDAL)[:50]
+
+        HUSH="SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
+               "seller_demand.product_id=14 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
+        cat2 = Seller_demand.objects.raw(HUSH)[:50]
+
+        BUCKLED="SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
+               "seller_demand.product_id=16 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
+        cat3 = Seller_demand.objects.raw(BUCKLED)[:50]
+
+        LACEUP="SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
+               "seller_demand.product_id=17 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
+        cat4 = Seller_demand.objects.raw(LACEUP)[:50]
+
+        BUDAPESTER="SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
+               "seller_demand.product_id=18 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
+        cat5 = Seller_demand.objects.raw(BUDAPESTER)[:50]
+
+
         return render(request, 'bata/Dashboard/assets/plantadmin/index.html',
-                      {'user': request.session["plantuname"], 'id': user, 'detail': posts, 'details': posts1})
+                      {'user': request.session["plantuname"], 'id': user, 'detail': posts, 'details': posts1,'sandal':cat1,'HUSH':cat2,'BUCKLED':cat3,'LACEUP':cat4,'BUDAPESTER':cat5})
     else:
         return redirect('plant_login')
 
@@ -371,6 +392,10 @@ def RowMaterial_payment_status_update(request):
     return render(request, "bata/Dashboard/assets/plantadmin/RowMaterial-payment-status-update.html")
 
 
+def Rowmaterial_Payment(request):
+    return render(request, "bata/Dashboard/assets/plantadmin/Rowmaterial_Payment.html")
+
+
 def sales_report_details(request):
     return render(request, "bata/Dashboard/assets/Distributor/sales-report-details.html")
 
@@ -648,3 +673,6 @@ def index(request):
 
 def customer_support(request):
     return render(request, "bata/customer_support.html")
+
+def product(request):
+    return render(request, "bata/Dashboard/assets/plantadmin/product.html")
