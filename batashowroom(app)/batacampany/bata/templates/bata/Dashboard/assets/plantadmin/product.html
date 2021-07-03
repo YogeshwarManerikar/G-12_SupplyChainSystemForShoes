@@ -108,7 +108,7 @@
     <div class="invalid-feedback">Please provide a valid from date.</div>
 </div>
 </div>
-<p id="demo">hi</p>
+<p id="demo"></p>
 
 
 <button class="btn btn-primary" type="submit" name="update">DEMAND</button>
@@ -148,7 +148,7 @@
       var type=P.options[P.selectedIndex].value;
       if (document.getElementById("1").selected == true)
       {
-        document.getElementById("demo").innerHTML = "You selected:- "
+        document.getElementById("demo").innerHTML = "You selected:-SANDAL "
         
         Product_array[row-1]=P;  
         var display=document.getElementById("myTable");
@@ -162,9 +162,9 @@
     row++;
       }
 
-      if (document.getElementById("2").selected == true)
+     else if (document.getElementById("2").selected == true)
       {
-        document.getElementById("demo").innerHTML = "You selected:- "
+        document.getElementById("demo").innerHTML = "You selected:- Hush Puppies "
         
         Product_array[row-1]=P;  
         var display=document.getElementById("myTable");
@@ -174,7 +174,23 @@
         var cell1=newRow.insertCell(0);
         var cell3=newRow.insertCell(1);
         
-        cell1.innerHTML = "Polyurethane <br>Rubber<br>Dye<br>Packing<br>Material ";
+        cell1.innerHTML = "GUM</br>PVC Sole</br> TPR Material</br>Color</br>Packing Material  ";
+    row++;
+      }
+
+      else if (document.getElementById("3").selected == true)
+      {
+        document.getElementById("demo").innerHTML = "You selected:- Formal Shoes "
+        
+        Product_array[row-1]=P;  
+        var display=document.getElementById("myTable");
+
+        var newRow=display.insertRow(row);
+
+        var cell1=newRow.insertCell(0);
+        var cell3=newRow.insertCell(1);
+        
+        cell1.innerHTML = "Hard Thread</br>PVC Sole</br>Color</br>Rexene</br>Packing Material  ";
     row++;
       }
 
