@@ -24,41 +24,28 @@
       <div class="content-area">
         <div class="container-fluid">
           <div class="text-right mt-3 mb-3 d-fixed">
-            <a
-              href="https://github.com/apexcharts/apexcharts.js/tree/master/samples/vanilla-js/dashboards/modern"
-              target="_blank"
-              class="btn btn-outline-primary mr-2"
-            >
-              <span class="btn-text">View Code</span>
-            </a>
-            <button class="btn btn-success" id="fusionexport-btn">
-              <span
-                class="spinner-border spinner-border-sm"
-                role="status"
-                aria-hidden="true"
-              ></span>
-              <span class="btn-text">Download as PDF</span>
-            </button>
+
+
           </div>
           <div class="main">
             <div class="row sparkboxes mt-4 mb-4">
               <div class="col-md-4">
                 <div class="box box1">
 
-                  <div>                  <div id="sales" style="width:100%;max-width:700px"></div>
+                  <div>                  <div id="sales" style="width:100%;max-width:700px;height:300px"></div>
 
 </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="box box2">
- <div>                  <div id="expenses" style="width:100%;max-width:700px"></div>
+ <div>                  <div id="expenses" style="width:100%;max-width:700px;height:300px"></div>
 </div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="box box3">
- <div>                  <div id="profit" style="width:100%;max-width:700px"></div>
+ <div>                  <div id="profit" style="width:100%;max-width:700px;height:300px"></div>
 </div>                </div>
               </div>
             </div>
@@ -105,114 +92,58 @@
 
 <script style="width:100%; max-width:700px; height:150px;" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-<div id="myPlot" style="width:100%;max-width:700px"></div>
 
 <script>
 
 // Generate values for sales
-var xArray = [{% for detail in detail %} '{{detail.Requirement_date}}', {% endfor %}];
-var yValues = [{% for detail in detail %} '{{detail.sales}}', {% endfor %}];
+var xsales = [{% for detail in detail %} '{{detail.Requirement_date}}', {% endfor %}];
+var ysales = [{% for detail in detail %} '{{detail.sales}}', {% endfor %}];
 
 
 // Generate values for expenses
-var xArray = [{% for detail in detail %} '{{detail.Requirement_date}}', {% endfor %}];
-var yValues = [{% for detail in detail %} '{{detail.sales}}', {% endfor %}];
+var xexpenses = [{% for detail in details %} '{{detail.Requirement_date}}', {% endfor %}];
+var yexpenses = [{% for detail in details %} '{{detail.Expenses }}', {% endfor %}];
 
 
 // Generate values for profit
-var xArray = [{% for detail in detail %} '{{detail.Requirement_date}}', {% endfor %}];
-var yValues = [{% for detail in detail %} '{{detail.sales}}', {% endfor %}];
+var xprofit = [{% for detail in detail %} '{{detail.Requirement_date}}', {% endfor %}];
+var yprofit = [{% for detail in detail %} '{{detail.sales}}', {% endfor %}];
+var cprofit = ysales -  yexpenses
 
+// Define sales
+var Sales = [{
+  x: xsales,
+  y: ysales,
+  mode:"sprakle"
+}];
 
-// Define Data
-var data = [{
-  x: xArray,
-  y: yValues,
-  mode:"lines"
+// Define Expenses
+var Expenses = [{
+  x: xexpenses,
+  y: yexpenses,
+  mode:"sprakle"
+}];
+
+// Define Profit
+var Profit = [{
+  x: xprofit,
+  y: cprofit,
+  mode:"sprakle"
 }];
 
 // Define Layout
-var layout = {title: "Profits " };
+var sales = {title: "Sales " };
+var expenses = {title: "Expenses " };
+var profit = {title: "Profits " };
 
 // Display using Plotly
-Plotly.newPlot("sales", data, layout);
-Plotly.newPlot("expenses", data, layout);
-Plotly.newPlot("profit", data, layout);
+Plotly.newPlot("sales", Sales, sales);
+Plotly.newPlot("expenses", Expenses, expenses);
+Plotly.newPlot("profit", Profit, profit);
 </script>
 
 
-                <script>
 
-var ctx = document.getElementById('my123').getContext('2d');
-var ctx1 = document.getElementById('my124').getContext('2d');
-var ctx2 = document.getElementById('my125').getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    datasets: [{
-      label: 'Sales',
-      data: [66, 0.5, 1, 1.5, 2]
-    }],
-    labels: ['01-02-2013', '04-02-2013', 'March', 'April']
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          max: 66,
-          min: 0,
-          stepSize: 0.5
-        }
-      }]
-    }
-  }
-});
-
-
-var myChart = new Chart(ctx1, {
-  type: 'line',
-  data: {
-    datasets: [{
-      label: 'Expenses',
-      data: [66, 0.5, 1, 1.5, 2]
-    }],
-    labels: ['01-02-2013', '04-02-2013', 'March', 'April']
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          max: 66,
-          min: 0,
-          stepSize: 0.5
-        }
-      }]
-    }
-  }
-});
-
-var myChart = new Chart(ctx2, {
-  type: 'line',
-  data: {
-    datasets: [{
-      label: 'Profits',
-      data: [{% for detail in detail %} '{{detail.sales}}', {% endfor %}]
-    }],
-    labels: [{% for detail in detail %} '{{detail.Requirement_date}}', {% endfor %}]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          max: 100,
-          min: 0,
-          stepSize: 0.5
-        }
-      }]
-    }
-  }
-});
-</script >
                 <script >
 
 
@@ -630,10 +561,19 @@ var optionsBar = {
   },
   colors: colorPalette,
   series: [{
-    name: "Clothing",
+    name: "SANDAL",
     data: [42, 52, 16, 55, 59, 51, 45, 32, 26, 33, 44, 51, 42, 56],
   }, {
-    name: "Food Products",
+    name: "HUSH PUPPIES",
+    data: [6, 12, 4, 7, 5, 3, 6, 4, 3, 3, 5, 6, 7, 4],
+  }, {
+    name: "Buckled Shoes",
+    data: [6, 12, 4, 7, 5, 3, 6, 4, 3, 3, 5, 6, 7, 4],
+  }, {
+    name: "Lace-up Shoes",
+    data: [6, 12, 4, 7, 5, 3, 6, 4, 3, 3, 5, 6, 7, 4],
+  }, {
+    name: "Budapester Shoes",
     data: [6, 12, 4, 7, 5, 3, 6, 4, 3, 3, 5, 6, 7, 4],
   }],
   labels: [10,11,12,13,14,15,16,17,18,19,20,21,22,23],
