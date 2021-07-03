@@ -42,15 +42,15 @@
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03"> Product</label>
-<select> Product Name 
-<option>Product Name</option>
-<option>SANDAL</option>
-<option>HUSH PUPPIES</option>
-<option>Formal Shoes</option>
-<option>Buckled Shoes</option>
-<option>Budapester Shoes</option>
-<option>Lace-up Shoes</option>
+<label for="validationCustom03" > Product</label>
+<select id="Product" > Product Name 
+<option   value="">Product Name</option>
+<option id="1" value="SANDAL">SANDAL</option>
+<option id="2" value="HUSH PUPPIES">HUSH PUPPIES</option>
+<option id="3" value="Formal Shoes">Formal Shoes</option>
+<option  id="4" value="Buckled Shoes">Buckled Shoes</option>
+<option id="5" value="Budapester Shoes">Budapester Shoes</option>
+<option id="6" value="Lace-up Shoes">Lace-up Shoes</option>
 
 
 
@@ -63,14 +63,7 @@
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Quantity</label>
-<select>
-    <option>Select</option>
-    <option>50</option>
-    <option>100</option>
-    <option>150</option>
-    <option>200</option>
-    <option>250</option>
-</select>
+<input type="text" class="form-control" name="Required_RM" required="" id="Required_RM" >
 <div class="invalid-feedback">Please provide a valid Quantity.</div>
 </div>
 </div>
@@ -88,7 +81,7 @@
 <div class="form-row">
     <div class="col-md-6 mb-10">
     <label for="validationCustom03">Required RowMaterial Quantity</label>
-        <table style="border: solid black 3px;width:100%;">
+        <table style="border: solid black 3px;width:100%;" id="myTable" onclick="Form()">
             <tr>
                 <th style="border: solid black 1px;">RowMaterial</th>
                 <th>Quantity</th>
@@ -147,9 +140,34 @@
     </div>
        
 <script>
-  var today = new Date();
-  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  document.getElementById("currentDate").value = date;
+    var row = 1;
+    var Product_array = new Array(20);
+    var regName = /^[a-zA-Z]+$/;
+  function Form() {
+      var  P = document.getElementById("Product");
+      var type=P.options[P.selectedIndex].value;
+      
+      var Q = document.getElementById("Required_RM");
+      //if() 20-40 40-60 60-80 80- 100
+
+
+    Product_array[row-1]=P;  
+    var display=document.getElementById("myTable");
+
+    var newRow=display.insertRow(row);
+
+    var cell1=newRow.insertCell(0);
+    var cell2=newRow.insertCell(1);
+    
+
+    cell1.innerHTML = P;
+    cell2.innerHTML = Q;
+   
+
+    row++;
+  }
+
+
 </script>
 {% endblock %}
 	
