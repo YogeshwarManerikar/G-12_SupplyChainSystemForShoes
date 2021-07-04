@@ -82,10 +82,8 @@ urlpatterns = [
     # ---------------------------------------------------------------------------------------------
     # invoice
     path('Manage_invoice', Manage_invoice, name='Manage_invoice'),
-    path('view_invoice', view_invoice, name='view_invoice'),
-    path('view_invoice', view_invoice, name='view_invoice'),
-    path('view_invoice', view_invoice, name='view_invoice'),
-    path('view_invoice', view_invoice, name='view_invoice'),
+    path('view_invoice/<str:pk>/', view_invoice, name='view_invoice'),
+
     # ---------------------------------------------------------------------------------------------
 
     path('edit_sellerdemand_status/<str:pk>/', edit_sellerdemand_status, name='edit_sellerdemand_status'),

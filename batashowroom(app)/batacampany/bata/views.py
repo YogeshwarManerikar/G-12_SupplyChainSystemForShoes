@@ -284,17 +284,6 @@ def edit_Rowmaterial_categories(request, pk):
     return render(request, 'bata/Dashboard/assets/plantadmin/edit-Rowmaterial-categories.html', context)
 
 
-def view_invoice(request, pk):
-    if request.session.has_key('uid') & request.session.has_key('uname'):
-        user = request.session.get('uid')
-        uname = request.session.get('uname')
-        print(user, uname)
-
-        context = {
-
-        }
-        return render(request, 'bata/Dashboard/assets/plantadmin/view-invoice.html', context)
-
 
 def manage_Rowmaterial_categories(request):
     if request.session.has_key('plantuid') & request.session.has_key('plantuname'):
@@ -307,16 +296,6 @@ def manage_Rowmaterial_categories(request):
     return render(request, "bata/Dashboard/assets/plantadmin/manage-Rowmaterial-categories .html", {'detail': posts})
 
 
-def Manage_invoice(request):
-    if request.session.has_key('selleruid') & request.session.has_key('selleruname'):
-        user = request.session.get('selleruid')
-        uname = request.session.get('selleruname')
-        print(user, uname)
-
-    sql = "SELECT * FROM seller_demand AS sd INNER JOIN seller_login AS sl ON sl.id=sd.user_id_id  where sd.status ='DISPATCHED' "
-    posts = Raw_Demand.objects.raw(sql)[:50]
-
-    return render(request, "bata/Dashboard/assets/seller/Manage_invoice.html", {'detail': posts})
 
 
 def productlot_status(request):
@@ -542,12 +521,28 @@ def profile(request):
     return render(request, "bata/Dashboard/assets/seller/profile.html")
 
 
-def view_invoice(request):
+def view_invoice(request, pk):
+    if request.session.has_key('selleruid') & request.session.has_key('selleruname'):
+        user = request.session.get('selleruid')
+        uname = request.session.get('selleruname')
+
+    sql = "SELECT *FROM seller_demand as sd INNER JOIN distributor_login as dl ON sd.user_location=dl.location WHERE Track_id='%s'" %pk
+    posts = Raw_Demand.objects.raw(sql)[:50]
 
 
+    return render(request, "bata/Dashboard/assets/seller/view-invoice.html",{'invoice':posts})
 
 
-    return render(request, "bata/Dashboard/assets/seller/view_invoice.html")
+def Manage_invoice(request):
+    if request.session.has_key('selleruid') & request.session.has_key('selleruname'):
+        user = request.session.get('selleruid')
+        uname = request.session.get('selleruname')
+        print(user, uname)
+
+    sql = "SELECT * FROM seller_demand AS sd INNER JOIN seller_login AS sl ON sl.id=sd.user_id_id  where sd.status ='DISPATCHED' "
+    posts = Raw_Demand.objects.raw(sql)[:50]
+
+    return render(request, "bata/Dashboard/assets/seller/Manage_invoice.html", {'detail': posts})
 
 
 def Return_the_product(request):
@@ -624,9 +619,6 @@ def Requirment_for_RowMaterial(request):
 def payment_history(request):
     return render(request, "bata/Dashboard/assets/RM_provider/payment_history.html")
 
-
-def view_invoice(request):
-    return render(request, "bata/Dashboard/assets/Distributor/view_invoice.html")
 
 
 def Productlot_pickup(request):
