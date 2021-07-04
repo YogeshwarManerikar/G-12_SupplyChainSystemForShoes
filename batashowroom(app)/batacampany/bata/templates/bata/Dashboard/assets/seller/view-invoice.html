@@ -51,20 +51,20 @@ left: 60%;margin: -10px">
 
 
 <h4 class="mb-5 ">Your Details</h4>
-<span class="d-block">Distributer:<span class="pl-10 text-dark"></span></span>
-<span class="d-block">City:<span class="pl-10 text-dark"></span></span>
+<span class="d-block">Distributer:{{invoice.first_name}}<span class="pl-10 text-dark"></span></span>
+<span class="d-block">City:{{invoice.location}}<span class="pl-10 text-dark"></span></span>
 
 
 <h4 class="mb-5 " style="left: 60%;position: relative;top:-50px;">Sellers Details</h4>
-<div style="left: 60%;position: relative;top:-50px;">Seller Name:{{invoice.first_name}}<span class="pl-10 text-dark"></span></div>
-<div style="left: 60%;position: relative;top:-50px;">Address:{{invoice.Address}}<span class="pl-10 text-dark"></span></div>
+<div style="left: 60%;position: relative;top:-50px;">Seller Name:<span class="pl-10 text-dark"></span></div>
+<div style="left: 60%;position: relative;top:-50px;">Address:{{invoice.location}}<span class="pl-10 text-dark"></span></div>
 <div style="left: 60%;position: relative;top:-50px;">Contact:<span class="pl-10 text-dark"></span></div>
 
 
 <hr class="mt-0">
-<span class="d-block">Invoice No #<span class="pl-10 text-dark"></span></span>
-<span class="d-block">Invoice Date #<span class="pl-10 text-dark"></span></span>
-{% endfor %}
+<span class="d-block">Invoice No #{{invoice.Track_id}}<span class="pl-10 text-dark"></span></span>
+<span class="d-block">Invoice Date #{{invoice.Demand_date}}<span class="pl-10 text-dark"></span></span>
+
 
 </div>
 
@@ -91,15 +91,15 @@ left: 60%;margin: -10px">
                                             <tbody>
                                                 
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>{{invoice.id}}</td>
+<td>{{invoice.product_id}}</td>
+<td>{{invoice.Quantity}}</td>
+<td>{{invoice.price}}</td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
-
+{% endfor %}
 
                                               
                                             </tbody>
