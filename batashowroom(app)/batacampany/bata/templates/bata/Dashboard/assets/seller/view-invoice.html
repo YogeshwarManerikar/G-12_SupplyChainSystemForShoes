@@ -59,16 +59,18 @@
 <?php 
 //Consumer Details
  
-?>
+?>           {% for invoice in invoice %}
+
 <div class="col-md-5 mb-20">
 <h4 class="mb-35 font-weight-600">Invoice </h4>
 <span class="d-block">Date:<span class="pl-10 text-dark"></span></span>
 <span class="d-block">Invoice  #<span class="pl-10 text-dark"></span></span>
-<span class="d-block">Seller #<span class="pl-10 text-dark"></span></span>
+<span class="d-block">Seller # {{invoice.first_name}}<span class="pl-10 text-dark"></span></span>
 <span
 </div>
 </div>
 </div>
+        {% endfor %}
 
 <hr class="mt-0">
                         
