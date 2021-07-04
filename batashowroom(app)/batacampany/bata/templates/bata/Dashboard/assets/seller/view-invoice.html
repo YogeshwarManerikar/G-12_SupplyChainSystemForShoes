@@ -1,19 +1,6 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Manage Invoices</title>
-    <!-- Data Table CSS -->
-    <link href="../vendors/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="../vendors/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="../vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
-    <link href="../vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
-    <link href="../dist/css/style.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-    
+{%  extends 'bata/Dashboard/assets/Distributor/base.html' %}
+{% block content %}
+  {% load static %}
    
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper hk-vertical-nav">
@@ -38,7 +25,7 @@
 
                 <!-- Title -->
 <div class="hk-pg-header">
- <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="file"></i></span></span>View Invoice</h4>
+
                 </div>
                 <!-- /Title -->
 
@@ -51,26 +38,37 @@
                             <div class="invoice-from-wrap">
                                 <div class="row">
                                     <div class="col-md-7 mb-20">
-<h3 class="mb-35 font-weight-600">     BATA </h3>
-<h6 class="mb-5">Supply Chain Management System</h6>
+<center><h3 class="mb-35 font-weight-600" style="position: absolute;
+    left: 70%;margin: -10px"> BATA </h3></center>
+<img class="mb-35 font-weight-600" src="{% static 'dist/img/favicon.png' %}" style="height: 30px;width: 30px;top: -0px;
+position: absolute;
+left: 60%;margin: -10px">
+<!--<h6 class="mb-5">Footware</h6>-->
+
+</div>
+</div>
+{% for invoice in invoice %}
+
+
+<h4 class="mb-5 ">Your Details</h4>
+<span class="d-block">Distributer:<span class="pl-10 text-dark"></span></span>
+<span class="d-block">City:<span class="pl-10 text-dark"></span></span>
+
+
+<h4 class="mb-5 " style="left: 60%;position: relative;top:-50px;">Sellers Details</h4>
+<div style="left: 60%;position: relative;top:-50px;">Seller Name:{{invoice.first_name}}<span class="pl-10 text-dark"></span></div>
+<div style="left: 60%;position: relative;top:-50px;">Address:{{invoice.Address}}<span class="pl-10 text-dark"></span></div>
+<div style="left: 60%;position: relative;top:-50px;">Contact:<span class="pl-10 text-dark"></span></div>
+
+
+<hr class="mt-0">
+<span class="d-block">Invoice No #<span class="pl-10 text-dark"></span></span>
+<span class="d-block">Invoice Date #<span class="pl-10 text-dark"></span></span>
+{% endfor %}
 
 </div>
 
-<?php 
-//Consumer Details
- 
-?>           {% for invoice in invoice %}
 
-<div class="col-md-5 mb-20">
-<h4 class="mb-35 font-weight-600">Invoice </h4>
-<span class="d-block">Date:<span class="pl-10 text-dark"></span></span>
-<span class="d-block">Invoice  #<span class="pl-10 text-dark"></span></span>
-<span class="d-block">Seller # {{invoice.first_name}}<span class="pl-10 text-dark"></span></span>
-<span
-</div>
-</div>
-</div>
-        {% endfor %}
 
 <hr class="mt-0">
                         
@@ -81,11 +79,12 @@
 <div class="table-wrap">
 <table class="table mb-0" border="1">
 <thead>
-<tr>
+<tr style="color: cadetblue;">
 <th>#</th>
-<th >Product Name</th>
+<th >Item</th>
 <th width="5%">Quantity</th>
-<th width="10%">Price</th>
+<th width="10%">Rate</th>
+<th width="10%">Subtotal</th>
 
 </tr>
                                             </thead>
@@ -102,15 +101,38 @@
 </tr>
 
 
-  <tr>
-<th colspan="6" style="text-align:center; font-size:20px;">Total</th> 
-<th style="text-align:left; font-size:20px;"></th>   
-
-</tr>                                              
+                                              
                                             </tbody>
                                         </table>
+
+
+
                                     </div>
                                 </div>
+                                
+                                
+                                <div class="table-wrap" >
+                                    <table class="table mb-0" style="border:solid black 1px;">
+                                    <thead>
+                                    <tr style="background-color: rgb(158, 195, 197);border:solid black 1px; width:60px;color: black;">
+                                    <th>Invoice Summery</th>
+                                    </tr>
+                                    <tr>
+                                        <th width="5%">Subtotal</th>
+                                    </tr>
+                                    <tr>
+                                        <th width="5%">Tax(15%)</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="6" style="text-align:center; font-size:20px;">Total</th> 
+                                        <th style="text-align:left; font-size:20px; color: blueviolet;"></th>   
+                                        
+                                        </tr>
+                                        </thead>
+                                    
+                                    
+                                    
+
                             </div>
                         </section>
 
@@ -129,27 +151,28 @@
     </div>
     <!-- /HK Wrapper -->
 
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    <script src="../vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../dist/js/jquery.slimscroll.js"></script>
-    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../vendors/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
-<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="../vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="../vendors/jszip/dist/jszip.min.js"></script>
-    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../dist/js/dataTables-data.js"></script>
-    <script src="../dist/js/feather.min.js"></script>
-    <script src="../dist/js/dropdown-bootstrap-extended.js"></script>
-    <script src="../vendors/jquery-toggles/toggles.min.js"></script>
-    <script src="../dist/js/toggle-data.js"></script>
-    <script src="../dist/js/init.js"></script>
-</body>
-</html>
+ <script src="{% static 'vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+	<script src="{% static 'vendors/jszip/dist/jszip.min.js' %}"></script>
+	<script src="{% static 'vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+	<script src="{% static 'vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+	<script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'vendors/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/jasny-bootstrap/dist/js/jasny-bootstrap.min.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'dist/js/dropdown-bootstrap-extended.js' %}"></script>
+    <script src="{% static 'dist/js/feather.min.js' %}"></script>
+    <script src="{% static 'vendors/jquery-toggles/toggles.min.js' %}"></script>
+    <script src="{% static 'dist/js/toggle-data.js' %}"></script>
+    <script src="{% static 'dist/js/init.js' %}"></script>
+    <script src="{% static 'dist/js/validation-data.js' %}"></script>
+    <script src="{% static 'vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+    <script src="{% static 'vendors/pdfmake/build/vfs_fonts.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.slimscroll.js' %}"></script>
+
+	
+	{% endblock %}
