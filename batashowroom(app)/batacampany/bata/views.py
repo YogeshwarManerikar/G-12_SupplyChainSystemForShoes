@@ -526,7 +526,9 @@ def view_invoice(request, pk):
         user = request.session.get('selleruid')
         uname = request.session.get('selleruname')
 
-    sql = "SELECT *FROM seller_demand as sd INNER JOIN distributor_login as dl ON sd.user_location=dl.location WHERE Track_id='%s'" %pk
+    sql = "SELECT *,dl.first_name as distributor,sl.first_name as seller ,sl.phone as slphone ,pp.price*sd.Quantity as subtotal,(pp.price*sd.Quantity*15)/100 as tax,round(((pp.price*sd.Quantity)+((pp.price*sd.Quantity*15)/100)),2) as Total FROM seller_demand as " \
+          "sd INNER JOIN distributor_login as dl ON sd.user_location=dl.location INNER JOIN seller_login as sl ON " \
+          "sl.id=sd.user_id_id INNER JOIN plant_product as pp ON pp.id=sd.product_id WHERE Track_id='%s'" %pk
     posts = Raw_Demand.objects.raw(sql)[:50]
 
 

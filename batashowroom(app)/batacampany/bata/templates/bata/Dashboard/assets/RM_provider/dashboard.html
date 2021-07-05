@@ -2,69 +2,108 @@
 {% block content %}
   {% load static %}
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Dashboard</title>
-    <link href="../vendors/vectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" type="text/css" />
-    <link href="../vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
-    <link href="../vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
-    <link href="../vendors/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
-    <link href="../dist/css/style.css" rel="stylesheet" type="text/css">
-</head>
+  <div class="hk-pg-wrapper">
+    <!-- Breadcrumb -->
+    <nav class="hk-breadcrumb" aria-label="breadcrumb">
+<link
+rel="stylesheet"
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+/>
 
-<body>
+<link
+rel="stylesheet"
+href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<link
+href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700"
+rel="stylesheet"
+/>
 
+<link rel="stylesheet" href="assets/styles.css" />
 
-	<!-- HK Wrapper -->
-	<div class="hk-wrapper hk-vertical-nav">
-
-
-        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
-        <!-- /Vertical Nav -->
-        <!-- Main Content -->
-        <div class="hk-pg-wrapper">
-			<!-- Container -->
-            <div class="container-fluid mt-xl-50 mt-sm-30 mt-15">
-                <!-- Row -->
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="hk-row">
+<div id="wrapper">
+<div class="content-area">
+<div class="container-fluid">
+  <div class="text-right mt-3 mb-3 d-fixed">
 
 
+  </div>
+  <div class="main">
+    <div class="row sparkboxes mt-4 mb-4">
+      <div class="col-md-4">
+        <div class="box box1">
 
-<div class="col-lg-3 col-md-6">
-<div class="card card-sm">
-<div class="card-body">
-<div class="d-flex justify-content-between mb-5">
-<div>
-<span class="d-block font-15 text-dark font-weight-500">Categories</span>
-</div>
-<div>
-</div>
-</div>
-<div class="text-center">
-<span class="d-block display-4 text-dark mb-5"> M W K U        </span>
-<small class="d-block">Listed Categories</small>
-</div>
-</div>
-</div>
-</div>
-
-
-
+          <div>                  <div id="sales" style="width:100%;max-width:700px;height:300px"></div>
 
 </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box box2">
+<div>                  <div id="expenses" style="width:100%;max-width:700px;height:300px"></div>
+</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box box3">
+<div>                  <div id="profit" style="width:100%;max-width:700px;height:300px"></div>
+</div>                </div>
+      </div>
+    </div>
 
-            </div>
-            <!-- /Container -->
+    <div class="row mt-5 mb-4">
+      <div class="col-md-6">
+        <div class="box">
+          <div id="bar"></div>
+          <p>total demand for one product monthly</p>
+          <p>total demand for one product monthly</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="box">
+          <div id="donut"></div>
+        </div>
+      </div>
+    </div>
 
-            <!-- Footer -->
+    <div class="row mt-4 mb-4">
+      <div class="col-md-6">
+        <div class="box">
+          <div id="area"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="box">
+          <div id="line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
 
-            <!-- /Footer -->
-     
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<!-- installing few libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg==" crossorigin="anonymous"></script>
 
-    <!-- jQuery -->
-  
+<script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
+
+
+<script style="width:100%; max-width:700px; height:150px;" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+<script>
+
+
+
+
+
+
+
+
 
 	{% endblock %}
