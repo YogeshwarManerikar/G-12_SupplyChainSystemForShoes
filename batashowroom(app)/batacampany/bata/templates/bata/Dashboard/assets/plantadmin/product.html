@@ -20,109 +20,272 @@
                 </div>
                 <!-- /Title -->
 
-                <!-- Row -->
                 <div class="row">
-                    <div class="col-xl-12">
+                  <div class="col-xl-12">
 
 <!--code for search result -->
 <div class="row">
-                    <div class="col-xl-12">
+                  <div class="col-xl-12">
 <section class="hk-sec-wrapper">
 
 <div class="row">
 <div class="col-sm">
 <form class="needs-validation" method="post" novalidate>
-    {% csrf_token %}
+  {% csrf_token %}
 {% if error%}
-									<div class="alert alert-danger" role="alert">
-										{{form.errors}}
-									</div>
-									{% endif %}
+                <div class="alert alert-danger" role="alert">
+                  {{form.errors}}
+                </div>
+                {% endif %}
 
 
 <div class="form-row">
-<div class="col-md-6 mb-10">
-<label for="validationCustom03" > Product</label>
-<select id="Product" onchange="Form()"> Product Name 
-<option   value="">Product Name</option>
-<option id="1" value="SANDAL">SANDAL</option>
-<option id="2" value="HUSH PUPPIES">HUSH PUPPIES</option>
-<option id="3" value="Formal Shoes">Formal Shoes</option>
-<option  id="4" value="Buckled Shoes">Buckled Shoes</option>
+  <div class="col-md-6 mb-10">
+<script type="text/javascript">
+  function ShowHideDiv() {
+      var ddlPassport = document.getElementById("ddlPassport");
+      var dvPassport = document.getElementById("SANDAL");
+      var dvadhar = document.getElementById("adhar");
+
+      dvPassport.style.display = ddlPassport.value == "SANDAL" ? "block" : "none";
+     dvadhar.style.display = ddlPassport.value == "HUSH" ? "block" : "none";
+
+  }
+</script>
+<span>Product</span>
+  <select id = "ddlPassport" onchange = "ShowHideDiv()">
+      <option value="N">No</option>
+      <option value="SANDAL">SANDAL</option>  
+              <option value="HUSH">HUSH PUPPIES</option>
+              <option value="Formal Shoes">Formal Shoes</option>
+<option   value="Buckled Shoes">Buckled Shoes</option>
 <option id="5" value="Budapester Shoes">Budapester Shoes</option>
-<option id="6" value="Lace-up Shoes">Lace-up Shoes</option>
+<option id="6" value="Lace-up Shoes">Lace-up Shoes</option>            
 
+  </select>
+<hr />
+<!--Sandal-->
+<div id="SANDAL" style="display: none">
+Demand quantity:
+  <input type="text" id="txtPassportNumber" />
+</br>
+<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+</br>
+  Polyurethane:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+  
+   Rubber:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+  
+   Dye:
+  <input type="text" class="form-control" id="txtPassportNumber" />
 
-
-</select>
-<div class="invalid-feedback">Please provide a valid Lot No..</div>
-</div>
-</div>
- 
-
-<div class="form-row">
-<div class="col-md-6 mb-10">
-<label for="validationCustom03">Quantity</label>
-<input type="text" class="form-control" name="Required_RM" required="" id="Required_RM" >
-<div class="invalid-feedback">Please provide a valid Quantity.</div>
-</div>
-</div>
-
-
-<!--<div class="form-row">
-<div class="col-md-6 mb-10">
-<label for="validationCustom03">Required RowMaterial Type</label>
-    <input type="text" class="form-control" name="Required_RM" required="" id="Required_RM" style="height:100px;">
-<div class="invalid-feedback">Please provide a valid from date.</div>
-</div>
-</div>-->
-
-
-<div class="form-row">
-    <div class="col-md-6 mb-10">
-    <label for="validationCustom03">Required RowMaterial Quantity</label>
-        <table style="border: solid black 3px;width:100%;" id="myTable" >
-            <tr>
-                <th style="border: solid black 1px;">RowMaterial</th>
-                <th>Quantity</th>
-            </tr>
-
-        
-        </table>
-
-    <div class="invalid-feedback">Please provide a valid from date.</div>
-    </div>
-    </div>
-
-
-    <div class="form-row">
-<div class="col-md-6 mb-10">
- <input  type="hidden" class="form-control" name="user_id" id="id_user_id" value="{{id}}">
-    <div class="invalid-feedback">Please provide a valid product price.</div>
-</div>
-</div>
-
-<div class="form-row">
-<div class="col-md-6 mb-10">
-<input type="hidden" name="user_location" maxlength="40" required="" id="id_user_location" value="{{location}}">
-    <div class="invalid-feedback">Please provide a valid from date.</div>
-</div>
-</div>
-<p id="demo"></p>
-
+  Packing Material:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+</br>
+  <input TYPE ="text" id="demo" value="SANDAL" readonly ></INPUT>
+</br>
+</br>
 
 <button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
-</form>
-     {% for message in messages %}
-<div class="container-fluid p-0">
-  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    {{ message }}
-  </div>
 </div>
-{% endfor %}
+
+
+<!-------------------------------------------------------------------------->
+<!--HUSH PUPPIES -->
+<div id="adhar" style="display: none">
+  Demand quantity:
+  <input type="text" id="txtPassportNumber" />
+  
+</br>
+
+
+</br>
+<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+</br>
+
+<div class="form-row">
+  GUM:
+  <input type="text"  class="form-control" id="txtPassportNumber" />
+  
+   PVC Sole:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+   TPR Material:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  Color:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  Packing Material:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+</br>
+</div>
+
+
+</br>
+<input TYPE ="text" id="demo" value="HUSH PUPPIES" readonly ></INPUT>
+</br>
+
+<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+<!----------------------------------------------------------------->
+<!-- Formal Shoes-->
+
+<div id="adhar" style="display: none">
+  Demand quantity:
+  <input type="text" id="txtPassportNumber" />
+  
+</br>
+
+
+</br>
+<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+</br>
+
+<div class="form-row">
+  Hard Thread:
+  <input type="text"  class="form-control" id="txtPassportNumber" />
+  
+   PVC Sole:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  Rexene:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  Color:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  Packing Material:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+</br>
+</div>
+
+
+</br>
+<input TYPE ="text" id="demo" value="Formal Shoes" readonly ></INPUT>
+</br>
+
+<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+
+<!----------------------------------------------------------------->
+
+<!-- Buckled Shoes-->
+<div id="adhar" style="display: none">
+  Demand quantity:
+  <input type="text" id="txtPassportNumber" />
+  
+</br>
+
+
+</br>
+<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+</br>
+
+<div class="form-row">
+  GUM:
+  <input type="text"  class="form-control" id="txtPassportNumber" />
+  
+   PVC Sole:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  TPR Material:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  Clips:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  Color:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  Packing Material:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+</br>
+</div>
+
+
+</br>
+<input TYPE ="text" id="demo" value="Buckled Shoes" readonly ></INPUT>
+</br>
+
+<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+
+<!----------------------------------------------------------------->
+<!-- Budapester Shoes-->
+
+<div id="adhar" style="display: none">
+  Demand quantity:
+  <input type="text" id="txtPassportNumber" />
+  
+</br>
+
+
+</br>
+<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+</br>
+
+<div class="form-row">
+  Polyurethane:
+  <input type="text"  class="form-control" id="txtPassportNumber" />
+  
+   PVC Sole:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+   TPR Material:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  Dye:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  Packing Material:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+</br>
+</div>
+
+
+</br>
+<input TYPE ="text" id="demo" value="Budapester Shoes" readonly ></INPUT>
+</br>
+
+<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+
+<!----------------------------------------------------------------->
+<!-- Lace-up Shoes-->
+<div id="adhar" style="display: none">
+  Demand quantity:
+  <input type="text" id="txtPassportNumber" />
+  
+</br>
+
+
+</br>
+<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+</br>
+
+<div class="form-row">
+  Hard Thread:
+  <input type="text"  class="form-control" id="txtPassportNumber" />
+  
+   PVC Sole:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  Rubber:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  Color:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+
+  Packing Material:
+  <input type="text" class="form-control" id="txtPassportNumber" />
+</br>
+</div>
+
+
+</br>
+<input TYPE ="text" id="demo" value="Lace-up Shoes" readonly ></INPUT>
+</br>
+
+<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+</div>
 </div>
 </div>
 </section>
@@ -138,109 +301,4 @@
         <!-- /Main Content -->
 
     </div>
-       
-<script>
-    var row = 1;
-    var Product_array = new Array(20);
-    var regName = /^[a-zA-Z]+$/;
-  function Form() {
-      var  P = document.getElementById("Product");
-      var type=P.options[P.selectedIndex].value;
-      if (document.getElementById("1").selected == true)
-      {
-        document.getElementById("demo").innerHTML = "You selected:-SANDAL "
-        
-        Product_array[row-1]=P;  
-        var display=document.getElementById("myTable");
-
-        var newRow=display.insertRow(row);
-
-        var cell1=newRow.insertCell(0);
-        
-        
-        cell1.innerHTML = "Polyurethane <br>Rubber<br>Dye<br>Packing<br>Material ";
-    row++;
-      }
-
-     else if (document.getElementById("2").selected == true)
-      {
-        document.getElementById("demo").innerHTML = "You selected:- Hush Puppies "
-        
-        Product_array[row-1]=P;  
-        var display=document.getElementById("myTable");
-
-        var newRow=display.insertRow(row);
-
-        var cell1=newRow.insertCell(0);
-        
-        
-        cell1.innerHTML = "GUM</br>PVC Sole</br> TPR Material</br>Color</br>Packing Material  ";
-    row++;
-      }
-
-      else if (document.getElementById("3").selected == true)
-      {
-        document.getElementById("demo").innerHTML = "You selected:- Formal Shoes "
-        
-        Product_array[row-1]=P;  
-        var display=document.getElementById("myTable");
-
-        var newRow=display.insertRow(row);
-
-        var cell1=newRow.insertCell(0);
-
-        cell1.innerHTML = "Hard Thread</br>PVC Sole</br>Color</br>Rexene</br>Packing Material  ";
-    row++;
-      }
-
-      else if (document.getElementById("4").selected == true)
-      {
-        document.getElementById("demo").innerHTML = "You selected:- Buckled Shoes "
-        
-        Product_array[row-1]=P;  
-        var display=document.getElementById("myTable");
-
-        var newRow=display.insertRow(row);
-
-        var cell1=newRow.insertCell(0);
-
-        cell1.innerHTML = "Buffalo Leather</br>Dye</br>Rubber</br>GUM</br>Packing Material  ";
-    row++;
-      }
-
-      else if (document.getElementById("5").selected == true)
-      {
-        document.getElementById("demo").innerHTML = "You selected:- Budapester Shoes"
-        
-        Product_array[row-1]=P;  
-        var display=document.getElementById("myTable");
-
-        var newRow=display.insertRow(row);
-
-        var cell1=newRow.insertCell(0);
-
-        cell1.innerHTML = "</br>Dye</br>Rubber</br>GUM</br>Packing Material  ";
-    row++;
-      }
-
-
-
-
-
-
-      
-      var Q = document.getElementById("Required_RM");
-      //if() 20-40 40-60 60-80 80-
-
-
-    
-  }
-
-
-</script>
 {% endblock %}
-	
-
-	
-	
-
