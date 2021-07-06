@@ -33,7 +33,6 @@ class Raw_Product_category(models.Model):
 
 
     product=models.ForeignKey(Product, on_delete=models.CASCADE, default=0)
-    raw_product=models.ForeignKey(Raw_Product, on_delete=models.CASCADE, default=0)
 
 
 
