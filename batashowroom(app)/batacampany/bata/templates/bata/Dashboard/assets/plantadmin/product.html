@@ -16,6 +16,7 @@
             <div class="container">
                 <!-- Title -->
                 <div class="hk-pg-header">
+
                     <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>product making required material</h4>
                 </div>
                 <!-- /Title -->
@@ -44,11 +45,19 @@
 <script type="text/javascript">
   function ShowHideDiv() {
       var ddlPassport = document.getElementById("ddlPassport");
-      var dvPassport = document.getElementById("SANDAL");
-      var dvadhar = document.getElementById("adhar");
+      var dvsandal = document.getElementById("SANDAL");
+      var dvhush = document.getElementById("HUSH");
+      var dvformal = document.getElementById("FORMAL");
+      var dvbuckled = document.getElementById("BUCKLED");
+      var dvbuda = document.getElementById("BUDAPESTER");
+      var dvlace = document.getElementById("LACE");
 
-      dvPassport.style.display = ddlPassport.value == "SANDAL" ? "block" : "none";
-     dvadhar.style.display = ddlPassport.value == "HUSH" ? "block" : "none";
+      dvsandal.style.display = ddlPassport.value == "SANDAL" ? "block" : "none";
+     dvhush.style.display = ddlPassport.value == "HUSH" ? "block" : "none";
+     dvformal.style.display = ddlPassport.value == "FORMAL" ? "block" : "none";
+     dvbuckled.style.display = ddlPassport.value == "BUCKLED" ? "block" : "none";
+     dvbuda.style.display = ddlPassport.value == "BUDAPESTER" ? "block" : "none";
+     dvlace.style.display = ddlPassport.value == "LACE" ? "block" : "none";
 
   }
 </script>
@@ -57,10 +66,10 @@
       <option value="N">No</option>
       <option value="SANDAL">SANDAL</option>  
               <option value="HUSH">HUSH PUPPIES</option>
-              <option value="Formal Shoes">Formal Shoes</option>
-<option   value="Buckled Shoes">Buckled Shoes</option>
-<option id="5" value="Budapester Shoes">Budapester Shoes</option>
-<option id="6" value="Lace-up Shoes">Lace-up Shoes</option>            
+              <option value="FORMAL">Formal Shoes</option>
+<option   value="BUCKLED">Buckled Shoes</option>
+<option id="5" value="BUDAPESTER">Budapester Shoes</option>
+<option id="6" value="LACE">Lace-up Shoes</option>
 
   </select>
 <hr />
@@ -93,7 +102,7 @@ Demand quantity:
 
 <!-------------------------------------------------------------------------->
 <!--HUSH PUPPIES -->
-<div id="adhar" style="display: none">
+<div id="HUSH" style="display: none">
   Demand quantity:
   <input type="text" id="txtPassportNumber" />
   
@@ -128,10 +137,11 @@ Demand quantity:
 </br>
 
 <button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+</div>
 <!----------------------------------------------------------------->
 <!-- Formal Shoes-->
 
-<div id="adhar" style="display: none">
+<div id="FORMAL" style="display: none">
   Demand quantity:
   <input type="text" id="txtPassportNumber" />
   
@@ -166,11 +176,11 @@ Demand quantity:
 </br>
 
 <button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
-
+</div>
 <!----------------------------------------------------------------->
 
 <!-- Buckled Shoes-->
-<div id="adhar" style="display: none">
+<div id="BUCKLED" style="display: none">
   Demand quantity:
   <input type="text" id="txtPassportNumber" />
   
@@ -208,11 +218,12 @@ Demand quantity:
 </br>
 
 <button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+</div>
 
 <!----------------------------------------------------------------->
 <!-- Budapester Shoes-->
 
-<div id="adhar" style="display: none">
+<div id="BUDAPESTER" style="display: none">
   Demand quantity:
   <input type="text" id="txtPassportNumber" />
   
@@ -247,10 +258,11 @@ Demand quantity:
 </br>
 
 <button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+</div>
 
 <!----------------------------------------------------------------->
 <!-- Lace-up Shoes-->
-<div id="adhar" style="display: none">
+<div id="LACE" style="display: none">
   Demand quantity:
   <input type="text" id="txtPassportNumber" />
   
@@ -285,6 +297,7 @@ Demand quantity:
 </br>
 
 <button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+</div>
 </div>
 </div>
 </div>
