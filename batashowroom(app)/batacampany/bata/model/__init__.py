@@ -10,4 +10,5 @@ from bata.model.Quality_check import Quality_checking
 from bata.model.Quality_checking import Cheking
 from .Demand_forward import Seller_fullfill_demand
 from .tracking_system import Tracking_reports
+from .raw_material_category import Raw_Product_category
 
