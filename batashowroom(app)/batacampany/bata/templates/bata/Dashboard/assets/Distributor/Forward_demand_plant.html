@@ -17,8 +17,40 @@
 
                 <!-- Title -->
 <div class="hk-pg-header">
+    <h4 class="hk-pg-title"><span class="pg-title-icon">
+    <span class="feather-icon"><i data-feather="database"></i></span></span>View Total Demands of Product from Dates</h4>
+                </div>
+                <!-- /Title -->
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <section class="hk-sec-wrapper">
+                            <div class="row">
+                                <div class="col-sm">
+<form form class="form-horizontal" role="search" method="get" action="{% url 'Forward_demand_plant' %}">
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Select Date</label>
+<input type="date" class="form-control" id="search_bar" name="query"  placeholder= "select date " required>
+<div class="invalid-feedback">Please provide a valid Product Type.</div>
+</div>
+</div>
+
+
+<button class="btn btn-primary" type="submit" name="search">search</button>
+</form>                                </div>
+                            </div>
+
+
+
+                        </section>
+
+
+                    </div>
  <h4 class="hk-pg-title"><span class="pg-title-icon">
-    <span class="feather-icon"><i data-feather="database"></i></span></span>Total Demands of Product</h4>
+    <span class="feather-icon"><i data-feather="database"></i></span></span>Total Demands of Product for Date : {{ request.GET.query }}</h4>
                 </div>
                 <!-- /Title -->
 
@@ -41,7 +73,7 @@
                                             <tbody>
                                             {% for detail in details %}
 
-<tr>
+                                            <tr>
 <td>{{detail.n}}</td>
 <td>{{detail.Quantity}}</td>
 
