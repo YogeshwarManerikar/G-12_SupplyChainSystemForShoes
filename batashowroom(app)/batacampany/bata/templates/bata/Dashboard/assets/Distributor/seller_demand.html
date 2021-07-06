@@ -17,8 +17,8 @@
 
                 <!-- Title -->
 <div class="hk-pg-header">
- <h4 class="hk-pg-title"><span class="pg-title-icon">
-    <span class="feather-icon"><i data-feather="database"></i></span></span>Seller Demand Reports  </h4>
+    <h4 class="hk-pg-title"><span class="pg-title-icon">
+    <span class="feather-icon"><i data-feather="database"></i></span></span>View Total Demands of Product from Dates</h4>
                 </div>
                 <!-- /Title -->
 
@@ -28,13 +28,51 @@
                         <section class="hk-sec-wrapper">
                             <div class="row">
                                 <div class="col-sm">
+<form form class="form-horizontal" role="search" method="get" action="{% url 'seller_demand_report' %}">
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Select Date</label>
+<input type="date" class="form-control" id="search_bar" name="query"  placeholder= "select date " required>
+<div class="invalid-feedback">Please provide a valid Product Type.</div>
+</div>
+</div>
+
+
+<button class="btn btn-primary" type="submit" name="search">search</button>
+</form>                                </div>
+                            </div>
+
+
+
+                        </section>
+
+ <h4 class="hk-pg-title"><span class="pg-title-icon">
+    <span class="feather-icon"><i data-feather="database"></i></span></span>Seller Demand Reports  </h4>
+                </div>
+                <!-- /Title -->
+ {% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <section class="hk-sec-wrapper">
+                            <div class="row">
+                                <div class="col-sm">
+
                                     <div class="table-wrap">
                                         <table id="datable_1" class="table table-hover w-100 display pb-30">
                                             <thead>
                                                 <tr>
-                                                    <th>Tracking Number</th>
                                                     <th>Seller Name</th>
-                                                    <th>Seller Contact no.</th>
                                                     <th>Product in Demand</th>
                                                     <th>Date of demand</th>
                                                     <th>Last date of Demand</th>
@@ -44,12 +82,10 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {% for detail in details %}
+                                            {% for detail in detail %}
 
 <tr>
-<td>{{detail.Track_id}}</td>
 <td>{{detail.first_name}}</td>
-<td>{{detail.phone}}</td>
 <td>{{detail.product}}</td>
 <td>{{detail.Demand_date}}</td>
 <td>{{detail.Requirement_date}}</td>
@@ -57,12 +93,34 @@
 <td>{{detail.price}}</td>
 
 
+
+    <td>
+        <form action=" " class="needs-validation" method="post" novalidate>
+
+    {% csrf_token %}
+
+    <input type="hidden" class="form-control" name="tracking_id" required="" id="id_tracking_id" VALUE="{{detail.Track_id}}">
+
+     <input type="hidden" class="form-control" name="date" required="" value="{% now "Y-m-d " %}">
+   <input type="hidden" class="form-control" name="track_status" maxlength="999" required="" id="id_track_status" value="Ditributor was forwarded your demand to plant admin">
+
+   <button class="btn btn-primary" type="submit" name="submit">Update Status</button>
+</form>
+</td>
+
 <td>
 <a href="{% url 'edit_sellerdemand_status' detail.id %}" > Click to Fullfill</a>
 </td>
 </tr>
                                                     {% endfor %}
+<?php
 
+$month = date('m');
+$day = date('d');
+$year = date('Y');
+
+$today = $year . '-' . $month . '-' . $day;
+?>
 
                                                 
                                             </tbody>
@@ -73,54 +131,6 @@
                         </section>
 <h4 class="hk-pg-title"><span class="pg-title-icon">
                     <span class="feather-icon"><i data-feather="database"></i></span></span>Update Status</h4>
-
-                <!-- /Row -->
-<div class="row">
-                    <div class="col-xl-12">
-                        <section class="hk-sec-wrapper">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="table-wrap">
-
-                                        <form action=" " class="needs-validation" method="post" novalidate>
-
-    {% csrf_token %}
-
-
-									{% if error%}
-									<div class="alert alert-danger" role="alert">
-										{{form.errors}}
-									</div>
-									{% endif %}
-
-
-
-
-
- <div class="form-row">
-<div class="col-md-6 mb-10">
-<label for="validationCustom03">Enter Tracking Id</label>
-<input type="number" class="form-control" name="tracking_id" required="" id="id_tracking_id">
-<div class="invalid-feedback">Please provide a valid Seller Name.</div>
-</div>
-</div>
-
-
-
-
-   <input type="hidden" class="form-control" name="date" required="" id="currentDate1">
-   <input type="hidden" class="form-control" name="track_status" maxlength="999" required="" id="id_track_status" value="Ditributor was forwarded your demand to plant admin">
-
-   <button class="btn btn-primary" type="submit" name="submit">Update Status</button>
-</form>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                    </div>
-                </div>
-                <!-- /Row -->
 
             </div>
             <!-- /Container -->
