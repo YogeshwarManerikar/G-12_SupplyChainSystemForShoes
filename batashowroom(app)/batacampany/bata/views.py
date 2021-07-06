@@ -1,3 +1,4 @@
+import datetime
 from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 
@@ -26,29 +27,29 @@ def plant_dash(request):
                "rd.Requirement_date "
         posts1 = Seller_demand.objects.raw(sql1)[:50]
 
-        SANDAL="SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
-               "seller_demand.product_id=13 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
+        SANDAL = "SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
+                 "seller_demand.product_id=13 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
         cat1 = Seller_demand.objects.raw(SANDAL)[:50]
 
-        HUSH="SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
+        HUSH = "SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
                "seller_demand.product_id=14 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
         cat2 = Seller_demand.objects.raw(HUSH)[:50]
 
-        BUCKLED="SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
-               "seller_demand.product_id=16 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
+        BUCKLED = "SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
+                  "seller_demand.product_id=16 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
         cat3 = Seller_demand.objects.raw(BUCKLED)[:50]
 
-        LACEUP="SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
-               "seller_demand.product_id=17 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
+        LACEUP = "SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
+                 "seller_demand.product_id=17 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
         cat4 = Seller_demand.objects.raw(LACEUP)[:50]
 
-        BUDAPESTER="SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
-               "seller_demand.product_id=18 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
+        BUDAPESTER = "SELECT id,SUM(Quantity) AS Quantity,MONTHNAME(Requirement_date) as month FROM seller_demand WHERE " \
+                     "seller_demand.product_id=18 GROUP BY MONTHNAME(Requirement_date) ORDER BY `month` DESC "
         cat5 = Seller_demand.objects.raw(BUDAPESTER)[:50]
 
-
         return render(request, 'bata/Dashboard/assets/plantadmin/index.html',
-                      {'user': request.session["plantuname"], 'id': user, 'detail': posts, 'details': posts1,'sandal':cat1,'HUSH':cat2,'BUCKLED':cat3,'LACEUP':cat4,'BUDAPESTER':cat5})
+                      {'user': request.session["plantuname"], 'id': user, 'detail': posts, 'details': posts1,
+                       'sandal': cat1, 'HUSH': cat2, 'BUCKLED': cat3, 'LACEUP': cat4, 'BUDAPESTER': cat5})
     else:
         return redirect('plant_login')
 
@@ -164,16 +165,18 @@ def seller_demand_report(request):
         sql = "SELECT * FROM seller_demand AS sd INNER JOIN seller_login AS sl ON  " \
               "sl.id=sd.user_id_id INNER JOIN plant_product AS p ON sd.product_id=p.id and sd.user_location ='%s' " % location
         posts = Seller_demand.objects.raw(sql)[:50]
-
-        form = tracking(request.POST)
-
+        date = request.GET.get('query')
+        sql1 = "SELECT * FROM seller_demand WHERE Demand_date='%s' AND user_location ='%s'" % date % location
+        posts1 = Seller_demand.objects.raw(sql1)[:50]
         # check if form data is valid
+        form = tracking(request.POST)
         if form.is_valid():
             # save the form data to model
             form.save()
-            messages.success(request, 'Message has been send to seller')
+            messages.success(request, 'Status updated')
 
-        return render(request, "bata/Dashboard/assets/Distributor/seller_demand.html", {'details': posts, 'form': form})
+        return render(request, "bata/Dashboard/assets/Distributor/seller_demand.html",
+                      {'details': posts, 'form': form, 'detail': posts1})
 
 
 def bwdate_report_ds(request):
@@ -284,7 +287,6 @@ def edit_Rowmaterial_categories(request, pk):
     return render(request, 'bata/Dashboard/assets/plantadmin/edit-Rowmaterial-categories.html', context)
 
 
-
 def manage_Rowmaterial_categories(request):
     if request.session.has_key('plantuid') & request.session.has_key('plantuname'):
         user = request.session.get('plantuid')
@@ -294,8 +296,6 @@ def manage_Rowmaterial_categories(request):
     posts = Raw_Product.objects.raw(sql)[:50]
 
     return render(request, "bata/Dashboard/assets/plantadmin/manage-Rowmaterial-categories .html", {'detail': posts})
-
-
 
 
 def productlot_status(request):
@@ -327,9 +327,10 @@ def Rowmaterial_Payment(request):
 def Forward_demand_plant(request):
     if request.session.has_key('Distributoruid') & request.session.has_key('Distributoruname'):
         location = request.session.get('Distributorlocation')
-    sql1 = "SELECT plant_product.id,name as n,SUM(Quantity) as Quantity FROM `seller_demand`,plant_product WHERE plant_product.id=seller_demand.product_id GROUP BY plant_product.id "
-    posts1 = Seller_demand.objects.raw(sql1)[:50]
 
+    date = request.GET.get('query')
+    sql1 = "SELECT pp.id,name as n,SUM(Quantity) as Quantity FROM seller_demand as sd INNER JOIN plant_product as pp ON pp.id=sd.product_id WHERE sd.Requirement_date='%s' GROUP BY pp.id" % date
+    posts1 = Seller_demand.objects.raw(sql1)[:50]
     form = Fullfill_demandseller(request.POST)
 
     # check if form data is valid
@@ -344,6 +345,20 @@ def Forward_demand_plant(request):
                }
 
     return render(request, "bata/Dashboard/assets/Distributor/Forward_demand_plant.html", context)
+
+
+def trackings(request):
+    srh = request.GET.get('query')
+    if srh is None:
+        srh = 0
+
+    print(srh)
+    track = Tracking_reports.objects.filter(tracking_id__icontains=srh)
+
+    if track.count() == 0 and srh != 0:
+        messages.warning(request, "No search results found. Please refine your query.")
+
+    return render(request, 'bata/tracking.html', {'track': track})
 
 
 def Fullfill_seller_demand(request, pk):
@@ -528,11 +543,10 @@ def view_invoice(request, pk):
 
     sql = "SELECT *,dl.first_name as distributor,sl.first_name as seller ,sl.phone as slphone ,pp.price*sd.Quantity as subtotal,(pp.price*sd.Quantity*15)/100 as tax,round(((pp.price*sd.Quantity)+((pp.price*sd.Quantity*15)/100)),2) as Total FROM seller_demand as " \
           "sd INNER JOIN distributor_login as dl ON sd.user_location=dl.location INNER JOIN seller_login as sl ON " \
-          "sl.id=sd.user_id_id INNER JOIN plant_product as pp ON pp.id=sd.product_id WHERE Track_id='%s'" %pk
+          "sl.id=sd.user_id_id INNER JOIN plant_product as pp ON pp.id=sd.product_id WHERE Track_id='%s'" % pk
     posts = Raw_Demand.objects.raw(sql)[:50]
 
-
-    return render(request, "bata/Dashboard/assets/seller/view-invoice.html",{'invoice':posts})
+    return render(request, "bata/Dashboard/assets/seller/view-invoice.html", {'invoice': posts})
 
 
 def Manage_invoice(request):
@@ -622,7 +636,6 @@ def payment_history(request):
     return render(request, "bata/Dashboard/assets/RM_provider/payment_history.html")
 
 
-
 def Productlot_pickup(request):
     return render(request, "bata/Dashboard/assets/Distributor/Productlot_pickup.html")
 
@@ -667,6 +680,7 @@ def index(request):
 
 def customer_support(request):
     return render(request, "bata/customer_support.html")
+
 
 def product(request):
     return render(request, "bata/Dashboard/assets/plantadmin/product.html")
