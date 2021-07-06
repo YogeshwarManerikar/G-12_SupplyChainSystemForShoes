@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 
 from .forms import Add_product, RawDemand, Add_rawmaterial, editproduct, editrawproduct, Sellerdemand, RawdemandStatus, \
-    Fullfill_demandseller, tracking, sellerdemandStatus, SANDAL
+    Fullfill_demandseller, tracking, sellerdemandStatus, SANDAL, HUSHPUPPIES, FORMAL, BUCKLED, BUDAPESTER, LACEUP
 from .model import Raw_Demand, Product, Raw_Product, Distributor, Seller_demand
 from .model.Demand_forward import Seller_fullfill_demand
 from .model.Quality_check import Quality_checking
@@ -226,10 +226,10 @@ def Seller_demand_product(request):
             messages.success(request, 'your demand was recorded successfully ')
 
             return redirect('Seller_demand_product')
-
-        return render(request, "bata/Dashboard/assets/seller/Demand_for_Product.html",
-                      {'id': request.session.get('selleruid'), 'location': request.session.get('sellerlocation'),
-                       'form': form, 'form1': form1, 'details': posts})
+        context = {
+            {'id': request.session.get('selleruid'), 'location': request.session.get('sellerlocation'), 'form': form,
+             'form1': form1, 'details': posts}}
+        return render(request, "bata/Dashboard/assets/seller/Demand_for_Product.html", context)
 
 
 def edit_category(request):
@@ -688,15 +688,46 @@ def product(request):
         uname = request.session.get('plantuname')
         print(user, uname)
         # create object of form
-    form = SANDAL(request.POST)
+    quantity = request.GET.get('query')
+
+    sandal = "SELECT id,`Price_Dye`,`Price_Packaging_Material`,`Price_Polyurethane`,`Price_Rubber`, " \
+             "'%s'*`Packaging_Material` as pack,'%s'*Polyurethane as poly,'%s'*Dye as d ,'%s'*Rubber as r," \
+             "('%s'*`Price_Rubber`)+('%s'*`Price_Packaging_Material`)+('%s'*`Price_Polyurethane`)+('%s'*`Price_Dye`) " \
+             "as price FROM `rawmaterial_categories` WHERE product_id=13" % (quantity, quantity, quantity, quantity,
+                                                                             quantity, quantity, quantity, quantity)
+    posts1 = Raw_Demand.objects.raw(sandal)[:50]
+    hush = "SELECT id,`Price_GUM`,`Price_PVC_Sole`,Price_TPR,`Price_Color`,`Price_Packaging_Material`, " \
+           "'%s'*`Packaging_Material` as pack,'%s'*`GUM` as g,'%s'*`PVC_Sole` as p ,'%s'*`TPR` as t,'%s'*`Color` as " \
+           "c,('%s'*`Price_GUM`)+('%s'*`Price_Packaging_Material`)+('%s'*`Price_PVC_Sole`)+('%s'*`Price_TPR`)+(" \
+           "'%s'*`Price_Color`) as price FROM `rawmaterial_categories` WHERE product_id=14" % (quantity, quantity,quantity, quantity,
+                                                                                               quantity, quantity,quantity, quantity,quantity, quantity)
+    posts2 = Raw_Demand.objects.raw(hush)[:50]
+    formal = "SELECT * FROM `rawmaterial_categories` WHERE product_id=15"
+    posts3 = Raw_Demand.objects.raw(formal)[:50]
+    buckled = "SELECT * FROM `rawmaterial_categories` WHERE product_id=16"
+    posts4 = Raw_Demand.objects.raw(buckled)[:50]
+    budapester = "SELECT * FROM `rawmaterial_categories` WHERE product_id=18"
+    posts5 = Raw_Demand.objects.raw(budapester)[:50]
+    laceup = "SELECT * FROM `rawmaterial_categories` WHERE product_id=17"
+    posts6 = Raw_Demand.objects.raw(laceup)[:50]
+
+    form1 = SANDAL(request.POST)
+    form2 = HUSHPUPPIES(request.POST)
+    form3 = FORMAL(request.POST)
+    form4 = BUCKLED(request.POST)
+    form5 = BUDAPESTER(request.POST)
+    form6 = LACEUP(request.POST)
 
     # check if form data is valid
-    if form.is_valid():
+    if form1.is_valid():
         # save the form data to model
-        form.save()
-       # username = form.cleaned_data.get('name')
-       # messages.success(request, 'Product Name :  ' + username + ' Succesfully added')
+        form1.save()
+    if form2.is_valid():
+        # save the form data to model
+        form2.save()
+        # username = form.cleaned_data.get('name')
+        messages.success(request, 'Raw Materiral Demanded successfully ')
 
         return redirect('product')
-
-    return render(request, "bata/Dashboard/assets/plantadmin/product.html", {'form': form})
+    context = {'form1': form1, 'form2': form2, 'posts1': posts1, 'posts2': posts2, }
+    return render(request, "bata/Dashboard/assets/plantadmin/product.html", context)

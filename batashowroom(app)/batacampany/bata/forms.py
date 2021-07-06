@@ -87,3 +87,33 @@ class SANDAL(forms.ModelForm):
     class Meta:
         model = Raw_Demand
         fields = ['Polyurethane', 'Rubber', 'Dye', 'Packaging_Material','Price','Lot_number', 'Demand_date', 'Requirement_date', 'user_id', 'user_location']
+
+
+class HUSHPUPPIES(forms.ModelForm):
+    class Meta:
+        model = Raw_Demand
+        fields = ['GUM', 'PVC_Sole', 'TPR', 'Color','Packaging_Material','Price','Lot_number', 'Demand_date', 'Requirement_date', 'user_id', 'user_location']
+
+
+class FORMAL(forms.ModelForm):
+    class Meta:
+        model = Raw_Demand
+        fields = ['Hard_Thread', 'PVC_Sole', 'Rexene', 'Color','Packaging_Material','Price','Lot_number', 'Demand_date', 'Requirement_date', 'user_id', 'user_location']
+
+
+class BUCKLED(forms.ModelForm):
+    class Meta:
+        model = Raw_Demand
+        fields = ['Clips','GUM', 'PVC_Sole', 'TPR', 'Color','Packaging_Material','Price','Lot_number', 'Demand_date', 'Requirement_date', 'user_id', 'user_location']
+
+
+class BUDAPESTER(forms.ModelForm):
+    class Meta:
+        model = Raw_Demand
+        fields = ['Polyurethane', 'PVC_Sole', 'TPR', 'Dye','Packaging_Material','Price','Lot_number', 'Demand_date', 'Requirement_date', 'user_id', 'user_location']
+
+
+class LACEUP(forms.ModelForm):
+    class Meta:
+        model = Raw_Demand
+        fields = ['Hard_Thread', 'PVC_Sole', 'Rubber', 'Color','Packaging_Material','Price','Lot_number', 'Demand_date', 'Requirement_date', 'user_id', 'user_location']
