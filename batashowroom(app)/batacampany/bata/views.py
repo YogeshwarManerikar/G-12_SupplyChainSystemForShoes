@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 
 from .forms import Add_product, RawDemand, Add_rawmaterial, editproduct, editrawproduct, Sellerdemand, RawdemandStatus, \
-    Fullfill_demandseller, tracking, sellerdemandStatus
+    Fullfill_demandseller, tracking, sellerdemandStatus, SANDAL
 from .model import Raw_Demand, Product, Raw_Product, Distributor, Seller_demand
 from .model.Demand_forward import Seller_fullfill_demand
 from .model.Quality_check import Quality_checking
@@ -683,4 +683,20 @@ def customer_support(request):
 
 
 def product(request):
-    return render(request, "bata/Dashboard/assets/plantadmin/product.html")
+    if request.session.has_key('plantuid') & request.session.has_key('plantuname'):
+        user = request.session.get('plantuid')
+        uname = request.session.get('plantuname')
+        print(user, uname)
+        # create object of form
+    form = SANDAL(request.POST)
+
+    # check if form data is valid
+    if form.is_valid():
+        # save the form data to model
+        form.save()
+       # username = form.cleaned_data.get('name')
+       # messages.success(request, 'Product Name :  ' + username + ' Succesfully added')
+
+        return redirect('product')
+
+    return render(request, "bata/Dashboard/assets/plantadmin/product.html", {'form': form})

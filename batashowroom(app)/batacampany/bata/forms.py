@@ -1,5 +1,6 @@
 from django import forms
 
+from .model import Raw_Product_category
 from .model.seller import Seller
 from .model.product import Product
 from .model.bata_plant import BATA_PLANT
@@ -61,7 +62,7 @@ class sellerdemandStatus(forms.ModelForm):
 class RawDemand(forms.ModelForm):
     class Meta:
         model = Raw_Demand
-        fields = ['Lot_number', 'Raw_type', 'Quantity', 'Demand_date', 'Requirement_date', 'user_id', 'user_location']
+        fields = ['Lot_number', 'Demand_date', 'Requirement_date', 'user_id', 'user_location']
 
 
 class Sellerdemand(forms.ModelForm):
@@ -80,3 +81,9 @@ class Add_rawmaterial(forms.ModelForm):
     class Meta:
         model = Raw_Product
         fields = "__all__"
+
+
+class SANDAL(forms.ModelForm):
+    class Meta:
+        model = Raw_Demand
+        fields = ['Polyurethane', 'Rubber', 'Dye', 'Packaging_Material','Price','Lot_number', 'Demand_date', 'Requirement_date', 'user_id', 'user_location']

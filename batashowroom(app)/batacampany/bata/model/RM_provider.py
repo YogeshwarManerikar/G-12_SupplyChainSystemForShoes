@@ -7,7 +7,6 @@ class RM_provider(models.Model):
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
     email = models.EmailField()
-    Raw_type = models.ForeignKey(Raw_Product, on_delete=models.CASCADE)
     password = models.CharField(max_length=500)
     location = models.CharField(max_length=100, default='Select')
 
