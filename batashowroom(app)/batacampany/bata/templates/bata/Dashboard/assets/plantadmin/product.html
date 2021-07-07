@@ -138,7 +138,6 @@
   <input type="hidden" name="Requirement_date" required="" id="feauturedate">
       <input type="hidden" name="user_location" maxlength="40" required="" id="id_user_location" value="{{request.session.plantlocation}}">
       <input type="hidden" name="user_id" required="" id="id_user_id" value="{{request.session.plantuid}}">
-{{ form1.errors }}
 
     </br>
   </div>
@@ -224,12 +223,11 @@
 <input type="number" name="Price" step="any" required="" class="form-control" value="{{posts2.price}}" id="id_Price" ></div>
 
   </br>
-  <input type="text" name="Lot_number" maxlength="30" required="" id="lotnumber1">
-  <input type="text" name="Demand_date" required=""  id="currentDate1">
-  <input type="text" name="Requirement_date" required="" id="feauturedate1">
-      <input type="text" name="user_location" maxlength="40" required="" id="id_user_location" value="{{request.session.plantlocation}}">
-      <input type="text" name="user_id" required="" id="id_user_id" value="{{request.session.plantuid}}">
-{{ form1.errors }}
+  <input type="hidden" name="Lot_number" maxlength="30" required="" id="lotnumber1">
+  <input type="hidden" name="Demand_date" required=""  id="currentDate1">
+  <input type="hidden" name="Requirement_date" required="" id="feauturedate1">
+      <input type="hidden" name="user_location" maxlength="40" required="" id="id_user_location" value="{{request.session.plantlocation}}">
+      <input type="hidden" name="user_id" required="" id="id_user_id" value="{{request.session.plantuid}}">
 
     </br>
   </div>

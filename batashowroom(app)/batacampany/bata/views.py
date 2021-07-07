@@ -109,7 +109,13 @@ def stage_one_RowMaterial_lot(request):
     if request.session.has_key('plantuid') & request.session.has_key('plantuname'):
         user = request.session.get('plantuid')
         uname = request.session.get('plantuname')
-    sql = "SELECT * FROM rawmaterial_demand where rawmaterial_demand.status = 'DISPATCHED'"
+    date = request.GET.get('query')
+
+    print(date)
+    sql = "SELECT id, SUM(Polyurethane) as poly,SUM(`Rubber`) as r,SUM(`Dye`) as d,SUM(`Packaging_Material`) as pack," \
+          "SUM(`GUM`) as g,SUM(`PVC_Sole`) as pvc,SUM(`TPR`) as tpr,SUM(`Hard_Thread`) as h,SUM(`Rexene`) as re," \
+          "SUM(`Clips`) as cl,SUM(`Color`) as co FROM `raw_material_demand` where raw_material_demand.status = " \
+          "'DISPATCHED' and Requirement_date='%s' ORDER BY Requirement_date "%date
     posts = Raw_Demand.objects.raw(sql)[:10]
 
     return render(request, "bata/Dashboard/assets/plantadmin/1st-stage-RowMaterial-lot.html", {'detail': posts})
@@ -162,12 +168,12 @@ def seller_demand_report(request):
         uname = request.session.get('Distributoruname')
         location = request.session.get('Distributorlocation')
         print(location)
-        sql = "SELECT * FROM seller_demand AS sd INNER JOIN seller_login AS sl ON  " \
-              "sl.id=sd.user_id_id INNER JOIN plant_product AS p ON sd.product_id=p.id and sd.user_location ='%s' " % location
-        posts = Seller_demand.objects.raw(sql)[:50]
         date = request.GET.get('query')
-        sql1 = "SELECT * FROM seller_demand WHERE Demand_date='%s' AND user_location ='%s'" % date % location
-        posts1 = Seller_demand.objects.raw(sql1)[:50]
+
+        sql = "SELECT * FROM seller_demand AS sd INNER JOIN seller_login AS sl ON  " \
+              "sl.id=sd.user_id_id INNER JOIN plant_product AS p ON sd.product_id=p.id WHERE Demand_date='%s' AND sd.user_location ='%s' " % (date,location)
+        posts = Seller_demand.objects.raw(sql)[:50]
+
         # check if form data is valid
         form = tracking(request.POST)
         if form.is_valid():
@@ -176,7 +182,7 @@ def seller_demand_report(request):
             messages.success(request, 'Status updated')
 
         return render(request, "bata/Dashboard/assets/Distributor/seller_demand.html",
-                      {'details': posts, 'form': form, 'detail': posts1})
+                      {'details': posts, 'form': form, 'detail': posts})
 
 
 def bwdate_report_ds(request):
@@ -696,19 +702,31 @@ def product(request):
              "as price FROM `rawmaterial_categories` WHERE product_id=13" % (quantity, quantity, quantity, quantity,
                                                                              quantity, quantity, quantity, quantity)
     posts1 = Raw_Demand.objects.raw(sandal)[:50]
-    hush = "SELECT id,`Price_GUM`,`Price_PVC_Sole`,Price_TPR,`Price_Color`,`Price_Packaging_Material`, " \
+    hush = "SELECT id,`Price_GUM`,`Price_PVC_Sole`,`Price_TPR`,`Price_Color`,`Price_Packaging_Material`, " \
            "'%s'*`Packaging_Material` as pack,'%s'*`GUM` as g,'%s'*`PVC_Sole` as p ,'%s'*`TPR` as t,'%s'*`Color` as " \
            "c,('%s'*`Price_GUM`)+('%s'*`Price_Packaging_Material`)+('%s'*`Price_PVC_Sole`)+('%s'*`Price_TPR`)+(" \
            "'%s'*`Price_Color`) as price FROM `rawmaterial_categories` WHERE product_id=14" % (quantity, quantity,quantity, quantity,
                                                                                                quantity, quantity,quantity, quantity,quantity, quantity)
     posts2 = Raw_Demand.objects.raw(hush)[:50]
-    formal = "SELECT * FROM `rawmaterial_categories` WHERE product_id=15"
+    formal = "SELECT id,`Price_Packaging_Material`,`Price_PVC_Sole`,`Price_Hard_Thread`,`Price_Color`,`Price_Rexene`, " \
+           "'%s'`Packaging_Material` as pack,'%s'`Hard_Thread` as H,'%s'`PVC_Sole` as p ,'%s'`Rexene` as R,'%s'*`Color` as " \
+           "c,('%s'`Price_Packaging_Material`)+('%s'`Price_PVC_Sole`)+('%s'`Price_Hard_Thread`)+('%s'`Price_Color`)+(" \
+           "'%s'*`Price_Rexene`) as price FROM `rawmaterial_categories` WHERE product_id=15" % (quantity, quantity,quantity, quantity,
+                                                                                               quantity, quantity,quantity, quantity,quantity, quantity)
     posts3 = Raw_Demand.objects.raw(formal)[:50]
     buckled = "SELECT * FROM `rawmaterial_categories` WHERE product_id=16"
     posts4 = Raw_Demand.objects.raw(buckled)[:50]
-    budapester = "SELECT * FROM `rawmaterial_categories` WHERE product_id=18"
+    budapester = "SELECT id,`Price_Rubber`,`Price_Packaging_Material`,`Price_PVC_Sole`,`Price_Hard_Thread`,`Price_Color`, " \
+           "'%s'`Packaging_Material` as pack,'%s'`Hard_Thread` as H,'%s'`PVC_Sole` as p ,'%s'`Rubber` as R,'%s'*`Color` as " \
+		   "c,('%s'`Price_Rubber`)+('%s'`Price_Packaging_Material`)+('%s'`Price_PVC_Sole`)+('%s'`Price_Hard_Thread`)+(" \
+           "'%s'*`Price_Color`) as price FROM `rawmaterial_categories` WHERE product_id=18" % (quantity, quantity,quantity, quantity,
+                                                                                               quantity, quantity,quantity, quantity,quantity, quantity)
     posts5 = Raw_Demand.objects.raw(budapester)[:50]
-    laceup = "SELECT * FROM `rawmaterial_categories` WHERE product_id=17"
+    laceup = "SELECT id,`Price_Polyurethane`,`Price_Dye`,`Packaging_Material`,`Price_PVC_Sole`,`Price_TPR`, " \
+                "'%s'`Packaging_Material` as pack,'%s'`Dye` as D,'%s'`PVC_Sole` as p ,'%s'`Polyurethane` as p ,'%s'*`TPR` as t " \
+                "c,('%s'`Price_Polyurethane`)+('%s'`Price_Dye`)+('%s'`Packaging_Material`)+('%s'`Price_PVC_Sole`)+(" \
+                "'%s'*`Price_TPR`) as price FROM `rawmaterial_categories` WHERE product_id=17" % (quantity, quantity,quantity, quantity,
+                                                                                 quantity, quantity,quantity, quantity,quantity, quantity)
     posts6 = Raw_Demand.objects.raw(laceup)[:50]
 
     form1 = SANDAL(request.POST)
@@ -725,9 +743,18 @@ def product(request):
     if form2.is_valid():
         # save the form data to model
         form2.save()
+    if form3.is_valid():
+        # save the form data to model
+        form3.save()
+    if form5.is_valid():
+        # save the form data to model
+        form5.save()
+    if form6.is_valid():
+        # save the form data to model
+        form6.save()
         # username = form.cleaned_data.get('name')
         messages.success(request, 'Raw Materiral Demanded successfully ')
 
         return redirect('product')
-    context = {'form1': form1, 'form2': form2, 'posts1': posts1, 'posts2': posts2, }
+    context = {'form1': form1, 'form2': form2,'form3': form3,'form5': form5,'form6': form6, 'posts1': posts1, 'posts2': posts2,'posts3': posts3,'posts5': posts5, 'posts6': posts6, }
     return render(request, "bata/Dashboard/assets/plantadmin/product.html", context)

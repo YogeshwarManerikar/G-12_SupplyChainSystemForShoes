@@ -43,12 +43,13 @@
 
 <div class="row">
 <div class="col-sm">
-<form class="needs-validation" method="post" novalidate>
+<form form class="form-horizontal" role="search" method="get" action="{% url 'stage_one_RowMaterial_lot' %}">
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<input type="text" class="form-control" id="validationCustom03" placeholder="search for lot number" name="RowMaterial_type" required>
-<div class="invalid-feedback">Please provide a valid RowMaterial Type.</div>
+<label for="validationCustom03">Select Date</label>
+<input type="date" class="form-control" id="search_bar" name="query"  placeholder= "select date " required>
+<div class="invalid-feedback">Please provide a valid Product Type.</div>
 </div>
 </div>
 
@@ -64,57 +65,12 @@
 
 
 
-<form class="needs-validation" method="post" novalidate>
-
-<!--- Shopping Cart ---->
-<section class="hk-sec-wrapper">
-
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="table-wrap">
-<h4>Lot Received For Production </h4>
-<hr />
-
-
-
-  <table id="datable_1" class="table table-hover w-100 display pb-30" border="1">
-<tbody>
-<tr>
-<th>#Lot No.</th>
-
-
-<th> RowMaterial Category</th>
-
-<th width="5%">Quantity</th>
-
-
-</tr>
-
-           <input type="hidden" value="" name="quantity[]">
-           {% for detail in detail %}
-
-                <tr>
-                <td>{{detail.Lot_number}}</td>
-                <td>{{detail.Raw_type}}</td>
-
-                <td>{{detail.Quantity}}</td>
-<td class="num">{{ Raw_Demand.total_price|floatformat:"2" }}</td>
-
-                </tr>
-        {% endfor %}
-
-
-<tr>
-
-
-<td></td>
-</tr>
-</tbody>
-</table>
-
-
-</form>
-
+<section>
+ <div id="app">
+      <div id="chart">
+      <apexchart type="treemap" height="350" :options="chartOptions" :series="series"></apexchart>
+    </div>
+    </div>
 
 
 
@@ -145,6 +101,91 @@
     margin: 10px 0px;
     }
 
+       #chart {
+      padding-right: 10px;
+      max-width: 650px;
+      margin: 35px auto;
+    }
+
+
     </style>
+ <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
+
+ <script>
+      new Vue({
+        el: '#app',
+        components: {
+          apexchart: VueApexCharts,
+        },
+        data: {
+
+          series: [
+            {
+              data: [
+                {
+                  x: 'Polyurethane',
+                  y:  {% for detail in detail %}  {{detail.poly}}   {% endfor %}
+
+                },
+                {
+                  x: 'Rubber',
+                  y: {% for detail in detail %}  {{detail.r}}   {% endfor %}
+                },
+                {
+                  x: 'Dye',
+                  y: {% for detail in detail %}  {{detail.d}}   {% endfor %}
+                },
+                 {
+                  x: 'GUM',
+                  y: {% for detail in detail %}  {{detail.g}}   {% endfor %}
+                },
+                 {
+                  x: 'PVC_Sole',
+                  y: {% for detail in detail %}  {{detail.pvc}}   {% endfor %}
+                },
+                 {
+                  x: 'TPR',
+                  y: {% for detail in detail %}  {{detail.tpr}}   {% endfor %}
+                },
+                {
+                  x: 'Hard_Thread',
+                  y: {% for detail in detail %}  {{detail.h}}   {% endfor %}
+                },
+                {
+                  x: 'Rexene',
+                  y: {% for detail in detail %}  {{detail.re}}   {% endfor %}
+                },
+                {
+                  x: 'Clips',
+                  y: {% for detail in detail %}  {{detail.cl}}   {% endfor %}
+                },
+                {
+                  x: 'Color',
+                  y: {% for detail in detail %}  {{detail.co}}   {% endfor %}
+                },
+
+              ]
+            }
+          ],
+          chartOptions: {
+            legend: {
+              show: false
+            },
+            chart: {
+              height: 350,
+              type: 'treemap'
+            },
+            title: {
+              text: 'Raw Material warehouse'
+            }
+          },
+
+
+        },
+
+      })
+    </script>
 {% endblock %}
 
