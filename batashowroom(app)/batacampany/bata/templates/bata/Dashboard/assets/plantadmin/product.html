@@ -168,7 +168,6 @@
   {% csrf_token %}
 
 
-  <div class="form-row">
   </br>
 
 {% for posts2 in posts2 %}
@@ -217,6 +216,10 @@
     <label for="register-form-name"> Packing Material:</label>
     <input type="number" name="Packaging_Material" step="any" required="" value="{{posts2.pack}}" id="id_Packaging_Material" class="form-control"/>
   </div>
+  <div class="col_half col_last">
+    <label for="register-form-name">Price</label>
+  <input type="text" id="register-form-name" name="register-form-name" value="{{posts2.Price_Packaging_Material}}" class="form-control" />
+  </div>
 
     <div class="col_half ">
     <label for="register-form-name">Total Price</label><br>
@@ -241,81 +244,100 @@
 <!-- Formal Shoes-->
 
 <div id="FORMAL" style="display: none">
-  Demand quantity:
-  <input type="text" id="txtPassportNumber" />
+ <form form class="form-horizontal" role="search" method="get" action="{% url 'product' %}">
 
-<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
-</br>
 
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Demand quantity:</label>
+<input type="text"  id="search_bar" name="query"  placeholder= "Quantity " required>
+<div class="invalid-feedback">Please provide a valid Product Type.</div>
+</div>
+</div>
+
+
+<button class="btn btn-primary" type="submit" name="search">Calculate</button>
+</form>
+  </br>
+    <form class="needs-validation" method="post" novalidate>
+  {% csrf_token %}
+
+
+  <div class="form-row">
+  </br>
+
+{% for posts3 in posts3 %}
 <div class="form-row">
   <div class="col_half">
     <label for="register-form-name"> Hard Thread:</label>
-    <input type="number" name="Hard_Thread" step="any" required="" id="id_Hard_Thread" class="form-control"/>
+    <input type="number" name="Hard_Thread" step="any" required="" id="id_Hard_Thread" value="{{posts3.H}}" class="form-control"/>
   </div>
 
   <div class="col_half col_last">
     <label for="register-form-name">Price</label>
-  <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+  <input type="text" id="register-form-name" name="register-form-name" value="{{posts3.Price_Hard_Thread}}" class="form-control" />
   </div>
 
 <div class="col_half">
     <label for="register-form-name">  PVC Sole: </label>
-    <input type="number" name="PVC_Sole" step="any" required="" id="id_PVC_Sole" class="form-control"/>
+    <input type="number" name="PVC_Sole" step="any" required="" id="id_PVC_Sole" value="{{posts3.p}}" class="form-control"/>
   </div>
 
   <div class="col_half col_last">
     <label for="register-form-name">Price</label>
-  <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+  <input type="text" id="register-form-name" name="register-form-name" value="{{posts3.Price_PVC_Sole}}" class="form-control" />
   </div>
 
 <div class="col_half">
     <label for="register-form-name">Rexene: </label>
-    <input type="number" name="Rexene" step="any" required="" id="id_Rexene" class="form-control"/>
+    <input type="number" name="Rexene" step="any" required="" id="id_Rexene"  value="{{posts3.R}}" class="form-control"/>
   </div>
 
   <div class="col_half col_last">
     <label for="register-form-name">Price</label>
-  <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+  <input type="text" id="register-form-name" name="register-form-name" value="{{posts3.Price_Rexene}}" class="form-control" />
   </div>
 
 <div class="col_half">
     <label for="register-form-name"> Color: </label>
-    <input type="number" name="Color" step="any" required="" id="id_Color" class="form-control"/>
+    <input type="number" name="Color" step="any" required="" id="id_Color"  value="{{posts3.c}}" class="form-control"/>
   </div>
 
   <div class="col_half col_last">
     <label for="register-form-name">Price</label>
-  <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+  <input type="text" id="register-form-name" name="register-form-name" value="{{posts3.Price_Color}}" class="form-control" />
   </div>
 
 <div class="col_half">
     <label for="register-form-name"> Packing Material:</label>
-    <input type="number" name="Packaging_Material" step="any" required="" id="id_Packaging_Material" class="form-control"/>
+    <input type="number" name="Packaging_Material" step="any" required="" id="id_Packaging_Material" value="{{posts3.pack}}"  class="form-control"/>
   </div>
 
-  <div class="col_half col_last">
+ <div class="col_half col_last">
     <label for="register-form-name">Price</label>
-  <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+  <input type="text" id="register-form-name" name="register-form-name" value="{{posts3.Price_Packaging_Material}}" class="form-control" />
   </div>
 
 
 <div class="col_half ">
-  <label for="register-form-name">Total Price</label>
-<input type="number" name="Price" required="" id="id_Price" class="form-control" />
-</div>
-
-
-</br>
-<input type="text" name="Lot_number" maxlength="30" required="" id="id_Lot_number">
-<input type="text" name="Demand_date" required="" id="id_Demand_date">
-<input type="text" name="Requirement_date" required="" id="id_Requirement_date">
-    <input type="text" name="user_location" maxlength="40" required="" id="id_user_location">
-    <input type="text" name="user_id" required="" id="id_user_id">
+    <label for="register-form-name">Total Price</label><br>
+<input type="number" name="Price" step="any" required="" class="form-control" value="{{posts3.price}}" id="id_Price" ></div>
 
   </br>
+  <input type="hidden" name="Lot_number" maxlength="30" required="" id="lotnumber2">
+  <input type="hidden" name="Demand_date" required=""  id="currentDate2">
+  <input type="hidden" name="Requirement_date" required="" id="feauturedate2">
+      <input type="hidden" name="user_location" maxlength="40" required="" id="id_user_location" value="{{request.session.plantlocation}}">
+      <input type="hidden" name="user_id" required="" id="id_user_id" value="{{request.session.plantuid}}">
+
+    </br>
+  </div>
+<button class="btn btn-primary" type="submit" value="submit">SUBMIT</button>
+                 {% endfor %}
+
+    </form>
 </div>
-<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
-</div>
+
 
 
 
@@ -409,83 +431,98 @@
 <!-- Budapester Shoes-->
 
 <div id="BUDAPESTER" style="display: none">
-  Demand quantity:
-  <input type="text" id="txtPassportNumber" />
+ <form form class="form-horizontal" role="search" method="get" action="{% url 'product' %}">
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Demand quantity:</label>
+<input type="text"  id="search_bar" name="query"  placeholder= "Quantity " required>
+<div class="invalid-feedback">Please provide a valid Product Type.</div>
+</div>
+</div>
 
 
-<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
-</br>
+<button class="btn btn-primary" type="submit" name="search">Calculate</button>
+</form>
+  </br>
+    <form class="needs-validation" method="post" novalidate>
+  {% csrf_token %}
 
+
+  </br>
+
+{% for posts5 in posts5 %}
 <div class="form-row">
 
 
   <div class="col_half">
     <label for="register-form-name"> Polyurethane:</label>
-    <input type="number" name="Polyurethane" step="any" required="" id="id_Polyurethane" class="form-control"/>
+    <input type="number" name="Polyurethane" step="any" required="" id="id_Polyurethane" value="{{posts1.poly}}" class="form-control"/>
   </div>
 
   <div class="col_half col_last">
     <label for="register-form-name">Price</label>
-  <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+  <input type="text" id="register-form-name" name="register-form-name"  value="{{posts1.Price_Polyurethane}}" class="form-control" />
   </div>
 
 <div class="col_half">
     <label for="register-form-name">  PVC Sole: </label>
-    <input type="number" name="PVC_Sole" step="any" required="" id="id_PVC_Sole" class="form-control"/>
+    <input type="number" name="PVC_Sole" step="any" required="" id="id_PVC_Sole" value="{{posts5.p}}" class="form-control"/>
   </div>
 
   <div class="col_half col_last">
     <label for="register-form-name">Price</label>
-  <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+  <input type="text" id="register-form-name" name="register-form-name" value="{{posts5.Price_PVC_Sole}}" class="form-control" />
   </div>
 
 <div class="col_half">
     <label for="register-form-name">TPR Material: </label>
-    <input type="number" name="TPR" step="any" required="" id="id_TPR" class="form-control"/>
+    <input type="number" name="TPR" step="any" required="" id="id_TPR" value="{{posts5.t}}" class="form-control"/>
   </div>
 
   <div class="col_half col_last">
     <label for="register-form-name">Price</label>
-  <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+  <input type="text" id="register-form-name" name="register-form-name" value="{{posts5.Price_TPR}}" class="form-control" />
   </div>
 
 <div class="col_half">
     <label for="register-form-name"> Dye: </label>
-    <input type="number" name="Dye" step="any" required="" id="id_Dye" class="form-control"/>
+    <input type="number" name="Dye" step="any" required="" id="id_Dye" value="{{posts1.d}}" class="form-control"/>
   </div>
 
   <div class="col_half col_last">
     <label for="register-form-name">Price</label>
-  <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+  <input type="text" id="register-form-name" name="register-form-name" value="{{posts1.Price_Dye}}" class="form-control" />
   </div>
 
 <div class="col_half">
     <label for="register-form-name"> Packing Material:</label>
-    <input type="number" name="Packaging_Material" step="any" required="" id="id_Packaging_Material" class="form-control"/>
+    <input type="number" name="Packaging_Material" step="any" required="" id="id_Packaging_Material" value="{{posts5.pack}}" class="form-control"/>
   </div>
 
   <div class="col_half col_last">
     <label for="register-form-name">Price</label>
-  <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+  <input type="text" id="register-form-name" name="register-form-name" value="{{posts3.Price_Packaging_Material}}" class="form-control" />
 
 
 </div>
-<div class="col_half ">
-  <label for="register-form-name">Total Price</label>
-<input type="number" name="Price" required="" id="id_Price" class="form-control" />
-</div>
-
-
-</br>
-<input type="text" name="Lot_number" maxlength="30" required="" id="id_Lot_number">
-<input type="text" name="Demand_date" required="" id="id_Demand_date">
-<input type="text" name="Requirement_date" required="" id="id_Requirement_date">
-    <input type="text" name="user_location" maxlength="40" required="" id="id_user_location">
-    <input type="text" name="user_id" required="" id="id_user_id">
+  <div class="col_half ">
+    <label for="register-form-name">Total Price</label><br>
+<input type="number" name="Price" step="any" required="" class="form-control" value="{{posts5.price}}" id="id_Price" ></div>
 
   </br>
-</div>
-<button class="btn btn-primary" type="submit" name="update">SUBMIT</button>
+  <input type="hidden" name="Lot_number" maxlength="30" required="" id="lotnumber3">
+  <input type="hidden" name="Demand_date" required=""  id="currentDate3">
+  <input type="hidden" name="Requirement_date" required="" id="feauturedate3">
+      <input type="hidden" name="user_location" maxlength="40" required="" id="id_user_location" value="{{request.session.plantlocation}}">
+      <input type="hidden" name="user_id" required="" id="id_user_id" value="{{request.session.plantuid}}">
+
+    </br>
+  </div>
+<button class="btn btn-primary" type="submit" value="submit">SUBMIT</button>
+                 {% endfor %}
+
+    </form>
 </div>
 <!----------------------------------------------------------------->
 <!-- Lace-up Shoes-->
