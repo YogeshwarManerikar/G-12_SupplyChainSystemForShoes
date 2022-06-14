@@ -13,5 +13,5 @@ From the impact of technology on tracking, to how Bata is transforming its suppl
 - Estmation deliveriess
 
 ### Technologys & Tools:-
-![tech](https://user-images.githubusercontent.com/50474388/120074995-1b0b2800-c0bd-11eb-82cc-ee33a7d3e6ad.png)
+![tech]([https://user-images.githubusercontent.com/50474388/120074995-1b0b2800-c0bd-11eb-82cc-ee33a7d3e6ad.png](https://www.dasinfomedia.com/wp-content/uploads/2021/11/Flutter-Tools.jpg))
 
